@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+  <defs>
+    <linearGradient id="gridGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f9a620"/>
+      <stop offset="100%" stop-color="#f76b1c"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="#13263b"/>
+  <g stroke="rgba(255,255,255,0.1)" stroke-width="1">
+    <path d="M0 80H900"/>
+    <path d="M0 160H900"/>
+    <path d="M0 240H900"/>
+    <path d="M0 320H900"/>
+    <path d="M0 400H900"/>
+    <path d="M0 480H900"/>
+    <path d="M90 0V600"/>
+    <path d="M180 0V600"/>
+    <path d="M270 0V600"/>
+    <path d="M360 0V600"/>
+    <path d="M450 0V600"/>
+    <path d="M540 0V600"/>
+    <path d="M630 0V600"/>
+    <path d="M720 0V600"/>
+    <path d="M810 0V600"/>
+  </g>
+  <g fill="none" stroke="url(#gridGradient)" stroke-width="12" stroke-linecap="round">
+    <path d="M120 460 C200 420 280 500 360 460 C440 420 520 500 600 460 C680 420 760 500 840 460"/>
+    <path d="M120 380 C200 340 280 420 360 380 C440 340 520 420 600 380 C680 340 760 420 840 380" opacity="0.7"/>
+  </g>
+  <g fill="#f7f9fc" opacity="0.9">
+    <rect x="160" y="160" width="120" height="160" rx="12"/>
+    <rect x="320" y="120" width="140" height="200" rx="12"/>
+    <rect x="500" y="200" width="120" height="140" rx="12"/>
+    <rect x="660" y="150" width="140" height="190" rx="12"/>
+  </g>
+</svg>
