@@ -3,28 +3,58 @@ const navLinks = document.querySelector('.nav-links');
 const backToTop = document.querySelector('.back-to-top');
 const yearEl = document.getElementById('year');
 
-const toggleNav = () => {
-    if (!navLinks) return;
-    navLinks.classList.toggle('open');
+const isToggleVisible = () => {
+    if (!navToggle) return false;
+    return window.getComputedStyle(navToggle).display !== 'none';
 };
+
+const syncMenuForViewport = () => {
+    if (!navLinks) return;
+    if (!navToggle) {
+        navLinks.removeAttribute('aria-hidden');
+        return;
+    }
+
+    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+
+    if (isToggleVisible()) {
+        navLinks.classList.toggle('open', expanded);
+        navLinks.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+    } else {
+        navLinks.classList.remove('open');
+        navLinks.removeAttribute('aria-hidden');
+    }
+};
+
+const setMenuState = (expanded) => {
+    if (!navToggle) return;
+    navToggle.setAttribute('aria-expanded', String(expanded));
+    syncMenuForViewport();
+};
+
+const toggleNav = () => {
+    if (!navToggle) return;
+    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+    setMenuState(!expanded);
+};
+
+syncMenuForViewport();
 
 if (navToggle) {
     navToggle.addEventListener('click', toggleNav);
-    navToggle.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            toggleNav();
-        }
-    });
 }
 
 if (navLinks) {
     navLinks.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
-            navLinks.classList.remove('open');
+            if (navToggle) {
+                setMenuState(false);
+            }
         });
     });
 }
+
+window.addEventListener('resize', syncMenuForViewport);
 
 const updateBackToTop = () => {
     if (!backToTop) return;

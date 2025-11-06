@@ -101,11 +101,22 @@ header {
     transform: translateY(-1px);
 }
 
+.nav-links a:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
     gap: 0.25rem;
     cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: inherit;
+    appearance: none;
+    -webkit-appearance: none;
 }
 
 .nav-toggle span {
@@ -113,6 +124,11 @@ header {
     height: 3px;
     background: #fff;
     border-radius: 999px;
+}
+
+.nav-toggle:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
 }
 
 .hero {
