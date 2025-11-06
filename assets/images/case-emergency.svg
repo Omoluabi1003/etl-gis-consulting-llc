@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+  <defs>
+    <linearGradient id="emergencyGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff5f6d"/>
+      <stop offset="100%" stop-color="#ffc371"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" fill="#101f33"/>
+  <circle cx="450" cy="300" r="240" fill="rgba(63,169,245,0.08)" stroke="rgba(63,169,245,0.4)" stroke-width="18"/>
+  <circle cx="450" cy="300" r="170" fill="rgba(249,166,32,0.12)" stroke="rgba(249,166,32,0.5)" stroke-width="12"/>
+  <g fill="none" stroke="url(#emergencyGradient)" stroke-width="8" stroke-linecap="round">
+    <path d="M200 380 C320 320 380 420 450 360 C520 300 600 380 700 320"/>
+    <path d="M220 440 C320 420 380 500 470 460 C560 420 620 460 700 420" opacity="0.6"/>
+  </g>
+  <g fill="#f7f9fc" opacity="0.9">
+    <rect x="260" y="220" width="380" height="200" rx="20"/>
+    <circle cx="330" cy="280" r="30" fill="#3fa9f5"/>
+    <rect x="370" y="260" width="220" height="24" rx="12" fill="#1a4d8f"/>
+    <rect x="370" y="304" width="190" height="20" rx="10" fill="#3fa9f5" opacity="0.8"/>
+    <rect x="370" y="340" width="160" height="20" rx="10" fill="#f9a620" opacity="0.8"/>
+  </g>
+</svg>

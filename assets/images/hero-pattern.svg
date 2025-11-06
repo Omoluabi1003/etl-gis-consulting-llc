@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f1b2a"/>
+      <stop offset="100%" stop-color="#1a4d8f"/>
+    </linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0H0V80" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <path d="M0 40H80" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <path d="M40 0V80" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+  <g fill="none" stroke="rgba(63,169,245,0.25)" stroke-width="1.5">
+    <path d="M0 520 C160 480 320 540 480 500 C640 460 720 500 800 460"/>
+    <path d="M0 360 C180 310 260 420 430 370 C620 315 690 380 800 340"/>
+    <path d="M0 200 C200 160 260 240 420 210 C580 180 680 220 800 200"/>
+  </g>
+</svg>
