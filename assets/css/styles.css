@@ -19,7 +19,13 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
@@ -798,6 +804,40 @@ main .section.light .section-header p {
 
     .mobile-only {
         display: inline-flex;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .skip-link,
+    .nav-links,
+    .nav-links a,
+    .btn,
+    .card,
+    .badge-link::after,
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea,
+    .back-to-top {
+        transition: none;
+    }
+
+    .nav-links,
+    .nav-links.open,
+    .nav-links a:hover,
+    .nav-links a:focus,
+    .nav-links a.active,
+    .btn-primary:hover,
+    .btn-outline:hover,
+    .card:hover,
+    .badge-link::after,
+    .badge-link:hover::after,
+    .back-to-top,
+    .back-to-top.visible {
+        transform: none;
     }
 }
 
