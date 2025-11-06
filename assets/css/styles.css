@@ -35,9 +35,45 @@ a {
     text-decoration: none;
 }
 
+a:focus-visible {
+    text-decoration: underline;
+    text-decoration-thickness: 0.15em;
+    text-underline-offset: 0.2em;
+}
+
 a:hover,
 a:focus {
     color: var(--color-secondary);
+}
+
+.skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 50%;
+    transform: translate(-50%, -150%);
+    background: var(--color-accent);
+    color: var(--color-dark);
+    padding: 0.75rem 1.25rem;
+    border-radius: 999px;
+    font-weight: 600;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0;
+    z-index: 1100;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    transform: translate(-50%, 0);
+    opacity: 1;
+    outline: 3px solid var(--color-dark);
+    outline-offset: 4px;
+}
+
+button:focus-visible,
+.btn:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 4px;
 }
 
 header {
