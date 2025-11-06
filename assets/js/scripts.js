@@ -106,8 +106,8 @@ const mapContainer = document.getElementById('office-map');
 if (mapContainer && typeof L !== 'undefined') {
     const map = L.map(mapContainer, {
         scrollWheelZoom: false,
-        maxZoom: 15,
-    }).setView([34.5, -79.0], 6);
+        maxZoom: 16,
+    }).setView([27.2731, -80.3582], 10);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -120,9 +120,9 @@ if (mapContainer && typeof L !== 'undefined') {
             description: 'Mobility analytics, utility network strategy, and executive briefings.',
         },
         {
-            coordinates: [27.2731, -80.3553],
-            title: 'St. Lucie County, Florida',
-            description: 'County-wide GIS modernization, public safety dashboards, and data governance.',
+            coordinates: [27.2731, -80.3582],
+            title: 'Port St. Lucie, Florida',
+            description: 'City and county GIS modernization, public safety dashboards, and data governance.',
         },
         {
             coordinates: [38.9072, -77.0369],
