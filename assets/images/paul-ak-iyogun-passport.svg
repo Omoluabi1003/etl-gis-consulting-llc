@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="750" viewBox="0 0 600 750" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Passport style portrait of Paul A.K. Iyogun</title>
+  <desc id="desc">Illustrated headshot of Paul A.K. Iyogun wearing glasses and a light button down shirt on a teal background.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d8f3ff" />
+      <stop offset="100%" stop-color="#91c7ff" />
+    </linearGradient>
+    <clipPath id="portrait-clip">
+      <rect x="75" y="75" width="450" height="600" rx="48" />
+    </clipPath>
+  </defs>
+  <rect x="0" y="0" width="600" height="750" fill="url(#bg)" />
+  <g clip-path="url(#portrait-clip)" transform="translate(0,18)">
+    <rect x="75" y="360" width="450" height="360" fill="#f8f9fb" />
+    <path d="M210 515c55 45 125 45 180 0l20 145H190z" fill="#d5d7db" />
+    <path d="M260 318c0-44 26-73 60-73s60 29 60 73-26 83-60 83-60-39-60-83z" fill="#3b2a1a" />
+    <path d="M240 336c-6 66 16 122 80 122s86-56 80-122c-14-6-32-10-52-12-12-1-23-1-34 0-20 1-38 6-52 12z" fill="#f4c8a2" />
+    <path d="M230 520c20-58 60-62 90-62s70 4 90 62c9 28 14 73 18 116H212c4-43 9-88 18-116z" fill="#f7f5f1" />
+    <path d="M248 521c19-35 47-42 72-42s53 7 72 42l-20 33c-19-13-36-18-52-18s-33 5-52 18z" fill="#d15050" fill-opacity="0.92" />
+    <path d="M214 283c9-49 51-88 108-88s99 39 108 88c-12-13-37-22-62-28-13-3-26-4-39-4s-26 1-39 4c-25 6-50 15-62 28z" fill="#3b2a1a" />
+    <path d="M230 332c0-28 18-41 41-41h58c23 0 41 13 41 41v18c0 28-18 55-41 55h-58c-23 0-41-27-41-55z" fill="#f4c8a2" />
+    <path d="M262 353h136v20c0 9-4 17-9 24-13 17-31 26-49 26h-20c-18 0-36-9-49-26-5-7-9-15-9-24z" fill="#e0b18a" />
+    <path d="M259 329l6-19c4-12 21-21 42-21h22c21 0 38 9 42 21l6 19c-14-7-30-10-49-11-20-1-40 3-69 11z" fill="#3b2a1a" />
+    <path d="M276 318c-6 0-11 5-11 11s5 11 11 11 11-5 11-11-5-11-11-11zm100 0c-6 0-11 5-11 11s5 11 11 11 11-5 11-11-5-11-11-11z" fill="#1b1b1f" />
+    <path d="M276 381c15 18 42 29 66 29s51-11 66-29" stroke="#ce8f63" stroke-width="9" stroke-linecap="round" fill="none" />
+    <path d="M251 401h170c-5 38-40 65-85 65s-80-27-85-65z" fill="#f7f5f1" />
+    <path d="M225 540l-33 44c-14 19-9 39 12 42l73 11-37-97z" fill="#f4f5f8" />
+    <path d="M409 540l33 44c14 19 9 39-12 42l-73 11 37-97z" fill="#f4f5f8" />
+    <path d="M281 502l-15 37" stroke="#a33636" stroke-width="8" stroke-linecap="round" />
+    <path d="M372 502l15 37" stroke="#a33636" stroke-width="8" stroke-linecap="round" />
+    <rect x="260" y="332" width="136" height="38" rx="18" fill="#1b1b1f" />
+    <rect x="276" y="339" width="26" height="24" rx="7" fill="#f4f5f8" />
+    <rect x="354" y="339" width="26" height="24" rx="7" fill="#f4f5f8" />
+    <path d="M320 365h16" stroke="#1b1b1f" stroke-width="4" stroke-linecap="round" />
+  </g>
+  <rect x="75" y="75" width="450" height="600" rx="48" fill="none" stroke="#ffffff" stroke-width="10" opacity="0.65" />
+</svg>
