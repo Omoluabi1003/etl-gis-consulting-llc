@@ -100,3 +100,40 @@ if (contactForm && formResponse) {
         contactForm.reset();
     });
 }
+
+const mapContainer = document.getElementById('office-map');
+
+if (mapContainer && typeof L !== 'undefined') {
+    const map = L.map(mapContainer, {
+        scrollWheelZoom: false,
+        maxZoom: 15,
+    }).setView([34.5, -79.0], 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    const hubs = [
+        {
+            coordinates: [35.2271, -80.8431],
+            title: 'Charlotte, North Carolina',
+            description: 'Mobility analytics, utility network strategy, and executive briefings.',
+        },
+        {
+            coordinates: [27.2731, -80.3553],
+            title: 'St. Lucie County, Florida',
+            description: 'County-wide GIS modernization, public safety dashboards, and data governance.',
+        },
+        {
+            coordinates: [38.9072, -77.0369],
+            title: 'Washington, D.C.',
+            description: 'Federal agency spatial governance, security alignment, and mission analytics.',
+        },
+    ];
+
+    hubs.forEach(({ coordinates, title, description }) => {
+        L.marker(coordinates)
+            .addTo(map)
+            .bindPopup(`<strong>${title}</strong><br>${description}`);
+    });
+}
