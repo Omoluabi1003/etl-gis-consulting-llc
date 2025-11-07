@@ -8,21 +8,26 @@ const analyticsTemplate = document.querySelector('script[data-analytics-template
 
 const relayEmailTokenSegments = ['b21v', 'bHVh', 'Ymlw', 'M2Fr', 'QGdt', 'YWls', 'LmNv', 'bQ=='];
 const relayEmailToken = relayEmailTokenSegments.join('');
+const relayPhoneTokenSegments = ['KzE4', 'NjMy', 'NjEz', 'MTAz'];
+const relayPhoneToken = relayPhoneTokenSegments.join('');
 const displayEmailAddress = 'hello@etl-gis.com';
+const displayPhoneNumber = '+1 (888) 555-0149';
+const displayPhoneHref = 'tel:+18885550149';
 
-const decodeEmailToken = (token) => {
+const decodeToken = (token) => {
     if (!token || typeof atob !== 'function') {
         return '';
     }
     try {
         return atob(token);
     } catch (error) {
-        console.warn('Unable to decode relay email token.', error);
+        console.warn('Unable to decode relay token.', error);
         return '';
     }
 };
 
-const resolvedRelayEmail = decodeEmailToken(relayEmailToken);
+const resolvedRelayEmail = decodeToken(relayEmailToken);
+const resolvedRelayPhone = decodeToken(relayPhoneToken);
 
 const extractMailtoQuery = (href) => {
     if (!href) {
@@ -55,6 +60,24 @@ const applyEmailRelayToLinks = () => {
 };
 
 applyEmailRelayToLinks();
+
+const applyPhoneRelayToLinks = () => {
+    if (!resolvedRelayPhone) {
+        return;
+    }
+
+    document.querySelectorAll('[data-relay-phone]').forEach((link) => {
+        link.setAttribute('href', displayPhoneHref);
+
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const destination = `tel:${resolvedRelayPhone}`;
+            window.location.href = destination;
+        });
+    });
+};
+
+applyPhoneRelayToLinks();
 
 let lastFocusedBeforeMenu = null;
 let focusTrapHandler = null;
@@ -266,7 +289,7 @@ if (contactForm && formResponse) {
             formResponse.style.color = '#1a4d8f';
             contactForm.reset();
         } catch (error) {
-            formResponse.textContent = `We were unable to submit your request automatically. Please email ${displayEmailAddress} or call +1 (863) 261-3103.`;
+            formResponse.textContent = `We were unable to submit your request automatically. Please email ${displayEmailAddress} or call ${displayPhoneNumber}.`;
             formResponse.style.color = '#d9423a';
         }
     });
