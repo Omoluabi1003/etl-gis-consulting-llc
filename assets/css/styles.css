@@ -31,7 +31,7 @@ html {
 body {
     font-family: var(--font-body);
     color: var(--color-dark);
-    background-color: #060e1b;
+    background-color: #040913;
     line-height: 1.6;
     min-height: 100vh;
     position: relative;
@@ -49,23 +49,21 @@ body::after {
 
 body::before {
     background-image:
-        linear-gradient(120deg, rgba(15, 80, 140, 0.4) 0%, rgba(6, 14, 27, 0.92) 55%, rgba(3, 8, 18, 0.98) 100%),
-        url("../images/ai-gis-bg.svg");
-    background-size: cover, cover;
-    background-position: center;
-    background-repeat: no-repeat;
+        radial-gradient(120% 120% at 15% 10%, rgba(63, 169, 245, 0.24), transparent 65%),
+        radial-gradient(110% 110% at 85% 15%, rgba(249, 166, 32, 0.16), transparent 70%),
+        linear-gradient(130deg, rgba(10, 20, 39, 0.96) 0%, rgba(3, 9, 19, 0.96) 100%);
     background-attachment: fixed;
-    filter: saturate(120%);
+    filter: saturate(115%);
 }
 
 body::after {
     z-index: -1;
-    background:
-        radial-gradient(35vw 35vw at 10% 10%, rgba(249, 166, 32, 0.18), transparent 70%),
-        radial-gradient(45vw 45vw at 85% 20%, rgba(63, 169, 245, 0.25), transparent 70%),
-        radial-gradient(40vw 40vw at 30% 75%, rgba(31, 217, 166, 0.18), transparent 75%);
+    background-image:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px, transparent 80px),
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px, transparent 80px);
+    background-size: 140px 140px;
+    opacity: 0.55;
     mix-blend-mode: screen;
-    opacity: 0.9;
 }
 
 a {
@@ -206,19 +204,66 @@ header {
 }
 
 .hero {
-    background: linear-gradient(120deg, rgba(26, 77, 143, 0.86), rgba(15, 27, 42, 0.82)), url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+    background:
+        radial-gradient(120% 140% at 85% 20%, rgba(63, 169, 245, 0.32), transparent 65%),
+        radial-gradient(120% 120% at 12% 15%, rgba(249, 166, 32, 0.25), transparent 60%),
+        linear-gradient(135deg, rgba(16, 30, 51, 0.96) 0%, rgba(5, 13, 25, 0.98) 100%);
     color: #fff;
     padding: 6rem 2rem 5rem;
     position: relative;
     overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.hero::before,
 .hero::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(160deg, rgba(15, 27, 42, 0.35), rgba(15, 27, 42, 0.65));
     z-index: 0;
+    pointer-events: none;
+}
+
+.hero::before {
+    background:
+        radial-gradient(40vw 40vw at 20% 80%, rgba(63, 169, 245, 0.12), transparent 70%),
+        radial-gradient(38vw 38vw at 80% 30%, rgba(31, 217, 166, 0.15), transparent 70%);
+    filter: blur(0.5px);
+    animation: heroPulse 16s ease-in-out infinite alternate;
+}
+
+.hero::after {
+    background-image:
+        linear-gradient(160deg, rgba(8, 18, 35, 0.55) 0%, rgba(5, 11, 22, 0.9) 65%),
+        repeating-linear-gradient(120deg, rgba(255, 255, 255, 0.07) 0, rgba(255, 255, 255, 0.07) 1px, transparent 1px, transparent 18px);
+    background-size: cover, 280px 280px;
+    mix-blend-mode: screen;
+    opacity: 0.65;
+    animation: heroStrafe 22s linear infinite;
+}
+
+@keyframes heroPulse {
+    0% {
+        transform: translate3d(-2%, -1%, 0) scale(0.98);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate3d(1%, 2%, 0) scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: translate3d(-1%, 1%, 0) scale(1);
+        opacity: 0.85;
+    }
+}
+
+@keyframes heroStrafe {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+    100% {
+        background-position: 0 0, 280px 280px;
+    }
 }
 
 .hero-content {
