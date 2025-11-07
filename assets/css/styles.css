@@ -331,6 +331,12 @@ header {
     gap: 2.5rem;
 }
 
+.hero-aside {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+}
+
 .hero.narrow .hero-content {
     align-items: stretch;
     gap: 2rem;
@@ -1364,6 +1370,16 @@ main .section.light .section-header p {
     color: rgba(255, 255, 255, 0.85);
     font-weight: 600;
     line-height: 1.5;
+}
+
+.leadership-figure figcaption a {
+    color: var(--color-secondary);
+    text-decoration: none;
+}
+
+.leadership-figure figcaption a:hover,
+.leadership-figure figcaption a:focus {
+    text-decoration: underline;
 }
 
 .metrics-grid {
