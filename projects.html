@@ -5,10 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Explore ETL GIS Consulting LLC project portfolio and success stories across government, utilities, transportation, and energy sectors.">
     <title>Projects | ETL GIS Consulting LLC</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://www.etl-gis.com/projects">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Projects | ETL GIS Consulting LLC">
+    <meta property="og:description" content="See how ETL GIS Consulting delivers measurable GIS outcomes for transportation, utilities, and emergency management leaders.">
+    <meta property="og:url" content="https://www.etl-gis.com/projects">
+    <meta property="og:image" content="https://www.etl-gis.com/assets/images/og-cover.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Projects | ETL GIS Consulting LLC">
+    <meta name="twitter:description" content="Portfolio of GIS modernizations, analytics programs, and spatial governance engagements.">
+    <meta name="twitter:image" content="https://www.etl-gis.com/assets/images/og-cover.svg">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "ETL GIS Consulting Projects",
+            "url": "https://www.etl-gis.com/projects",
+            "description": "Representative GIS success stories spanning transportation, utilities, and emergency management programs.",
+            "isPartOf": {
+                "@type": "Organization",
+                "name": "ETL GIS Consulting LLC"
+            }
+        }
+    </script>
+    <script type="application/json" data-analytics-template data-src="https://plausible.io/js/script.js" data-domain="etl-gis.com"></script>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -18,19 +43,25 @@
                 <span>ETL GIS Consulting LLC</span>
                 <span>Spatial Intelligence</span>
             </a>
-            <nav>
+            <nav aria-label="Primary">
                 <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="primary-navigation" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                <ul class="nav-links" id="primary-navigation">
+                <ul class="nav-links" id="primary-navigation" aria-hidden="true">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a class="active" href="projects.html" aria-current="page">Projects</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li class="mobile-only"><a class="btn btn-outline" href="contact.html">Speak with a consultant</a></li>
+                    <li class="motion-control mobile-only"><button class="motion-toggle" type="button" aria-pressed="false">Reduce motion</button></li>
                 </ul>
+                <div class="nav-utilities">
+                    <button class="motion-toggle" type="button" aria-pressed="false">Reduce motion</button>
+                    <a class="btn btn-outline" href="contact.html">Speak with a consultant</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -67,42 +98,48 @@
                 <p>Each engagement is customized to align stakeholders, accelerate delivery, and deliver tangible value.</p>
             </div>
             <div class="project-showcase">
-                <article class="project-card">
-                    <img src="https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=1200&q=80" alt="State transportation analysts monitoring traffic operations in a control center">
+                <article class="project-card" id="transportation-analytics">
+                    <img src="assets/images/case-transportation.svg" alt="Illustration of connected transit analytics dashboards" loading="lazy">
                     <div class="project-content">
-                        <span>Transportation Agency</span>
-                        <h3>Statewide ArcGIS Enterprise Modernization</h3>
-                        <p>Designed and delivered a secure, cloud-based ArcGIS Enterprise deployment supporting multimodal operations, permitting, and maintenance programs.</p>
+                        <span>Metro Mobility Alliance</span>
+                        <h3>Real-time Transportation Analytics Platform</h3>
+                        <p>Designed a cloud-native ArcGIS Enterprise deployment with streaming ingestion, KPI dashboards, and predictive maintenance models across bus, rail, and micro-mobility fleets.</p>
                         <ul>
-                            <li>Cut application response times by 55%</li>
-                            <li>Established zero-downtime release process</li>
-                            <li>Trained 300+ analysts and field crews</li>
+                            <li>Processes 4.2M telemetry events daily with 99.98% uptime</li>
+                            <li>Reduced unscheduled maintenance downtime by 21%</li>
+                            <li>Delivered executive scorecards for DOT and municipal stakeholders</li>
                         </ul>
+                        <div class="project-links">
+                            <a href="case-studies/metro-mobility-analytics.html">Read full analytics case study</a>
+                        </div>
                     </div>
                 </article>
-                <article class="project-card">
-                    <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=1200&q=80" alt="Electric utility infrastructure and transmission lines at sunset">
+                <article class="project-card" id="county-modernization">
+                    <img src="assets/images/case-utilities.svg" alt="Illustration of county modernization and utility coordination" loading="lazy">
                     <div class="project-content">
-                        <span>Utilities Provider</span>
-                        <h3>Integrated Utility Network Migration</h3>
-                        <p>Orchestrated data migration, asset modeling, and outage analytics for a multi-state electric cooperative transitioning to the Esri Utility Network.</p>
+                        <span>St. Lucie County, Florida</span>
+                        <h3>County-wide GIS Modernization &amp; Governance</h3>
+                        <p>Unified permitting, utilities, and emergency response data within a governed spatial data warehouse, enabling faster service delivery and cross-departmental insights.</p>
                         <ul>
-                            <li>Consolidated 45 legacy databases</li>
-                            <li>Automated nightly ETL pipelines</li>
-                            <li>Improved outage response time by 32%</li>
+                            <li>Consolidated 14 legacy datasets with automated quality checks</li>
+                            <li>Cut constituent service response times by 32%</li>
+                            <li>Established data governance councils and enablement programs</li>
                         </ul>
+                        <div class="project-links">
+                            <a href="case-studies/st-lucie-modernization.html">Read full modernization case study</a>
+                        </div>
                     </div>
                 </article>
-                <article class="project-card">
-                    <img src="https://images.unsplash.com/photo-1456428199391-a3b1cb5e93ab?auto=format&fit=crop&w=1200&q=80" alt="Emergency management team coordinating response from a situation room">
+                <article class="project-card" id="federal-governance">
+                    <img src="assets/images/case-emergency.svg" alt="Illustration of secure geospatial coordination for emergency response" loading="lazy">
                     <div class="project-content">
-                        <span>Emergency Management</span>
-                        <h3>Situational Awareness Platform</h3>
-                        <p>Built a unified command dashboard integrating live feeds, field apps, and predictive analytics to coordinate disaster response operations.</p>
+                        <span>Federal Systems Coalition</span>
+                        <h3>Secure Spatial Governance &amp; Situational Awareness</h3>
+                        <p>Implemented cross-agency access controls, audit-ready data pipelines, and mission dashboards that align with FedRAMP, FISMA, and SOC 2 expectations.</p>
                         <ul>
-                            <li>Real-time visibility for 80+ jurisdictions</li>
-                            <li>Automated mission tasking and reporting</li>
-                            <li>Integrated with FEMA and state data sources</li>
+                            <li>Achieved 100% control coverage across quarterly audits</li>
+                            <li>Delivered zero-trust compliant data sharing for 12 agencies</li>
+                            <li>Embedded change management for 500+ cleared analysts</li>
                         </ul>
                     </div>
                 </article>
@@ -185,6 +222,7 @@
                     <li><a href="services.html">Strategic GIS Services</a></li>
                     <li><a href="projects.html">Success Stories</a></li>
                     <li><a href="contact.html">Schedule a Workshop</a></li>
+                    <li><a href="index.html#compliance">Compliance &amp; Trust Center</a></li>
                 </ul>
             </div>
         </div>
@@ -192,6 +230,12 @@
             <span>&copy; <span id="year"></span> ETL GIS Consulting LLC. All rights reserved.</span>
         </div>
     </footer>
+
+    <div class="consent-banner" role="dialog" aria-live="polite" aria-label="Analytics consent notice">
+        <p>We use privacy-first analytics (Plausible) to understand what content helps prospective clients. Data is collected only after you consent.</p>
+        <button type="button">Accept analytics tracking</button>
+        <small>Read our <a href="mailto:privacy@etl-gis.com">privacy commitments</a>.</small>
+    </div>
 
     <a class="back-to-top" href="#" aria-label="Back to top">&#8593;</a>
 

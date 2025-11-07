@@ -2,57 +2,124 @@ const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
 const backToTop = document.querySelector('.back-to-top');
 const yearEl = document.getElementById('year');
+const motionToggles = Array.from(document.querySelectorAll('.motion-toggle'));
+const consentBanner = document.querySelector('.consent-banner');
+const analyticsTemplate = document.querySelector('script[data-analytics-template]');
+
+let lastFocusedBeforeMenu = null;
+let focusTrapHandler = null;
+
+const focusableSelectors = [
+    'a[href]',
+    'area[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+].join(',');
 
 const isToggleVisible = () => {
     if (!navToggle) return false;
     return window.getComputedStyle(navToggle).display !== 'none';
 };
 
+const closeMenu = ({ restoreFocus = true } = {}) => {
+    if (!navToggle || !navLinks) return;
+    navToggle.setAttribute('aria-expanded', 'false');
+    navLinks.classList.remove('open');
+    navLinks.setAttribute('aria-hidden', 'true');
+    if (focusTrapHandler) {
+        navLinks.removeEventListener('keydown', focusTrapHandler);
+        focusTrapHandler = null;
+    }
+    if (restoreFocus && lastFocusedBeforeMenu) {
+        lastFocusedBeforeMenu.focus();
+    }
+};
+
+const openMenu = () => {
+    if (!navToggle || !navLinks) return;
+    lastFocusedBeforeMenu = document.activeElement;
+    navToggle.setAttribute('aria-expanded', 'true');
+    navLinks.classList.add('open');
+    navLinks.setAttribute('aria-hidden', 'false');
+
+    const focusableItems = Array.from(navLinks.querySelectorAll(focusableSelectors));
+    if (focusableItems.length) {
+        const [firstItem] = focusableItems;
+        const lastItem = focusableItems[focusableItems.length - 1];
+        focusTrapHandler = (event) => {
+            if (event.key !== 'Tab') return;
+            if (event.shiftKey && document.activeElement === firstItem) {
+                event.preventDefault();
+                lastItem.focus();
+            } else if (!event.shiftKey && document.activeElement === lastItem) {
+                event.preventDefault();
+                firstItem.focus();
+            }
+        };
+        navLinks.addEventListener('keydown', focusTrapHandler);
+        firstItem.focus();
+    }
+};
+
 const syncMenuForViewport = () => {
     if (!navLinks) return;
-    if (!navToggle) {
+    if (!navToggle || !isToggleVisible()) {
+        navLinks.classList.remove('open');
         navLinks.removeAttribute('aria-hidden');
+        if (navToggle) {
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+        if (focusTrapHandler) {
+            navLinks.removeEventListener('keydown', focusTrapHandler);
+            focusTrapHandler = null;
+        }
         return;
     }
 
     const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-
-    if (isToggleVisible()) {
-        navLinks.classList.toggle('open', expanded);
-        navLinks.setAttribute('aria-hidden', expanded ? 'false' : 'true');
-    } else {
-        navLinks.classList.remove('open');
-        navLinks.removeAttribute('aria-hidden');
-    }
-};
-
-const setMenuState = (expanded) => {
-    if (!navToggle) return;
-    navToggle.setAttribute('aria-expanded', String(expanded));
-    syncMenuForViewport();
+    navLinks.classList.toggle('open', expanded);
+    navLinks.setAttribute('aria-hidden', expanded ? 'false' : 'true');
 };
 
 const toggleNav = () => {
     if (!navToggle) return;
     const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-    setMenuState(!expanded);
+    if (expanded) {
+        closeMenu();
+    } else {
+        openMenu();
+    }
 };
 
 syncMenuForViewport();
 
 if (navToggle) {
     navToggle.addEventListener('click', toggleNav);
+    navToggle.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeMenu();
+        }
+    });
 }
 
 if (navLinks) {
     navLinks.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
-            if (navToggle) {
-                setMenuState(false);
+            if (isToggleVisible()) {
+                closeMenu({ restoreFocus: false });
             }
         });
     });
 }
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navToggle && navToggle.getAttribute('aria-expanded') === 'true') {
+        closeMenu();
+    }
+});
 
 window.addEventListener('resize', syncMenuForViewport);
 
@@ -79,27 +146,121 @@ if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
 }
 
+const applyMotionPreference = (preference) => {
+    const reduced = preference === 'reduced';
+    document.body.dataset.motion = reduced ? 'reduced' : 'animated';
+    motionToggles.forEach((toggle) => {
+        toggle.setAttribute('aria-pressed', reduced ? 'true' : 'false');
+        toggle.textContent = reduced ? 'Enable motion' : 'Reduce motion';
+    });
+};
+
+const motionPreferenceMedia = window.matchMedia('(prefers-reduced-motion: reduce)');
+const storedMotionPreference = localStorage.getItem('motion-preference');
+const prefersReduced = motionPreferenceMedia.matches;
+const initialPreference = storedMotionPreference || (prefersReduced ? 'reduced' : 'animated');
+applyMotionPreference(initialPreference);
+
+motionToggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+        const current = document.body.dataset.motion === 'reduced' ? 'reduced' : 'animated';
+        const next = current === 'reduced' ? 'animated' : 'reduced';
+        localStorage.setItem('motion-preference', next);
+        applyMotionPreference(next);
+    });
+});
+
+if (!storedMotionPreference) {
+    motionPreferenceMedia.addEventListener('change', (event) => {
+        applyMotionPreference(event.matches ? 'reduced' : 'animated');
+    });
+}
+
 const contactForm = document.getElementById('contact-form');
 const formResponse = document.querySelector('.form-response');
+const formEndpoint = 'https://formsubmit.co/ajax/hello@etl-gis.com';
 
 if (contactForm && formResponse) {
-    contactForm.addEventListener('submit', (event) => {
+    contactForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+
         if (!contactForm.checkValidity()) {
             formResponse.textContent = 'Please complete all required fields before submitting.';
             formResponse.style.color = '#f9a620';
             return;
         }
 
-        const formData = new FormData(contactForm);
-        const name = formData.get('full-name');
-        const interest = formData.get('interest');
-
-        formResponse.textContent = `Thanks${name ? `, ${name}` : ''}! A consultant specializing in ${interest || 'your requested service'} will contact you shortly.`;
+        formResponse.textContent = 'Submitting your inquiry securely…';
         formResponse.style.color = '#1a4d8f';
-        contactForm.reset();
+
+        const formData = new FormData(contactForm);
+        const payload = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch(formEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            formResponse.textContent = `Thanks${payload['full-name'] ? `, ${payload['full-name']}` : ''}! Our team has received your details and will respond within one business day.`;
+            formResponse.style.color = '#1a4d8f';
+            contactForm.reset();
+        } catch (error) {
+            formResponse.textContent = 'We were unable to submit your request automatically. Please email hello@etl-gis.com or call +1 (863) 261-3103.';
+            formResponse.style.color = '#d9423a';
+        }
     });
 }
+
+const loadAnalytics = () => {
+    if (!analyticsTemplate || document.querySelector('script[data-analytics-loaded]')) {
+        return;
+    }
+    const script = document.createElement('script');
+    script.src = analyticsTemplate.getAttribute('data-src');
+    script.defer = true;
+    script.setAttribute('data-domain', analyticsTemplate.getAttribute('data-domain'));
+    script.setAttribute('data-analytics-loaded', 'true');
+    document.head.appendChild(script);
+};
+
+const acknowledgeConsent = () => {
+    localStorage.setItem('analytics-consent', 'granted');
+    loadAnalytics();
+    if (consentBanner) {
+        consentBanner.classList.remove('visible');
+    }
+};
+
+if (consentBanner) {
+    const storedConsent = localStorage.getItem('analytics-consent');
+    if (storedConsent === 'granted') {
+        loadAnalytics();
+    } else {
+        requestAnimationFrame(() => {
+            consentBanner.classList.add('visible');
+        });
+    }
+
+    const consentButton = consentBanner.querySelector('button');
+    if (consentButton) {
+        consentButton.addEventListener('click', acknowledgeConsent);
+    }
+}
+
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && consentBanner?.classList.contains('visible')) {
+        consentBanner.classList.remove('visible');
+    }
+});
 
 const mapContainer = document.getElementById('office-map');
 
