@@ -840,6 +840,55 @@ img {
     font-weight: 700;
 }
 
+.faq-accordion {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.faq-accordion details {
+    background: #fff;
+    border-radius: 18px;
+    border: 1px solid rgba(26, 77, 143, 0.18);
+    box-shadow: var(--shadow-soft);
+    padding: 1.75rem 2rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-accordion details[open] {
+    border-color: rgba(63, 169, 245, 0.35);
+    box-shadow: var(--shadow-card);
+}
+
+.faq-accordion summary {
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    list-style: none;
+}
+
+.faq-accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-accordion summary::after {
+    content: '\002B';
+    float: right;
+    font-size: 1.4rem;
+    color: var(--color-secondary);
+    transition: transform 0.2s ease;
+}
+
+.faq-accordion details[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-accordion p {
+    margin-top: 1rem;
+    color: var(--color-muted);
+}
+
 .values-grid {
     max-width: var(--max-width);
     margin: 0 auto;
