@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder portrait for Paul A.K. Iyogun</title>
+  <desc id="desc">Stylized placeholder graphic indicating where Paul A.K. Iyogun's photograph should appear.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f3b68" />
+      <stop offset="100%" stop-color="#1a73a3" />
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)" rx="32" />
+  <g transform="translate(300 220)">
+    <circle cx="0" cy="0" r="110" fill="#f4f6f8" opacity="0.9" />
+    <path d="M -95 150 Q 0 60 95 150" fill="#f4f6f8" opacity="0.9" />
+    <circle cx="0" cy="-20" r="70" fill="#c9d6e2" opacity="0.8" />
+    <path d="M -70 90 Q 0 150 70 90" fill="#c9d6e2" opacity="0.8" />
+  </g>
+  <text x="300" y="420" text-anchor="middle" font-family="'Source Sans Pro', Arial, sans-serif" font-size="40" fill="#ffffff" font-weight="600">
+    Paul A.K. Iyogun
+  </text>
+  <text x="300" y="470" text-anchor="middle" font-family="'Source Sans Pro', Arial, sans-serif" font-size="20" fill="#e1eef9">
+    Replace with official headshot when available
+  </text>
+</svg>
