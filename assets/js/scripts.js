@@ -6,6 +6,37 @@ const motionToggles = Array.from(document.querySelectorAll('.motion-toggle'));
 const consentBanner = document.querySelector('.consent-banner');
 const analyticsTemplate = document.querySelector('script[data-analytics-template]');
 
+const emailDirectory = Object.freeze({
+    primary: atob('b21vbHVhYmlwM2FrQGdtYWlsLmNvbQ=='),
+});
+
+const primaryEmail = emailDirectory.primary;
+
+const renderObfuscatedEmails = () => {
+    document.querySelectorAll('[data-email-key]').forEach((element) => {
+        const key = element.getAttribute('data-email-key');
+        const email = emailDirectory[key];
+
+        if (!email) {
+            return;
+        }
+
+        const labelTemplate = element.getAttribute('data-email-label') || '{email}';
+        const replaceText = element.getAttribute('data-email-replace') !== 'false';
+        const label = labelTemplate.replace('{email}', email);
+
+        if (element.tagName.toLowerCase() === 'a') {
+            element.setAttribute('href', `mailto:${email}`);
+        }
+
+        if (replaceText) {
+            element.textContent = label;
+        }
+    });
+};
+
+renderObfuscatedEmails();
+
 let lastFocusedBeforeMenu = null;
 let focusTrapHandler = null;
 
@@ -178,7 +209,11 @@ if (!storedMotionPreference) {
 
 const contactForm = document.getElementById('contact-form');
 const formResponse = document.querySelector('.form-response');
-const formEndpoint = 'https://formsubmit.co/ajax/omoluabip3ak@gmail.com';
+const formEndpoint = `https://formsubmit.co/ajax/${encodeURIComponent(primaryEmail)}`;
+
+if (contactForm) {
+    contactForm.setAttribute('action', `https://formsubmit.co/${encodeURIComponent(primaryEmail)}`);
+}
 
 if (contactForm && formResponse) {
     contactForm.addEventListener('submit', async (event) => {
@@ -214,7 +249,7 @@ if (contactForm && formResponse) {
             formResponse.style.color = '#1a4d8f';
             contactForm.reset();
         } catch (error) {
-            formResponse.textContent = 'We were unable to submit your request automatically. Please email omoluabip3ak@gmail.com or call +1 (863) 261-3103.';
+            formResponse.textContent = `We were unable to submit your request automatically. Please email ${primaryEmail} or call +1 (863) 261-3103.`;
             formResponse.style.color = '#d9423a';
         }
     });
