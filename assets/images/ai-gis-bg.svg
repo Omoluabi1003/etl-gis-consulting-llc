@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#12264d" />
+      <stop offset="100%" stop-color="#051527" />
+    </linearGradient>
+    <linearGradient id="gridGlow" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#3fa9f5" stop-opacity="0.3" />
+      <stop offset="1" stop-color="#3fa9f5" stop-opacity="0" />
+    </linearGradient>
+    <radialGradient id="pulse" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f9a620" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#f9a620" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="nodeHalo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#8de6ff" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#8de6ff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bgGradient)" />
+  <g stroke="url(#gridGlow)" stroke-width="1" opacity="0.45">
+    <path d="M0 120 L1600 320" />
+    <path d="M0 280 L1600 520" />
+    <path d="M0 440 L1600 720" />
+    <path d="M0 600 L1600 920" />
+    <path d="M0 760 L1600 1120" />
+    <path d="M200 0 L440 1200" />
+    <path d="M520 0 L760 1200" />
+    <path d="M840 0 L1080 1200" />
+    <path d="M1160 0 L1400 1200" />
+  </g>
+  <g fill="none" stroke="#1fd9a6" stroke-width="1.5" stroke-opacity="0.4">
+    <path d="M200 320 Q420 180 600 360 T980 420 T1400 300" />
+    <path d="M160 780 Q360 620 560 740 T960 820 T1440 680" />
+    <path d="M320 1040 Q520 860 760 940 T1140 960" />
+  </g>
+  <g>
+    <circle cx="240" cy="300" r="80" fill="url(#pulse)" />
+    <circle cx="560" cy="360" r="65" fill="url(#pulse)" />
+    <circle cx="980" cy="420" r="70" fill="url(#pulse)" />
+    <circle cx="1340" cy="320" r="60" fill="url(#pulse)" />
+    <circle cx="420" cy="820" r="55" fill="url(#pulse)" />
+    <circle cx="860" cy="860" r="60" fill="url(#pulse)" />
+    <circle cx="1260" cy="700" r="50" fill="url(#pulse)" />
+  </g>
+  <g fill="#8de6ff" opacity="0.75">
+    <circle cx="240" cy="300" r="6" />
+    <circle cx="400" cy="220" r="5" />
+    <circle cx="560" cy="360" r="6" />
+    <circle cx="720" cy="380" r="4" />
+    <circle cx="880" cy="420" r="5" />
+    <circle cx="980" cy="420" r="6" />
+    <circle cx="1140" cy="380" r="5" />
+    <circle cx="1340" cy="320" r="6" />
+    <circle cx="420" cy="820" r="6" />
+    <circle cx="560" cy="760" r="4" />
+    <circle cx="720" cy="820" r="5" />
+    <circle cx="860" cy="860" r="6" />
+    <circle cx="1010" cy="820" r="4" />
+    <circle cx="1180" cy="760" r="5" />
+    <circle cx="1260" cy="700" r="6" />
+    <circle cx="1380" cy="640" r="4" />
+  </g>
+  <g fill="url(#nodeHalo)">
+    <circle cx="400" cy="220" r="24" />
+    <circle cx="720" cy="380" r="26" />
+    <circle cx="1140" cy="380" r="22" />
+    <circle cx="560" cy="760" r="22" />
+    <circle cx="1010" cy="820" r="24" />
+    <circle cx="1380" cy="640" r="20" />
+  </g>
+</svg>

@@ -31,9 +31,41 @@ html {
 body {
     font-family: var(--font-body);
     color: var(--color-dark);
-    background-color: var(--color-light);
+    background-color: #060e1b;
     line-height: 1.6;
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+}
+
+body::before {
+    background-image:
+        linear-gradient(120deg, rgba(15, 80, 140, 0.4) 0%, rgba(6, 14, 27, 0.92) 55%, rgba(3, 8, 18, 0.98) 100%),
+        url("../images/ai-gis-bg.svg");
+    background-size: cover, cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: saturate(120%);
+}
+
+body::after {
+    z-index: -1;
+    background:
+        radial-gradient(35vw 35vw at 10% 10%, rgba(249, 166, 32, 0.18), transparent 70%),
+        radial-gradient(45vw 45vw at 85% 20%, rgba(63, 169, 245, 0.25), transparent 70%),
+        radial-gradient(40vw 40vw at 30% 75%, rgba(31, 217, 166, 0.18), transparent 75%);
+    mix-blend-mode: screen;
+    opacity: 0.9;
 }
 
 a {
