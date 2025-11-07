@@ -373,3 +373,45 @@ if (mapContainer && typeof L !== 'undefined') {
             .bindPopup(`<strong>${title}</strong><br>${description}`);
     });
 }
+
+const navigationButton = document.querySelector('[data-navigate-port-st-lucie]');
+
+if (navigationButton) {
+    const destination = encodeURIComponent('Port St. Lucie, FL 34984');
+    const defaultLabel = navigationButton.textContent;
+
+    const openDirections = (origin) => {
+        const originParam = origin ? `&origin=${origin}` : '';
+        const url = `https://www.google.com/maps/dir/?api=1&destination=${destination}${originParam}`;
+        window.open(url, '_blank', 'noopener');
+    };
+
+    const resetButton = () => {
+        navigationButton.disabled = false;
+        navigationButton.textContent = defaultLabel;
+    };
+
+    navigationButton.addEventListener('click', () => {
+        navigationButton.disabled = true;
+        navigationButton.textContent = 'Opening directions…';
+
+        if (!('geolocation' in navigator)) {
+            openDirections('');
+            resetButton();
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const origin = `${position.coords.latitude},${position.coords.longitude}`;
+                openDirections(origin);
+                resetButton();
+            },
+            () => {
+                openDirections('');
+                resetButton();
+            },
+            { enableHighAccuracy: true, timeout: 8000, maximumAge: 300000 }
+        );
+    });
+}
