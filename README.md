@@ -20,6 +20,18 @@ A polished, professional marketing website for ETL GIS Consulting LLC showcasing
 
 The pages are built with semantic HTML5, modern CSS, and lightweight JavaScript so no build steps are required.
 
+## Procedural GIS Imagery
+
+The hero visuals for the transit, utilities, and emergency response case studies are generated with a lightweight Pillow pipeline that procedurally composes skylines, transportation ribbons, incident markers, and cinematic post-effects without depending on matplotlib or numpy. Rebuild the renders by running:
+
+```bash
+python tools/imagery_generator.py
+```
+
+Fresh images are written to `assets/images/generated/scene-<name>.png` so they can be dropped into page layouts as needed.
+The generated PNG files are ignored by git to keep the repository lightweight—run the command above whenever you need new
+renders.
+
 ## Customization Tips
 
 - Replace image placeholders in `assets/images/` with brand photography or project visuals.
