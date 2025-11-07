@@ -1444,6 +1444,25 @@ main .section.light .section-header p {
     color: var(--color-muted);
 }
 
+.asset-credit {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    margin-top: 0.75rem;
+    line-height: 1.4;
+}
+
+.asset-credit a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.2em;
+}
+
+.asset-credit a:hover,
+.asset-credit a:focus {
+    color: var(--color-primary);
+}
+
 .link-arrow {
     display: inline-flex;
     align-items: center;

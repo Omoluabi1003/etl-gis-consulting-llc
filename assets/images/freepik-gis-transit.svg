@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">Abstract GIS mobility visualization</title>
+  <desc id="desc">Stylized background with gradient map grid, transit icons, and analytic overlays inspired by GIS artwork.</desc>
+  <defs>
+    <linearGradient id="bg-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10203b"/>
+      <stop offset="100%" stop-color="#1b4b8f"/>
+    </linearGradient>
+    <linearGradient id="route-gradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4ee0ff"/>
+      <stop offset="100%" stop-color="#1bc1ff"/>
+    </linearGradient>
+    <linearGradient id="orbit-gradient" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#ffce6d"/>
+      <stop offset="100%" stop-color="#ff8a3d"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M0 60V0H60" fill="none" stroke="#1d3960" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="600" fill="url(#bg-gradient)"/>
+  <rect width="900" height="600" fill="url(#grid)" opacity="0.35"/>
+  <g stroke="url(#route-gradient)" stroke-width="12" stroke-linecap="round" fill="none">
+    <path d="M80 440C160 420 220 360 300 340C392 316 456 364 540 332C624 300 700 220 820 260" opacity="0.85"/>
+    <path d="M120 480C208 468 260 412 340 396C432 377 476 436 560 404C644 372 700 312 800 320" opacity="0.55"/>
+  </g>
+  <g fill="none" stroke="url(#orbit-gradient)" stroke-width="4">
+    <circle cx="320" cy="200" r="110" opacity="0.45"/>
+    <circle cx="610" cy="170" r="160" opacity="0.25"/>
+    <circle cx="470" cy="310" r="90" opacity="0.3"/>
+  </g>
+  <g fill="#fff" opacity="0.92">
+    <rect x="160" y="180" width="160" height="110" rx="14"/>
+    <rect x="350" y="140" width="140" height="90" rx="14"/>
+    <rect x="560" y="210" width="150" height="120" rx="14"/>
+  </g>
+  <g fill="#0f172a">
+    <circle cx="200" cy="230" r="12"/>
+    <rect x="220" y="222" width="70" height="16" rx="8"/>
+    <rect x="220" y="246" width="48" height="12" rx="6"/>
+    <circle cx="380" cy="182" r="10"/>
+    <rect x="400" y="174" width="50" height="14" rx="7"/>
+    <circle cx="590" cy="255" r="12"/>
+    <rect x="610" y="247" width="60" height="16" rx="8"/>
+    <rect x="610" y="273" width="36" height="12" rx="6"/>
+  </g>
+  <g fill="#1bc1ff">
+    <circle cx="260" cy="420" r="16"/>
+    <circle cx="420" cy="380" r="16"/>
+    <circle cx="640" cy="330" r="16"/>
+  </g>
+  <g fill="#ff8a3d">
+    <circle cx="320" cy="340" r="10"/>
+    <circle cx="500" cy="320" r="10"/>
+    <circle cx="720" cy="300" r="10"/>
+  </g>
+</svg>
