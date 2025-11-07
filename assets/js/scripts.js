@@ -178,7 +178,7 @@ if (!storedMotionPreference) {
 
 const contactForm = document.getElementById('contact-form');
 const formResponse = document.querySelector('.form-response');
-const formEndpoint = 'https://formsubmit.co/ajax/hello@etl-gis.com';
+const formEndpoint = 'https://formsubmit.co/ajax/omoluabip3ak@gmail.com';
 
 if (contactForm && formResponse) {
     contactForm.addEventListener('submit', async (event) => {
@@ -214,7 +214,7 @@ if (contactForm && formResponse) {
             formResponse.style.color = '#1a4d8f';
             contactForm.reset();
         } catch (error) {
-            formResponse.textContent = 'We were unable to submit your request automatically. Please email hello@etl-gis.com or call +1 (863) 261-3103.';
+            formResponse.textContent = 'We were unable to submit your request automatically. Please email omoluabip3ak@gmail.com or call +1 (863) 261-3103.';
             formResponse.style.color = '#d9423a';
         }
     });
