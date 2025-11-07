@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">Emergency response geospatial dashboard illustration</title>
+  <desc id="desc">Dark background with radar rings, alert beacons, and location markers referencing emergency GIS coordination.</desc>
+  <defs>
+    <linearGradient id="response-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b0f24"/>
+      <stop offset="100%" stop-color="#1c1f44"/>
+    </linearGradient>
+    <linearGradient id="response-ring" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff6b6b"/>
+      <stop offset="100%" stop-color="#ff9a62"/>
+    </linearGradient>
+    <linearGradient id="response-path" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34d1ff"/>
+      <stop offset="100%" stop-color="#1f8fff"/>
+    </linearGradient>
+    <pattern id="response-grid" width="70" height="70" patternUnits="userSpaceOnUse">
+      <path d="M0 70V0H70" fill="none" stroke="#1f2a52" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="600" fill="url(#response-bg)"/>
+  <rect width="900" height="600" fill="url(#response-grid)" opacity="0.35"/>
+  <g fill="none" stroke="url(#response-ring)" stroke-width="6">
+    <circle cx="240" cy="200" r="110" opacity="0.4"/>
+    <circle cx="240" cy="200" r="70" opacity="0.6"/>
+    <circle cx="660" cy="180" r="150" opacity="0.3"/>
+    <circle cx="660" cy="180" r="90" opacity="0.5"/>
+  </g>
+  <g fill="none" stroke="url(#response-path)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M140 440C200 420 260 380 320 340C380 300 440 260 520 260C600 260 660 300 720 340C780 380 820 420 840 460"/>
+    <path d="M120 480C180 460 240 420 300 380C360 340 420 300 500 300C580 300 660 340 720 380C780 420 820 460 840 500" opacity="0.5"/>
+  </g>
+  <g fill="#101b33" opacity="0.9">
+    <rect x="160" y="240" width="160" height="120" rx="16"/>
+    <rect x="360" y="210" width="140" height="100" rx="16"/>
+    <rect x="560" y="250" width="160" height="120" rx="16"/>
+  </g>
+  <g fill="#34d1ff" opacity="0.85">
+    <rect x="188" y="272" width="100" height="18" rx="9"/>
+    <rect x="188" y="302" width="72" height="14" rx="7"/>
+    <rect x="386" y="238" width="96" height="18" rx="9"/>
+    <rect x="386" y="266" width="70" height="14" rx="7"/>
+    <rect x="592" y="282" width="110" height="18" rx="9"/>
+    <rect x="592" y="312" width="80" height="14" rx="7"/>
+  </g>
+  <g fill="#ff6b6b">
+    <path d="M240 180c-18 0-32 14-32 32c0 24 32 60 32 60s32-36 32-60c0-18-14-32-32-32zm0 46a14 14 0 1 1 0-28 14 14 0 0 1 0 28z"/>
+    <path d="M660 160c-18 0-32 14-32 32c0 24 32 60 32 60s32-36 32-60c0-18-14-32-32-32zm0 46a14 14 0 1 1 0-28 14 14 0 0 1 0 28z"/>
+    <circle cx="320" cy="360" r="14"/>
+    <circle cx="520" cy="320" r="14"/>
+    <circle cx="760" cy="360" r="14"/>
+  </g>
+  <g fill="#fff" opacity="0.9">
+    <circle cx="220" cy="420" r="12"/>
+    <circle cx="430" cy="360" r="12"/>
+    <circle cx="700" cy="380" r="12"/>
+  </g>
+</svg>
