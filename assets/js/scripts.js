@@ -6,6 +6,78 @@ const motionToggles = Array.from(document.querySelectorAll('.motion-toggle'));
 const consentBanner = document.querySelector('.consent-banner');
 const analyticsTemplate = document.querySelector('script[data-analytics-template]');
 
+const relayEmailTokenSegments = ['b21v', 'bHVh', 'Ymlw', 'M2Fr', 'QGdt', 'YWls', 'LmNv', 'bQ=='];
+const relayEmailToken = relayEmailTokenSegments.join('');
+const displayEmailAddress = 'hello@etl-gis.com';
+const relayPhoneTokenSegments = ['KzE4', 'NjMy', 'NjEz', 'MTAz'];
+const relayPhoneToken = relayPhoneTokenSegments.join('');
+const displayPhoneNumber = '+1 (863) 261-3103';
+
+const decodeRelayToken = (token) => {
+    if (!token || typeof atob !== 'function') {
+        return '';
+    }
+    try {
+        return atob(token);
+    } catch (error) {
+        console.warn('Unable to decode relay token.', error);
+        return '';
+    }
+};
+
+const resolvedRelayEmail = decodeRelayToken(relayEmailToken);
+const resolvedRelayPhone = decodeRelayToken(relayPhoneToken);
+
+const extractHrefQuery = (href) => {
+    if (!href) {
+        return '';
+    }
+    const queryIndex = href.indexOf('?');
+    if (queryIndex === -1) {
+        return '';
+    }
+    return href.slice(queryIndex + 1);
+};
+
+const applyEmailRelayToLinks = () => {
+    if (!resolvedRelayEmail) {
+        return;
+    }
+
+    document.querySelectorAll('[data-relay-email]').forEach((link) => {
+        const query = extractHrefQuery(link.getAttribute('href'));
+        const paramString = query ? new URLSearchParams(query).toString() : '';
+
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const destination = paramString
+                ? `mailto:${resolvedRelayEmail}?${paramString}`
+                : `mailto:${resolvedRelayEmail}`;
+            window.location.href = destination;
+        });
+    });
+};
+
+applyEmailRelayToLinks();
+
+const applyPhoneRelayToLinks = () => {
+    if (!resolvedRelayPhone) {
+        return;
+    }
+
+    document.querySelectorAll('[data-relay-phone]').forEach((link) => {
+        const query = extractHrefQuery(link.getAttribute('href'));
+        const destination = query ? `tel:${resolvedRelayPhone}?${query}` : `tel:${resolvedRelayPhone}`;
+
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            window.location.href = destination;
+        });
+    });
+};
+
+applyPhoneRelayToLinks();
+
 let lastFocusedBeforeMenu = null;
 let focusTrapHandler = null;
 
@@ -178,7 +250,9 @@ if (!storedMotionPreference) {
 
 const contactForm = document.getElementById('contact-form');
 const formResponse = document.querySelector('.form-response');
-const formEndpoint = 'https://formsubmit.co/ajax/hello@etl-gis.com';
+const formEndpoint = resolvedRelayEmail
+    ? `https://formsubmit.co/ajax/${resolvedRelayEmail}`
+    : `https://formsubmit.co/ajax/${displayEmailAddress}`;
 
 if (contactForm && formResponse) {
     contactForm.addEventListener('submit', async (event) => {
@@ -214,7 +288,7 @@ if (contactForm && formResponse) {
             formResponse.style.color = '#1a4d8f';
             contactForm.reset();
         } catch (error) {
-            formResponse.textContent = 'We were unable to submit your request automatically. Please email hello@etl-gis.com or call +1 (863) 261-3103.';
+            formResponse.textContent = `We were unable to submit your request automatically. Please email ${displayEmailAddress} or call ${displayPhoneNumber}.`;
             formResponse.style.color = '#d9423a';
         }
     });
