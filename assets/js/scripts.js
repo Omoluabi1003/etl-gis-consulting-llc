@@ -5,6 +5,52 @@ const yearEl = document.getElementById('year');
 const motionToggles = Array.from(document.querySelectorAll('.motion-toggle'));
 const consentBanner = document.querySelector('.consent-banner');
 const analyticsTemplate = document.querySelector('script[data-analytics-template]');
+const encodedEmail = 'b21vbHVhYmlwM2FrQGdtYWlsLmNvbQ==';
+
+const decodeEmail = (value) => {
+    try {
+        return atob(value);
+    } catch (error) {
+        console.warn('Unable to decode email value:', error);
+        return '';
+    }
+};
+
+const emailAddress = decodeEmail(encodedEmail);
+
+const applyEmailAddress = () => {
+    if (!emailAddress) {
+        return;
+    }
+
+    document.querySelectorAll('[data-email-link]').forEach((element) => {
+        if (!(element instanceof HTMLAnchorElement)) {
+            return;
+        }
+
+        element.href = `mailto:${emailAddress}`;
+        const displayMode = element.dataset.emailDisplay;
+        const label = element.dataset.emailLabel;
+
+        if (displayMode === 'address') {
+            element.textContent = emailAddress;
+        } else if (label) {
+            element.textContent = label;
+        }
+    });
+
+    document.querySelectorAll('[data-email-text]').forEach((element) => {
+        element.textContent = emailAddress;
+    });
+
+    document.querySelectorAll('[data-email-action]').forEach((element) => {
+        if (element instanceof HTMLFormElement) {
+            element.setAttribute('action', `https://formsubmit.co/${emailAddress}`);
+        }
+    });
+};
+
+applyEmailAddress();
 
 let lastFocusedBeforeMenu = null;
 let focusTrapHandler = null;
@@ -178,7 +224,7 @@ if (!storedMotionPreference) {
 
 const contactForm = document.getElementById('contact-form');
 const formResponse = document.querySelector('.form-response');
-const formEndpoint = 'https://formsubmit.co/ajax/omoluabip3ak@gmail.com';
+const formEndpoint = emailAddress ? `https://formsubmit.co/ajax/${emailAddress}` : null;
 
 if (contactForm && formResponse) {
     contactForm.addEventListener('submit', async (event) => {
@@ -195,6 +241,12 @@ if (contactForm && formResponse) {
 
         const formData = new FormData(contactForm);
         const payload = Object.fromEntries(formData.entries());
+
+        if (!formEndpoint) {
+            formResponse.innerHTML = 'We were unable to submit your request automatically. Please email our team directly or call +1 (863) 261-3103.';
+            formResponse.style.color = '#d9423a';
+            return;
+        }
 
         try {
             const response = await fetch(formEndpoint, {
@@ -214,7 +266,10 @@ if (contactForm && formResponse) {
             formResponse.style.color = '#1a4d8f';
             contactForm.reset();
         } catch (error) {
-            formResponse.textContent = 'We were unable to submit your request automatically. Please email omoluabip3ak@gmail.com or call +1 (863) 261-3103.';
+            const fallbackLink = emailAddress
+                ? `<a href="mailto:${emailAddress}">${emailAddress}</a>`
+                : 'our team';
+            formResponse.innerHTML = `We were unable to submit your request automatically. Please email ${fallbackLink} or call +1 (863) 261-3103.`;
             formResponse.style.color = '#d9423a';
         }
     });
