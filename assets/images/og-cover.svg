@@ -1,0 +1,37 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">ETL GIS Consulting LLC Open Graph Cover</title>
+  <desc id="desc">Gradient background with geographic contour lines and the ETL GIS Consulting LLC tagline Spatial Intelligence for Impact.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B2B40"/>
+      <stop offset="50%" stop-color="#144E73"/>
+      <stop offset="100%" stop-color="#1F6A8C"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7EF1D6" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#3CC3FF" stop-opacity="0.6"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M0 0H60V60" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <path d="M-120 540C120 420 320 420 540 480C760 540 960 520 1180 440" stroke="url(#accent)" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.45"/>
+  <path d="M-80 360C120 320 260 340 480 420C700 500 940 470 1200 360" stroke="url(#accent)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.35"/>
+  <g transform="translate(120,150)">
+    <rect x="0" y="0" width="420" height="330" rx="32" fill="rgba(4, 17, 26, 0.45)" stroke="rgba(126, 241, 214, 0.4)" stroke-width="2"/>
+    <text x="40" y="110" fill="#7EF1D6" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="54" font-weight="700">ETL GIS Consulting LLC</text>
+    <text x="40" y="170" fill="#E3F8FF" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="30" font-weight="600">Spatial Intelligence for Impact</text>
+    <text x="40" y="230" fill="#D3ECFF" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="400">Enterprise GIS architecture, spatial data engineering,</text>
+    <text x="40" y="270" fill="#D3ECFF" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="400">and analytics programs for public sector and utilities.</text>
+  </g>
+  <g transform="translate(630,140)">
+    <rect x="0" y="0" width="430" height="350" rx="28" fill="rgba(6, 30, 45, 0.55)" stroke="rgba(60, 195, 255, 0.45)" stroke-width="2"/>
+    <text x="42" y="90" fill="#B0E9FF" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="600">Enterprise modernization</text>
+    <text x="42" y="140" fill="#FFFFFF" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="22">• GIS roadmaps aligned to mission outcomes</text>
+    <text x="42" y="180" fill="#FFFFFF" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="22">• Cloud-native data pipelines and governance</text>
+    <text x="42" y="220" fill="#FFFFFF" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="22">• Analytics experiences that accelerate decisions</text>
+    <text x="42" y="280" fill="#7EF1D6" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="600">hello@etl-gis.com · +1 (863) 261-3103</text>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-labelledby="title desc">
+  <title id="title">Metro Mobility Alliance</title>
+  <desc id="desc">Stylized transit-themed alliance logo</desc>
+  <rect width="160" height="48" rx="12" fill="#123026"/>
+  <path d="M24 34l12-20 12 20z" fill="#30c48d"/>
+  <rect x="58" y="14" width="68" height="20" rx="10" fill="#ffffff" opacity="0.14"/>
+  <text x="58" y="29" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="16" fill="#ffffff">Metro Mobility</text>
+</svg>

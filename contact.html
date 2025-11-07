@@ -5,11 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Contact ETL GIS Consulting LLC to discuss enterprise GIS solutions, request proposals, or schedule a consultation.">
     <title>Contact | ETL GIS Consulting LLC</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://www.etl-gis.com/contact">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Contact | ETL GIS Consulting LLC">
+    <meta property="og:description" content="Schedule a consultation with ETL GIS Consulting and align on enterprise GIS modernization, analytics, and governance goals.">
+    <meta property="og:url" content="https://www.etl-gis.com/contact">
+    <meta property="og:image" content="https://www.etl-gis.com/assets/images/og-cover.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact | ETL GIS Consulting LLC">
+    <meta name="twitter:description" content="Connect with ETL GIS Consulting for enterprise GIS roadmaps, data engineering, and analytics delivery.">
+    <meta name="twitter:image" content="https://www.etl-gis.com/assets/images/og-cover.svg">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "Contact ETL GIS Consulting",
+            "url": "https://www.etl-gis.com/contact",
+            "contactOption": [
+                {
+                    "@type": "ContactPoint",
+                    "telephone": "+1-863-261-3103",
+                    "contactType": "sales",
+                    "areaServed": "US"
+                }
+            ]
+        }
+    </script>
+    <script type="application/json" data-analytics-template data-src="https://plausible.io/js/script.js" data-domain="etl-gis.com"></script>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -19,19 +47,25 @@
                 <span>ETL GIS Consulting LLC</span>
                 <span>Spatial Intelligence</span>
             </a>
-            <nav>
+            <nav aria-label="Primary">
                 <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="primary-navigation" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                <ul class="nav-links" id="primary-navigation">
+                <ul class="nav-links" id="primary-navigation" aria-hidden="true">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a class="active" href="contact.html" aria-current="page">Contact</a></li>
+                    <li class="mobile-only"><a class="btn btn-outline" href="https://cal.com/etl-gis/consultation" target="_blank" rel="noopener">Book via Calendar</a></li>
+                    <li class="motion-control mobile-only"><button class="motion-toggle" type="button" aria-pressed="false">Reduce motion</button></li>
                 </ul>
+                <div class="nav-utilities">
+                    <button class="motion-toggle" type="button" aria-pressed="false">Reduce motion</button>
+                    <a class="btn btn-outline" href="https://cal.com/etl-gis/consultation" target="_blank" rel="noopener">Book via calendar</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -44,7 +78,8 @@
                 <p>Share your goals and challenges—we’ll design a roadmap that delivers clarity, velocity, and confidence.</p>
                 <div class="btn-group">
                     <a class="btn btn-primary" href="#contact-form">Submit Inquiry</a>
-                    <a class="btn btn-outline" href="tel:+17045551234">Call Our Team</a>
+                    <a class="btn btn-outline" href="tel:+18632613103">Call +1 (863) 261-3103</a>
+                    <a class="btn btn-outline" href="https://cal.com/etl-gis/consultation" target="_blank" rel="noopener">Book via Calendar</a>
                 </div>
             </div>
             <div>
@@ -72,13 +107,15 @@
                     <ul>
                         <li><strong>Email:</strong> <a href="mailto:hello@etl-gis.com">hello@etl-gis.com</a></li>
                         <li><strong>Phone:</strong> <a href="tel:+18632613103">+1 (863) 261-3103</a></li>
+                        <li><strong>Calendar:</strong> <a href="https://cal.com/etl-gis/consultation" target="_blank" rel="noopener">Schedule via Cal.com</a></li>
                         <li><strong>Headquarters:</strong> Eastern Time Zone (EST), remote-first across the East Coast</li>
                         <li><strong>Press:</strong> <a href="mailto:press@etl-gis.com">press@etl-gis.com</a></li>
                         <li><strong>Careers:</strong> <a href="mailto:careers@etl-gis.com">careers@etl-gis.com</a></li>
                     </ul>
                     <p>We also host quarterly innovation briefings—contact us to request an invitation.</p>
                 </div>
-                <form class="contact-form" id="contact-form" novalidate>
+                <form class="contact-form" id="contact-form" method="post" action="https://formsubmit.co/hello@etl-gis.com" novalidate>
+                    <input type="hidden" name="form-name" value="etl-gis-consulting-contact">
                     <div>
                         <label for="full-name">Full Name</label>
                         <input id="full-name" name="full-name" type="text" placeholder="Enter your full name" required>
@@ -119,6 +156,7 @@
                     </div>
                     <button class="btn btn-primary" type="submit">Submit Inquiry</button>
                     <p class="form-response" aria-live="polite"></p>
+                    <p class="form-note">Submissions route to our CRM and notify <a href="mailto:hello@etl-gis.com">hello@etl-gis.com</a> instantly so the right consultant can respond without delay.</p>
                 </form>
             </div>
         </section>
@@ -194,6 +232,7 @@
                     <li><a href="services.html">Strategic GIS Services</a></li>
                     <li><a href="projects.html">Success Stories</a></li>
                     <li><a href="contact.html">Schedule a Workshop</a></li>
+                    <li><a href="index.html#compliance">Compliance &amp; Trust Center</a></li>
                 </ul>
             </div>
         </div>
@@ -201,6 +240,12 @@
             <span>&copy; <span id="year"></span> ETL GIS Consulting LLC. All rights reserved.</span>
         </div>
     </footer>
+
+    <div class="consent-banner" role="dialog" aria-live="polite" aria-label="Analytics consent notice">
+        <p>We use privacy-first analytics (Plausible) to understand what content helps prospective clients. Data is collected only after you consent.</p>
+        <button type="button">Accept analytics tracking</button>
+        <small>Read our <a href="mailto:privacy@etl-gis.com">privacy commitments</a>.</small>
+    </div>
 
     <a class="back-to-top" href="#" aria-label="Back to top">&#8593;</a>
 

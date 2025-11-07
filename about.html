@@ -5,10 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn about ETL GIS Consulting LLC, our mission, leadership, and the values guiding our spatial intelligence practice.">
     <title>About | ETL GIS Consulting LLC</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://www.etl-gis.com/about">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="About | ETL GIS Consulting LLC">
+    <meta property="og:description" content="Meet Paul Iyogun and the ETL GIS Consulting values powering enterprise-ready spatial intelligence programs.">
+    <meta property="og:url" content="https://www.etl-gis.com/about">
+    <meta property="og:image" content="https://www.etl-gis.com/assets/images/og-cover.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="About | ETL GIS Consulting LLC">
+    <meta name="twitter:description" content="Discover the leadership, mission, and public-sector partnerships behind ETL GIS Consulting.">
+    <meta name="twitter:image" content="https://www.etl-gis.com/assets/images/og-cover.svg">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "About ETL GIS Consulting",
+            "url": "https://www.etl-gis.com/about",
+            "description": "Background on ETL GIS Consulting LLC and Principal Consultant Paul Iyogun.",
+            "primaryImageOfPage": "https://www.etl-gis.com/assets/images/og-cover.svg"
+        }
+    </script>
+    <script type="application/json" data-analytics-template data-src="https://plausible.io/js/script.js" data-domain="etl-gis.com"></script>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -18,19 +40,25 @@
                 <span>ETL GIS Consulting LLC</span>
                 <span>Spatial Intelligence</span>
             </a>
-            <nav>
+            <nav aria-label="Primary">
                 <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="primary-navigation" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                <ul class="nav-links" id="primary-navigation">
+                <ul class="nav-links" id="primary-navigation" aria-hidden="true">
                     <li><a href="index.html">Home</a></li>
                     <li><a class="active" href="about.html" aria-current="page">About</a></li>
                     <li><a href="services.html">Services</a></li>
                     <li><a href="projects.html">Projects</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li class="mobile-only"><a class="btn btn-outline" href="contact.html">Speak with a consultant</a></li>
+                    <li class="motion-control mobile-only"><button class="motion-toggle" type="button" aria-pressed="false">Reduce motion</button></li>
                 </ul>
+                <div class="nav-utilities">
+                    <button class="motion-toggle" type="button" aria-pressed="false">Reduce motion</button>
+                    <a class="btn btn-outline" href="contact.html">Speak with a consultant</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -67,7 +95,7 @@
                 <p>ETL GIS Consulting LLC is anchored by Paul Iyogun, a trusted GIS strategist who turns complex data ecosystems into decision-ready intelligence.</p>
             </div>
             <figure class="profile-portrait">
-                <img src="assets/images/paul-ak-iyogun-passport.svg" alt="Passport style portrait of Principal GIS Consultant Paul A.K. Iyogun">
+                <img src="assets/images/paul-ak-iyogun-passport.svg" alt="Passport style portrait of Principal GIS Consultant Paul A.K. Iyogun" loading="lazy">
                 <figcaption>
                     <strong>Dedicated to mission impact</strong>
                     Paul blends executive advisory expertise with hands-on solution architecture, bringing clarity and composure to every modernization program.
@@ -93,7 +121,7 @@
                         <li>Introduced open-data workflows that improved transparency for commissioners and community stakeholders.</li>
                         <li>Developed cross-training curricula that empowered county GIS analysts to sustain new capabilities.</li>
                     </ul>
-                    <p>These engagements showcase Paul's ability to translate spatial complexity into clarity, collaboration, and durable value.</p>
+                    <p>These engagements showcase Paul's ability to translate spatial complexity into clarity, collaboration, and durable value—<a href="projects.html#county-modernization">see the full county modernization story</a>.</p>
                 </article>
             </div>
         </section>
@@ -217,6 +245,7 @@
                     <li><a href="services.html">Strategic GIS Services</a></li>
                     <li><a href="projects.html">Success Stories</a></li>
                     <li><a href="contact.html">Schedule a Workshop</a></li>
+                    <li><a href="index.html#compliance">Compliance &amp; Trust Center</a></li>
                 </ul>
             </div>
         </div>
@@ -224,6 +253,12 @@
             <span>&copy; <span id="year"></span> ETL GIS Consulting LLC. All rights reserved.</span>
         </div>
     </footer>
+
+    <div class="consent-banner" role="dialog" aria-live="polite" aria-label="Analytics consent notice">
+        <p>We use privacy-first analytics (Plausible) to understand what content helps prospective clients. Data is collected only after you consent.</p>
+        <button type="button">Accept analytics tracking</button>
+        <small>Read our <a href="mailto:privacy@etl-gis.com">privacy commitments</a>.</small>
+    </div>
 
     <a class="back-to-top" href="#" aria-label="Back to top">&#8593;</a>
 

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" role="img" aria-labelledby="title desc">
+  <title id="title">Federal Systems Coalition</title>
+  <desc id="desc">Abstract federal systems trustmark</desc>
+  <rect width="160" height="48" rx="12" fill="#1b2234"/>
+  <circle cx="32" cy="24" r="14" fill="#f9a620" opacity="0.9"/>
+  <path d="M24 26h16l-8 12z" fill="#1a4d8f"/>
+  <text x="58" y="29" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="15" fill="#ffffff">Federal Systems</text>
+</svg>
