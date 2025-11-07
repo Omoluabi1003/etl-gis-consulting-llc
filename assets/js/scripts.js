@@ -6,16 +6,43 @@ const motionToggles = Array.from(document.querySelectorAll('.motion-toggle'));
 const consentBanner = document.querySelector('.consent-banner');
 const analyticsTemplate = document.querySelector('script[data-analytics-template]');
 
+const decodeEmail = (encoded) => {
+    if (typeof encoded !== 'string') {
+        return '';
+    }
+
+    try {
+        return atob(encoded);
+    } catch (error) {
+        console.warn('Unable to decode email link', error);
+        return '';
+    }
+};
+
 const emailDirectory = Object.freeze({
-    primary: atob('b21vbHVhYmlwM2FrQGdtYWlsLmNvbQ=='),
+    primary: 'b21vbHVhYmlwM2FrQGdtYWlsLmNvbQ==',
 });
 
-const primaryEmail = emailDirectory.primary;
+const resolveEmail = (key) => {
+    if (!key) {
+        return '';
+    }
 
-const renderObfuscatedEmails = () => {
-    document.querySelectorAll('[data-email-key]').forEach((element) => {
-        const key = element.getAttribute('data-email-key');
-        const email = emailDirectory[key];
+    const encoded = emailDirectory[key];
+
+    if (!encoded) {
+        return '';
+    }
+
+    return decodeEmail(encoded);
+};
+
+const primaryEmail = resolveEmail('primary');
+
+const hydrateEmailLinks = () => {
+    document.querySelectorAll('[data-email-link]').forEach((element) => {
+        const key = element.getAttribute('data-email-link');
+        const email = resolveEmail(key);
 
         if (!email) {
             return;
@@ -35,7 +62,7 @@ const renderObfuscatedEmails = () => {
     });
 };
 
-renderObfuscatedEmails();
+hydrateEmailLinks();
 
 let lastFocusedBeforeMenu = null;
 let focusTrapHandler = null;
