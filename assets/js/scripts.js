@@ -178,7 +178,7 @@ if (!storedMotionPreference) {
 
 const contactForm = document.getElementById('contact-form');
 const formResponse = document.querySelector('.form-response');
-const formEndpoint = 'https://formsubmit.co/ajax/omoluabip3ak@gmail.com';
+const formEndpoint = 'https://formsubmit.co/ajax/hello@etl-gis.com';
 
 if (contactForm && formResponse) {
     contactForm.addEventListener('submit', async (event) => {
