@@ -1102,6 +1102,22 @@ img {
     gap: 1.25rem;
 }
 
+.map-cta {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    justify-items: start;
+}
+
+.map-cta .btn {
+    box-shadow: var(--shadow-soft);
+}
+
+.map-note {
+    font-size: 0.95rem;
+    color: rgba(15, 27, 42, 0.7);
+}
+
 #office-map {
     width: 100%;
     min-height: 340px;
@@ -1119,6 +1135,174 @@ img {
 .leaflet-popup-tip {
     color: var(--color-dark);
     font-family: var(--font-body);
+}
+
+.map-style-showcase {
+    position: relative;
+    overflow: hidden;
+}
+
+.map-style-showcase::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(63, 169, 245, 0.18), transparent 55%);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.map-style-grid {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.map-style-card {
+    background: rgba(7, 15, 31, 0.85);
+    border-radius: 20px;
+    padding: 2.25rem;
+    box-shadow: var(--shadow-card);
+    display: grid;
+    gap: 1.25rem;
+    color: #f7f9fc;
+}
+
+.map-style-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+}
+
+.map-style-card p {
+    color: rgba(247, 249, 252, 0.82);
+}
+
+.map-style-preview {
+    border-radius: 16px;
+    min-height: 140px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.map-style-preview.future-land-use {
+    background: linear-gradient(135deg, #f18f01 0%, #f18f01 45%, transparent 45%),
+        linear-gradient(45deg, rgba(15, 27, 42, 0.08) 25%, transparent 25%, transparent 50%, rgba(15, 27, 42, 0.08) 50%, rgba(15, 27, 42, 0.08) 75%, transparent 75%, transparent),
+        linear-gradient(135deg, #3fa9f5 0%, #3fa9f5 30%, transparent 30%),
+        linear-gradient(225deg, #9bd770 0%, #9bd770 60%, transparent 60%),
+        #f8f3e6;
+    background-size: cover, 28px 28px, cover, cover, auto;
+}
+
+.map-style-preview.zoning {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 80px),
+        linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 80px),
+        linear-gradient(135deg, rgba(26, 77, 143, 0.45) 0%, rgba(26, 77, 143, 0.05) 100%);
+    position: relative;
+}
+
+.map-style-preview.zoning::before,
+.map-style-preview.zoning::after {
+    content: "C-1";
+    position: absolute;
+    top: 22%;
+    left: 18%;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.map-style-preview.zoning::after {
+    content: "R-2";
+    top: 58%;
+    left: 55%;
+}
+
+.map-style-preview.addressing {
+    background: radial-gradient(circle at 20% 30%, rgba(63, 169, 245, 0.65) 0, rgba(63, 169, 245, 0.1) 40%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(249, 166, 32, 0.55) 0, rgba(249, 166, 32, 0.12) 45%, transparent 45%),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 70px),
+        rgba(15, 27, 42, 0.55);
+    position: relative;
+}
+
+.map-style-preview.addressing::before,
+.map-style-preview.addressing::after {
+    content: "1200-1298";
+    position: absolute;
+    bottom: 16%;
+    left: 14%;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.map-style-preview.addressing::after {
+    content: "1501";
+    top: 26%;
+    right: 18%;
+    bottom: unset;
+    left: unset;
+}
+
+.map-style-legend {
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.map-style-legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: rgba(247, 249, 252, 0.9);
+}
+
+.legend-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 0 2px rgba(7, 15, 31, 0.25);
+}
+
+.legend-swatch.landuse-mixed {
+    background: #f18f01;
+}
+
+.legend-swatch.landuse-civic {
+    background: #3fa9f5;
+}
+
+.legend-swatch.landuse-conservation {
+    background: #9bd770;
+}
+
+.legend-swatch.zoning-commercial {
+    background: #f45d48;
+}
+
+.legend-swatch.zoning-residential {
+    background: #5ac8fa;
+}
+
+.legend-swatch.zoning-industrial {
+    background: #9b59b6;
+}
+
+.legend-swatch.addressing-primary {
+    background: #3fa9f5;
+}
+
+.legend-swatch.addressing-secondary {
+    background: #f18f01;
+}
+
+.legend-swatch.addressing-range {
+    background: linear-gradient(135deg, rgba(247, 249, 252, 0.2) 0%, rgba(247, 249, 252, 0.6) 100%);
 }
 
 footer {
@@ -1442,25 +1626,6 @@ main .section.light .section-header p {
 
 .case-card p {
     color: var(--color-muted);
-}
-
-.asset-credit {
-    font-size: 0.8rem;
-    color: var(--color-muted);
-    margin-top: 0.75rem;
-    line-height: 1.4;
-}
-
-.asset-credit a {
-    color: inherit;
-    text-decoration: underline;
-    text-decoration-thickness: 0.08em;
-    text-underline-offset: 0.2em;
-}
-
-.asset-credit a:hover,
-.asset-credit a:focus {
-    color: var(--color-primary);
 }
 
 .link-arrow {
