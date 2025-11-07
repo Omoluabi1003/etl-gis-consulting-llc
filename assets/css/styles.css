@@ -133,23 +133,52 @@ header {
 }
 
 .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 6px;
+}
+
+.logo-mark {
+    width: 52px;
+    height: 52px;
+    flex: 0 0 auto;
+    filter: drop-shadow(0 10px 18px rgba(10, 20, 39, 0.35));
+}
+
+.logo-wordmark {
     display: flex;
     flex-direction: column;
-    gap: 0.15rem;
+    line-height: 1.15;
 }
 
-.logo span:first-child {
+.logo-name {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: 0.04em;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
-.logo span:last-child {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.75);
-    letter-spacing: 0.1em;
+.logo-subtitle {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
+}
+
+.logo-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .nav-links {
@@ -1324,6 +1353,45 @@ footer {
     margin-bottom: 1rem;
 }
 
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo img {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 auto;
+}
+
+.footer-logo-name {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.footer-logo-subtitle {
+    display: block;
+    font-size: 0.85rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.footer-logo-tagline {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+}
+
 .footer-bottom {
     max-width: var(--max-width);
     margin: 2rem auto 0;
@@ -1454,6 +1522,42 @@ main .section.light .section-header p {
 @media (max-width: 640px) {
     .navbar {
         padding: 1rem 1.25rem;
+    }
+
+    .logo {
+        gap: 0.5rem;
+    }
+
+    .logo-mark {
+        width: 44px;
+        height: 44px;
+    }
+
+    .logo-name {
+        font-size: 1rem;
+        letter-spacing: 0.04em;
+    }
+
+    .logo-subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 0.24em;
+    }
+
+    .logo-tagline {
+        display: none;
+    }
+
+    .footer-logo {
+        gap: 0.5rem;
+    }
+
+    .footer-logo img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .footer-logo-subtitle {
+        letter-spacing: 0.2em;
     }
 
     .hero {
