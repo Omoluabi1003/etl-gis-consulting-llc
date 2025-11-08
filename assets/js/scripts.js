@@ -7,6 +7,7 @@ const consentBanner = document.querySelector('.consent-banner');
 const analyticsTemplate = document.querySelector('script[data-analytics-template]');
 const metricElements = Array.from(document.querySelectorAll('.metric[data-count-to]'));
 let metricObserver = null;
+const metricFormatters = new WeakMap();
 
 const relayEmailTokenSegments = ['b21v', 'bHVh', 'Ymlw', 'M2Fr', 'QGdt', 'YWls', 'LmNv', 'bQ=='];
 const relayEmailToken = relayEmailTokenSegments.join('');
@@ -83,13 +84,39 @@ applyPhoneRelayToLinks();
 
 const metricEaseOut = (t) => 1 - Math.pow(1 - t, 3);
 
+const getMetricFormattingConfig = (metric) => {
+    if (metricFormatters.has(metric)) {
+        return metricFormatters.get(metric);
+    }
+
+    const decimalsAttr = metric.getAttribute('data-decimals');
+    const decimalsRaw = Number(decimalsAttr);
+    const decimals = Number.isFinite(decimalsRaw) ? Math.max(0, decimalsRaw) : 0;
+    const locale = metric.getAttribute('data-locale') || 'en-US';
+    const notation = metric.getAttribute('data-format') === 'compact' ? 'compact' : 'standard';
+    const prefix = metric.getAttribute('data-prefix') || '';
+    const suffix = metric.getAttribute('data-suffix') || '';
+
+    const formatter = new Intl.NumberFormat(locale, {
+        maximumFractionDigits: decimals,
+        minimumFractionDigits: decimals,
+        notation,
+    });
+
+    const config = { formatter, prefix, suffix };
+    metricFormatters.set(metric, config);
+    return config;
+};
+
 const setMetricDisplayValue = (metric, value) => {
     const valueElement = metric.querySelector('.metric-value');
     if (!valueElement) {
         return;
     }
-    const suffix = metric.getAttribute('data-suffix') || '';
-    valueElement.textContent = `${Math.round(value)}${suffix}`;
+
+    const { formatter, prefix, suffix } = getMetricFormattingConfig(metric);
+    const safeValue = Number.isFinite(value) ? value : 0;
+    valueElement.textContent = `${prefix}${formatter.format(safeValue)}${suffix}`;
 };
 
 const animateMetric = (metric) => {
@@ -352,12 +379,12 @@ if (contactForm && formResponse) {
 
         if (!contactForm.checkValidity()) {
             formResponse.textContent = 'Please complete all required fields before submitting.';
-            formResponse.style.color = '#f9a620';
+            formResponse.style.color = '#e38b17';
             return;
         }
 
         formResponse.textContent = 'Submitting your inquiry securely…';
-        formResponse.style.color = '#1a4d8f';
+        formResponse.style.color = '#0f7ae5';
 
         const formData = new FormData(contactForm);
         const payload = Object.fromEntries(formData.entries());
@@ -377,7 +404,7 @@ if (contactForm && formResponse) {
             }
 
             formResponse.textContent = `Thanks${payload['full-name'] ? `, ${payload['full-name']}` : ''}! Our team has received your details and will respond within one business day.`;
-            formResponse.style.color = '#1a4d8f';
+            formResponse.style.color = '#0f7ae5';
             contactForm.reset();
         } catch (error) {
             formResponse.textContent = `We were unable to submit your request automatically. Please email ${displayEmailAddress} or call ${displayPhoneNumber}.`;
@@ -385,6 +412,178 @@ if (contactForm && formResponse) {
         }
     });
 }
+
+const playbookForm = document.getElementById('playbook-form');
+const playbookMessage = playbookForm ? playbookForm.querySelector('.playbook-message') : document.querySelector('.playbook-message');
+const playbookDownloads = document.querySelector('.playbook-downloads');
+const playbookAccessKey = 'playbook-access-granted';
+
+const revealPlaybookDownloads = () => {
+    if (!playbookDownloads) {
+        return;
+    }
+    playbookDownloads.hidden = false;
+    playbookDownloads.classList.add('playbook-downloads--visible');
+};
+
+if (localStorage.getItem(playbookAccessKey) === 'true') {
+    revealPlaybookDownloads();
+    if (playbookMessage) {
+        playbookMessage.textContent = 'Downloads ready—feel free to grab the playbooks again.';
+        playbookMessage.style.color = '#0f7ae5';
+    }
+}
+
+if (playbookForm) {
+    playbookForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (!playbookForm.checkValidity()) {
+            if (playbookMessage) {
+                playbookMessage.textContent = 'Please complete each required field and confirm consent to unlock the playbooks.';
+                playbookMessage.style.color = '#e38b17';
+            }
+            return;
+        }
+
+        if (playbookMessage) {
+            playbookMessage.textContent = 'Preparing your downloads…';
+            playbookMessage.style.color = '#0f7ae5';
+        }
+
+        const formData = new FormData(playbookForm);
+        const payload = Object.fromEntries(formData.entries());
+        payload._subject = 'ETL GIS Playbook Request';
+        payload._template = 'table';
+
+        try {
+            const response = await fetch(formEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            if (playbookMessage) {
+                playbookMessage.textContent = 'Playbooks unlocked! Downloads are ready and a copy is on the way to your inbox.';
+                playbookMessage.style.color = '#0f7ae5';
+            }
+            localStorage.setItem(playbookAccessKey, 'true');
+            revealPlaybookDownloads();
+            playbookForm.reset();
+        } catch (error) {
+            if (playbookMessage) {
+                playbookMessage.textContent = `We couldn’t submit automatically. Email ${displayEmailAddress} and we’ll send the playbooks manually.`;
+                playbookMessage.style.color = '#d9423a';
+            }
+            revealPlaybookDownloads();
+        }
+    });
+}
+
+const caseModalOverlays = Array.from(document.querySelectorAll('[data-case-modal]'));
+const caseModalTriggers = Array.from(document.querySelectorAll('[data-case-modal-trigger]'));
+const caseModalCloseButtons = Array.from(document.querySelectorAll('[data-case-modal-close]'));
+const modalFocusHandlers = new WeakMap();
+let activeCaseModal = null;
+let lastFocusedBeforeCaseModal = null;
+
+const closeCaseModal = () => {
+    if (!activeCaseModal) {
+        return;
+    }
+
+    activeCaseModal.setAttribute('aria-hidden', 'true');
+    const handler = modalFocusHandlers.get(activeCaseModal);
+    if (handler) {
+        activeCaseModal.removeEventListener('keydown', handler);
+        modalFocusHandlers.delete(activeCaseModal);
+    }
+    document.body.classList.remove('modal-open');
+
+    if (lastFocusedBeforeCaseModal && typeof lastFocusedBeforeCaseModal.focus === 'function') {
+        lastFocusedBeforeCaseModal.focus({ preventScroll: true });
+    }
+
+    activeCaseModal = null;
+    lastFocusedBeforeCaseModal = null;
+};
+
+const openCaseModal = (modal) => {
+    if (!modal || activeCaseModal === modal) {
+        return;
+    }
+
+    lastFocusedBeforeCaseModal = document.activeElement;
+    activeCaseModal = modal;
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+
+    const focusableElements = Array.from(modal.querySelectorAll(focusableSelectors));
+    const focusTrapHandler = (event) => {
+        if (event.key !== 'Tab' || focusableElements.length === 0) {
+            return;
+        }
+
+        const [firstItem] = focusableElements;
+        const lastItem = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstItem) {
+            event.preventDefault();
+            lastItem.focus();
+        } else if (!event.shiftKey && document.activeElement === lastItem) {
+            event.preventDefault();
+            firstItem.focus();
+        }
+    };
+
+    modal.addEventListener('keydown', focusTrapHandler);
+    modalFocusHandlers.set(modal, focusTrapHandler);
+
+    if (focusableElements.length) {
+        focusableElements[0].focus();
+    } else {
+        modal.focus({ preventScroll: true });
+    }
+};
+
+const openCaseModalById = (modalId) => {
+    const modal = caseModalOverlays.find((element) => element.id === modalId);
+    if (!modal) {
+        return;
+    }
+    openCaseModal(modal);
+};
+
+caseModalTriggers.forEach((trigger) => {
+    const targetId = trigger.getAttribute('data-case-modal-trigger');
+    trigger.addEventListener('click', () => openCaseModalById(targetId));
+});
+
+caseModalCloseButtons.forEach((button) => {
+    button.addEventListener('click', () => closeCaseModal());
+});
+
+caseModalOverlays.forEach((modal) => {
+    modal.setAttribute('aria-hidden', modal.getAttribute('aria-hidden') || 'true');
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeCaseModal();
+        }
+    });
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && activeCaseModal) {
+        closeCaseModal();
+    }
+});
 
 const loadAnalytics = () => {
     if (!analyticsTemplate || document.querySelector('script[data-analytics-loaded]')) {
