@@ -5,6 +5,8 @@ const yearEl = document.getElementById('year');
 const motionToggles = Array.from(document.querySelectorAll('.motion-toggle'));
 const consentBanner = document.querySelector('.consent-banner');
 const analyticsTemplate = document.querySelector('script[data-analytics-template]');
+const metricElements = Array.from(document.querySelectorAll('.metric[data-count-to]'));
+let metricObserver = null;
 
 const relayEmailTokenSegments = ['b21v', 'bHVh', 'Ymlw', 'M2Fr', 'QGdt', 'YWls', 'LmNv', 'bQ=='];
 const relayEmailToken = relayEmailTokenSegments.join('');
@@ -78,6 +80,92 @@ const applyPhoneRelayToLinks = () => {
 };
 
 applyPhoneRelayToLinks();
+
+const metricEaseOut = (t) => 1 - Math.pow(1 - t, 3);
+
+const setMetricDisplayValue = (metric, value) => {
+    const valueElement = metric.querySelector('.metric-value');
+    if (!valueElement) {
+        return;
+    }
+    const suffix = metric.getAttribute('data-suffix') || '';
+    valueElement.textContent = `${Math.round(value)}${suffix}`;
+};
+
+const animateMetric = (metric) => {
+    const targetValue = Number(metric.getAttribute('data-count-to'));
+    if (!Number.isFinite(targetValue) || targetValue <= 0) {
+        setMetricDisplayValue(metric, targetValue || 0);
+        metric.dataset.metricAnimated = 'true';
+        return;
+    }
+
+    const duration = 1800;
+    let startTime = null;
+
+    const step = (timestamp) => {
+        if (!startTime) {
+            startTime = timestamp;
+        }
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const eased = metricEaseOut(progress);
+        setMetricDisplayValue(metric, targetValue * eased);
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        } else {
+            setMetricDisplayValue(metric, targetValue);
+            metric.dataset.metricAnimated = 'true';
+        }
+    };
+
+    requestAnimationFrame(step);
+};
+
+const initializeMetricAnimations = (reduceMotion) => {
+    if (!metricElements.length) {
+        return;
+    }
+
+    if (metricObserver) {
+        metricObserver.disconnect();
+        metricObserver = null;
+    }
+
+    if (reduceMotion) {
+        metricElements.forEach((metric) => {
+            if (!metric.dataset.metricAnimated) {
+                metric.dataset.metricAnimated = 'false';
+            }
+            const targetValue = Number(metric.getAttribute('data-count-to')) || 0;
+            setMetricDisplayValue(metric, targetValue);
+            metric.dataset.metricAnimated = 'true';
+        });
+        return;
+    }
+
+    metricElements.forEach((metric) => {
+        metric.dataset.metricAnimated = 'false';
+        setMetricDisplayValue(metric, 0);
+    });
+
+    metricObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+                return;
+            }
+            const metric = entry.target;
+            observer.unobserve(metric);
+            if (metric.dataset.metricAnimated === 'true') {
+                return;
+            }
+            animateMetric(metric);
+        });
+    }, { threshold: 0.4 });
+
+    metricElements.forEach((metric) => {
+        metricObserver.observe(metric);
+    });
+};
 
 let lastFocusedBeforeMenu = null;
 let focusTrapHandler = null;
@@ -233,6 +321,7 @@ const storedMotionPreference = localStorage.getItem('motion-preference');
 const prefersReduced = motionPreferenceMedia.matches;
 const initialPreference = storedMotionPreference || (prefersReduced ? 'reduced' : 'animated');
 applyMotionPreference(initialPreference);
+initializeMetricAnimations(initialPreference === 'reduced');
 
 motionToggles.forEach((toggle) => {
     toggle.addEventListener('click', () => {
@@ -240,12 +329,14 @@ motionToggles.forEach((toggle) => {
         const next = current === 'reduced' ? 'animated' : 'reduced';
         localStorage.setItem('motion-preference', next);
         applyMotionPreference(next);
+        initializeMetricAnimations(next === 'reduced');
     });
 });
 
 if (!storedMotionPreference) {
     motionPreferenceMedia.addEventListener('change', (event) => {
         applyMotionPreference(event.matches ? 'reduced' : 'animated');
+        initializeMetricAnimations(event.matches);
     });
 }
 
