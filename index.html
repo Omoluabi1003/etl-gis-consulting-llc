@@ -7,6 +7,7 @@
     <meta name="keywords" content="ETL GIS Consulting, enterprise GIS strategy, spatial analytics, geospatial modernization, Paul A.K. Iyogun">
     <meta name="author" content="ETL GIS Consulting LLC">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f1b2a">
     <title>ETL GIS Consulting LLC | Spatial Intelligence Delivered</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -21,10 +22,15 @@
     <meta property="og:description" content="Enterprise GIS architects and data engineers helping public sector and utility leaders modernize mapping, analytics, and decision support.">
     <meta property="og:url" content="https://www.etl-gis.com/">
     <meta property="og:image" content="https://www.etl-gis.com/assets/images/og-cover.svg">
+    <meta property="og:site_name" content="ETL GIS Consulting LLC">
+    <meta property="og:image:alt" content="ETL GIS Consulting LLC brand cover illustration">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ETL GIS Consulting LLC | Spatial Intelligence Delivered">
     <meta name="twitter:description" content="Partner with ETL GIS Consulting LLC for strategic GIS roadmaps, modernization, and analytics enablement.">
     <meta name="twitter:image" content="https://www.etl-gis.com/assets/images/og-cover.svg">
+    <meta name="twitter:image:alt" content="ETL GIS Consulting LLC brand cover illustration">
+    <meta name="twitter:site" content="@ETLGISConsult">
+    <meta name="twitter:creator" content="@PaulIyogun">
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -82,12 +88,12 @@
     </script>
     <script type="application/json" data-analytics-template data-src="https://plausible.io/js/script.js" data-domain="etl-gis.com"></script>
 </head>
-<body id="top">
+<body id="top" class="has-sticky-cta">
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
         <div class="navbar">
             <a class="logo" href="#top" aria-label="ETL GIS Consulting LLC home">
-                <img class="logo-mark" src="assets/images/logo-etl-gis.svg" alt="" aria-hidden="true" width="64" height="64">
+                <img class="logo-mark" src="assets/images/logo-etl-gis.svg" alt="ETL GIS Consulting LLC logo" width="64" height="64">
                 <div class="logo-wordmark">
                     <span class="logo-name">ETL GIS</span>
                     <span class="logo-subtitle">Consulting LLC</span>
@@ -225,19 +231,19 @@
             </div>
             <div class="metrics-grid">
                 <div class="metric" data-count-to="40" data-suffix="+">
-                    <span class="metric-value">0</span>
+                    <span class="metric-value" aria-live="polite" aria-atomic="true">0</span>
                     <span class="metric-label">Enterprise GIS programs advanced</span>
                 </div>
                 <div class="metric" data-count-to="18">
-                    <span class="metric-value">0</span>
+                    <span class="metric-value" aria-live="polite" aria-atomic="true">0</span>
                     <span class="metric-label">Years in public sector spatial analytics</span>
                 </div>
                 <div class="metric" data-count-to="100" data-suffix="%">
-                    <span class="metric-value">0</span>
+                    <span class="metric-value" aria-live="polite" aria-atomic="true">0</span>
                     <span class="metric-label">Engagements aligned to compliance frameworks</span>
                 </div>
                 <div class="metric" data-count-to="24" data-suffix="/7">
-                    <span class="metric-value">0</span>
+                    <span class="metric-value" aria-live="polite" aria-atomic="true">0</span>
                     <span class="metric-label">Support for managed operations clients</span>
                 </div>
             </div>
@@ -255,7 +261,10 @@
                     </picture>
                     <h3>Metro Mobility Analytics</h3>
                     <p>Unified mobility data pipelines increased ridership insights and resilience planning for a major transit authority.</p>
-                    <a class="link-arrow" href="https://etl-gis-consulting-llc.vercel.app/case-studies/metro-mobility-analytics.html">Read case study</a>
+                    <div class="case-card-actions">
+                        <button class="btn btn-ghost" type="button" data-case-modal-trigger="modal-metro">Quick view</button>
+                        <a class="link-arrow" href="https://etl-gis-consulting-llc.vercel.app/case-studies/metro-mobility-analytics.html">Read case study</a>
+                    </div>
                 </article>
                 <article class="case-card">
                     <picture>
@@ -263,7 +272,10 @@
                     </picture>
                     <h3>Utility Network Modernization</h3>
                     <p>Guided a southeastern utility through asset data migration and network management automation.</p>
-                    <a class="link-arrow" href="https://etl-gis-consulting-llc.vercel.app/services.html#architecture">View modernization approach</a>
+                    <div class="case-card-actions">
+                        <button class="btn btn-ghost" type="button" data-case-modal-trigger="modal-utility">Quick view</button>
+                        <a class="link-arrow" href="https://etl-gis-consulting-llc.vercel.app/services.html#architecture">View modernization approach</a>
+                    </div>
                 </article>
                 <article class="case-card">
                     <picture>
@@ -271,7 +283,10 @@
                     </picture>
                     <h3>Emergency Response Dashboards</h3>
                     <p>Delivered situational awareness dashboards to coordinate incident response across agencies.</p>
-                    <a class="link-arrow" href="https://etl-gis-consulting-llc.vercel.app/projects.html#public-safety">Explore public safety projects</a>
+                    <div class="case-card-actions">
+                        <button class="btn btn-ghost" type="button" data-case-modal-trigger="modal-emergency">Quick view</button>
+                        <a class="link-arrow" href="https://etl-gis-consulting-llc.vercel.app/projects.html#public-safety">Explore public safety projects</a>
+                    </div>
                 </article>
             </div>
             <div class="insight-extras">
@@ -310,6 +325,57 @@
             <div class="compliance-cta">
                 <a class="btn btn-primary" href="assets/downloads/cjis-alignment-brief.pdf" target="_blank" rel="noopener">Download the CJIS alignment brief (PDF)</a>
                 <a class="btn btn-outline" href="#connect">Request a security workshop</a>
+            </div>
+        </section>
+
+        <section class="section dark" id="playbooks" aria-labelledby="playbook-heading">
+            <div class="section-header">
+                <h2 id="playbook-heading">Download the enterprise GIS playbook series</h2>
+                <p>Unlock actionable checklists for modernization, analytics, and compliance. Share your details once to access every PDF instantly.</p>
+            </div>
+            <div class="playbook-layout">
+                <form class="playbook-form" id="playbook-form" novalidate>
+                    <div>
+                        <label for="playbook-name">Full name</label>
+                        <input id="playbook-name" name="full-name" type="text" placeholder="Jamie Rivera" autocomplete="name" required>
+                    </div>
+                    <div>
+                        <label for="playbook-email">Work email</label>
+                        <input id="playbook-email" name="email" type="email" placeholder="jamie.rivera@agency.gov" autocomplete="email" required>
+                    </div>
+                    <div>
+                        <label for="playbook-organization">Organization</label>
+                        <input id="playbook-organization" name="organization" type="text" placeholder="Southeastern Transit Authority" autocomplete="organization" required>
+                    </div>
+                    <div class="checkbox-row">
+                        <input id="playbook-consent" name="consent" type="checkbox" value="yes" required>
+                        <label for="playbook-consent">I agree to receive the playbook PDFs and occasional insights about GIS modernization and analytics leadership.</label>
+                    </div>
+                    <input type="hidden" name="resource" value="Enterprise GIS playbooks">
+                    <button class="btn btn-primary" type="submit">Unlock playbooks</button>
+                    <p class="playbook-message" aria-live="polite"></p>
+                </form>
+                <aside class="playbook-downloads" aria-live="polite" hidden>
+                    <header>
+                        <h3>Playbook downloads</h3>
+                        <p>These PDFs cover modernization roadmaps, analytics accelerators, and compliance readiness.</p>
+                    </header>
+                    <ul>
+                        <li>
+                            <span>Modernizing Utility Network Operations</span>
+                            <a href="assets/downloads/utility-network-modernization-playbook.pdf" target="_blank" rel="noopener">Download PDF</a>
+                        </li>
+                        <li>
+                            <span>Public Agency Analytics Kickstart</span>
+                            <a href="assets/downloads/public-agency-analytics-playbook.pdf" target="_blank" rel="noopener">Download PDF</a>
+                        </li>
+                        <li>
+                            <span>CJIS Alignment Brief</span>
+                            <a href="assets/downloads/cjis-alignment-brief.pdf" target="_blank" rel="noopener">Download PDF</a>
+                        </li>
+                    </ul>
+                    <p>Prefer a guided walkthrough? Reply to our confirmation email and we’ll coordinate a 30-minute session.</p>
+                </aside>
             </div>
         </section>
 
@@ -388,7 +454,12 @@
                 <p class="form-response" aria-live="polite"></p>
             </form>
         </section>
-    </main>
+</main>
+
+    <a class="sticky-cta" href="#connect" aria-label="Book a consultation">
+        <span aria-hidden="true">✦</span>
+        <span>Book a consultation</span>
+    </a>
 
     <footer>
         <div class="footer-content">
@@ -424,6 +495,72 @@
             <span>&copy; <span id="year"></span> ETL GIS Consulting LLC. All rights reserved.</span>
         </div>
     </footer>
+
+    <div class="case-modal" id="modal-metro" data-case-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-metro-title" tabindex="-1">
+        <div class="case-modal__dialog">
+            <button class="case-modal__close" type="button" data-case-modal-close aria-label="Close modal">
+                <span aria-hidden="true">×</span>
+            </button>
+            <span class="case-modal__tag">Mobility analytics</span>
+            <h3 id="modal-metro-title">Metro Mobility Alliance Analytics</h3>
+            <div class="case-modal__content">
+                <p>Regional transit operators unified ridership, fleet health, and on-time performance into a resilient command center with cross-agency data sharing.</p>
+                <ul>
+                    <li>4.2M daily signals powering predictive maintenance and service planning</li>
+                    <li>Executive dashboards for funding compliance and performance storytelling</li>
+                    <li>Playbooks for rapid onboarding of municipal partners and vendors</li>
+                </ul>
+            </div>
+            <div class="case-modal__actions">
+                <a class="btn btn-primary" href="case-studies/metro-mobility-analytics.html">Read full story</a>
+                <a class="btn btn-outline" href="#playbooks">Get the mobility playbook</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="case-modal" id="modal-utility" data-case-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-utility-title" tabindex="-1">
+        <div class="case-modal__dialog">
+            <button class="case-modal__close" type="button" data-case-modal-close aria-label="Close modal">
+                <span aria-hidden="true">×</span>
+            </button>
+            <span class="case-modal__tag">Utility modernization</span>
+            <h3 id="modal-utility-title">Utility Network Modernization</h3>
+            <div class="case-modal__content">
+                <p>We migrated legacy asset data, stabilized integrations, and established governance so operations teams could trust every map-driven decision.</p>
+                <ul>
+                    <li>Consolidated 17 data sources into a single Esri Utility Network model</li>
+                    <li>Automated QA/QC reduced manual ticket resolutions by 38%</li>
+                    <li>Readiness assessments aligned with state utility commission requirements</li>
+                </ul>
+            </div>
+            <div class="case-modal__actions">
+                <a class="btn btn-primary" href="projects.html">Explore similar projects</a>
+                <a class="btn btn-outline" href="#playbooks">Download the utility playbook</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="case-modal" id="modal-emergency" data-case-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-emergency-title" tabindex="-1">
+        <div class="case-modal__dialog">
+            <button class="case-modal__close" type="button" data-case-modal-close aria-label="Close modal">
+                <span aria-hidden="true">×</span>
+            </button>
+            <span class="case-modal__tag">Emergency response</span>
+            <h3 id="modal-emergency-title">Emergency Response Dashboards</h3>
+            <div class="case-modal__content">
+                <p>Emergency management teams gained geospatial situational awareness to coordinate mutual aid, assets, and logistics with confidence.</p>
+                <ul>
+                    <li>Live incident status layers integrating CAD, 911, and weather feeds</li>
+                    <li>Role-based dashboards for public information, operations, and command staff</li>
+                    <li>Resilience metrics aligned to FEMA and state emergency frameworks</li>
+                </ul>
+            </div>
+            <div class="case-modal__actions">
+                <a class="btn btn-primary" href="projects.html">View public safety outcomes</a>
+                <a class="btn btn-outline" href="#playbooks">Access the response playbook</a>
+            </div>
+        </div>
+    </div>
 
     <div class="consent-banner" role="dialog" aria-live="polite" aria-label="Analytics consent notice">
         <p>We use privacy-first analytics (Plausible) to understand what content helps prospective clients. Data is collected only after you consent.</p>
