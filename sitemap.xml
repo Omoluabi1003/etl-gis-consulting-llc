@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.etl-gis.com/</loc>
+    <loc>https://etl-gis-consulting-llc.vercel.app/</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.etl-gis.com/about</loc>
+    <loc>https://etl-gis-consulting-llc.vercel.app/about</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.etl-gis.com/services</loc>
+    <loc>https://etl-gis-consulting-llc.vercel.app/services</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.etl-gis.com/projects</loc>
+    <loc>https://etl-gis-consulting-llc.vercel.app/projects</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.etl-gis.com/contact</loc>
+    <loc>https://etl-gis-consulting-llc.vercel.app/contact</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.etl-gis.com/case-studies/metro-mobility-analytics.html</loc>
+    <loc>https://etl-gis-consulting-llc.vercel.app/case-studies/metro-mobility-analytics.html</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.etl-gis.com/case-studies/st-lucie-modernization.html</loc>
+    <loc>https://etl-gis-consulting-llc.vercel.app/case-studies/st-lucie-modernization.html</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>quarterly</changefreq>
     <priority>0.6</priority>

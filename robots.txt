@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.etl-gis.com/sitemap.xml
+Sitemap: https://etl-gis-consulting-llc.vercel.app/sitemap.xml
