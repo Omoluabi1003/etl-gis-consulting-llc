@@ -19,6 +19,30 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://etl-gis-consulting-llc.vercel.app/services/strategy-roadmapping</loc>
+    <lastmod>2024-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://etl-gis-consulting-llc.vercel.app/services/enterprise-architecture</loc>
+    <lastmod>2024-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://etl-gis-consulting-llc.vercel.app/services/spatial-analytics-enablement</loc>
+    <lastmod>2024-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://etl-gis-consulting-llc.vercel.app/services/managed-gis-operations</loc>
+    <lastmod>2024-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://etl-gis-consulting-llc.vercel.app/projects</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>monthly</changefreq>

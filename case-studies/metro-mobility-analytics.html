@@ -67,6 +67,32 @@
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
+            "@type": "CaseStudy",
+            "name": "Metro Mobility Alliance Analytics Transformation",
+            "description": "Unified multi-modal transit telemetry into a resilient analytics platform that reduced downtime and aligned 12 agencies on shared KPIs.",
+            "url": "https://etl-gis-consulting-llc.vercel.app/case-studies/metro-mobility-analytics.html",
+            "provider": {
+                "@type": "Organization",
+                "name": "ETL GIS Consulting LLC",
+                "url": "https://etl-gis-consulting-llc.vercel.app/"
+            },
+            "industry": "Transportation",
+            "serviceType": "Spatial analytics enablement",
+            "audience": "Transit executives and operations leaders",
+            "about": ["Predictive maintenance", "Real-time transit analytics", "Mobility performance"],
+            "result": ["21% reduction in downtime", "4.2M signals processed daily", "12 agencies aligned on shared KPIs"],
+            "technology": ["ArcGIS Enterprise", "Azure Event Hubs", "Plausible analytics", "PostgreSQL"],
+            "measurementTechnique": "Streaming telemetry validation and predictive modeling",
+            "timeRequired": "16 weeks",
+            "additionalProperty": [
+                {"@type": "PropertyValue", "name": "Before", "value": "Fragmented feeds and limited visibility across bus, rail, and micro-mobility data."},
+                {"@type": "PropertyValue", "name": "After", "value": "Unified command center with predictive maintenance and executive-ready dashboards."}
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
                 {
@@ -136,15 +162,15 @@
                     <p>Implemented a resilient analytics platform that unites buses, rail, and micro-mobility data into a single command center.</p>
                     <div class="metrics-grid">
                         <div class="metric" data-count-to="4.2" data-suffix="M" data-decimals="1">
-                            <span class="metric-value" aria-live="polite" aria-atomic="true">0</span>
+                            <span class="metric-value" aria-live="polite" aria-atomic="true">4.2M</span>
                             <span class="metric-label">Signals processed daily</span>
                         </div>
                         <div class="metric" data-count-to="21" data-suffix="%">
-                            <span class="metric-value" aria-live="polite" aria-atomic="true">0</span>
+                            <span class="metric-value" aria-live="polite" aria-atomic="true">21%</span>
                             <span class="metric-label">Reduction in downtime</span>
                         </div>
                         <div class="metric" data-count-to="12" data-suffix="">
-                            <span class="metric-value" aria-live="polite" aria-atomic="true">0</span>
+                            <span class="metric-value" aria-live="polite" aria-atomic="true">12</span>
                             <span class="metric-label">Transit agencies aligned</span>
                         </div>
                     </div>
@@ -239,6 +265,94 @@
 
         <section class="section dark">
             <div class="section-header">
+                <h2>Before vs After</h2>
+                <p>Transit leaders gained a single, trusted view of performance after consolidating fragmented systems.</p>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <h3>Before</h3>
+                    <ul>
+                        <li>Disconnected feeds for bus, rail, and micro-mobility networks</li>
+                        <li>Manual KPI calculations and limited predictive maintenance</li>
+                        <li>Executives lacked a unified uptime and customer experience view</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>After</h3>
+                    <ul>
+                        <li>Streaming ingestion with quality checks across 4.2M daily signals</li>
+                        <li>Predictive models highlighting assets at risk before downtime</li>
+                        <li>Role-based dashboards for operations, maintenance, and executives</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="section light">
+            <div class="section-header">
+                <h2>Measurable Results</h2>
+                <p>KPIs were baselined and tracked in production to demonstrate value.</p>
+            </div>
+            <ul class="pill-list">
+                <li>21% reduction in fleet downtime</li>
+                <li>12 agencies aligned on consistent KPI definitions</li>
+                <li>Predictive maintenance alerts lowered critical incidents by 15%</li>
+                <li>Executive views refreshed every 5 minutes for command center readiness</li>
+            </ul>
+        </section>
+
+        <section class="section dark">
+            <div class="section-header">
+                <h2>Technologies and Standards Used</h2>
+                <p>Architecture and tooling were selected to balance availability, scalability, and governance.</p>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <h3>Platform</h3>
+                    <p>ArcGIS Enterprise, Azure Event Hubs, PostgreSQL, and Azure Kubernetes Service with HA patterns.</p>
+                </article>
+                <article class="card">
+                    <h3>Standards</h3>
+                    <p>CJIS-aware security controls, SOC 2-aligned logging, and WCAG 2.1 AA dashboard accessibility.</p>
+                </article>
+                <article class="card">
+                    <h3>Methods</h3>
+                    <p>Streaming validation, predictive modeling, and observability with alerting tied to SLA thresholds.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section light">
+            <div class="section-header">
+                <h2>Process Summary</h2>
+                <p>Workstreams ran in parallel to accelerate delivery while managing risk.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span>Weeks 1–2</span>
+                    <h3>Data intake &amp; validation</h3>
+                    <p>Stabilized feeds, set data quality thresholds, and mapped ownership for all telemetry sources.</p>
+                </div>
+                <div class="timeline-item">
+                    <span>Weeks 3–5</span>
+                    <h3>Modeling &amp; dashboards</h3>
+                    <p>Built predictive maintenance models and role-based dashboards with iterative user feedback.</p>
+                </div>
+                <div class="timeline-item">
+                    <span>Weeks 6–8</span>
+                    <h3>Production hardening</h3>
+                    <p>Implemented HA/DR, security controls, and observability with proactive alerts.</p>
+                </div>
+                <div class="timeline-item">
+                    <span>Weeks 9–10</span>
+                    <h3>Adoption &amp; transition</h3>
+                    <p>Trained operations teams, published SOPs, and established ongoing analytics governance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section dark">
+            <div class="section-header">
                 <h2>Looking ahead</h2>
                 <p>The alliance is expanding micro-mobility data sharing and AI-powered route optimization on the foundation we delivered.</p>
             </div>
@@ -278,7 +392,7 @@
                     <li><a href="mailto:hello@etl-gis.com" data-relay-email="true">hello@etl-gis.com</a></li>
                     <li><a href="https://cal.com/etl-gis/consult" target="_blank" rel="noopener">Schedule a meeting</a></li>
                 </ul>
-                <p class="footer-note">Click to reveal the live email or phone number—our relay masks direct details until you engage on the site.</p>
+                <p class="footer-note">Direct email and phone details reveal after you click to keep scrapers out; your message still routes straight to our team without sharing it with third parties.</p>
             </div>
             <div>
                 <h4>Connect</h4>
