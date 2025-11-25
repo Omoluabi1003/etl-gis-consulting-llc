@@ -67,6 +67,32 @@
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
+            "@type": "CaseStudy",
+            "name": "St. Lucie County GIS Modernization",
+            "description": "Unified county departments with a modern GIS platform, improving service reliability and reducing manual data correction.",
+            "url": "https://etl-gis-consulting-llc.vercel.app/case-studies/st-lucie-modernization.html",
+            "provider": {
+                "@type": "Organization",
+                "name": "ETL GIS Consulting LLC",
+                "url": "https://etl-gis-consulting-llc.vercel.app/"
+            },
+            "industry": "Public sector",
+            "serviceType": "Enterprise GIS modernization",
+            "audience": "County CIOs and departmental leaders",
+            "about": ["Permitting modernization", "Emergency management dashboards", "Utility data governance"],
+            "result": ["32% faster service response", "68% reduction in manual fixes", "6 departments unified"],
+            "technology": ["ArcGIS Enterprise", "ArcGIS Hub", "FME", "SQL Server"],
+            "measurementTechnique": "Data quality scoring and service level monitoring",
+            "timeRequired": "20 weeks",
+            "additionalProperty": [
+                {"@type": "PropertyValue", "name": "Before", "value": "Departmental silos, manual reconciliations, and slow incident awareness."},
+                {"@type": "PropertyValue", "name": "After", "value": "Shared data products, automated QA/QC, and executive dashboards supporting emergency response."}
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
                 {
@@ -136,15 +162,15 @@
                     <p>Modernized permitting, utilities, and emergency management programs across six departments while improving response times and data quality.</p>
                     <div class="metrics-grid">
                         <div class="metric" data-count-to="32" data-suffix="%">
-                            <span class="metric-value" aria-live="polite" aria-atomic="true">0</span>
+                            <span class="metric-value" aria-live="polite" aria-atomic="true">32%</span>
                             <span class="metric-label">Faster service response</span>
                         </div>
                         <div class="metric" data-count-to="68" data-suffix="%">
-                            <span class="metric-value" aria-live="polite" aria-atomic="true">0</span>
+                            <span class="metric-value" aria-live="polite" aria-atomic="true">68%</span>
                             <span class="metric-label">Reduction in manual fixes</span>
                         </div>
                         <div class="metric" data-count-to="6">
-                            <span class="metric-value" aria-live="polite" aria-atomic="true">0</span>
+                            <span class="metric-value" aria-live="polite" aria-atomic="true">6</span>
                             <span class="metric-label">Departments unified</span>
                         </div>
                     </div>
@@ -239,6 +265,94 @@
 
         <section class="section dark">
             <div class="section-header">
+                <h2>Before vs After</h2>
+                <p>Modernization delivered a single source of truth and consistent workflows across departments.</p>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <h3>Before</h3>
+                    <ul>
+                        <li>Manual reconciliations between permitting, utilities, and emergency systems</li>
+                        <li>Limited situational awareness during storms and service disruptions</li>
+                        <li>Unclear ownership of data quality and governance</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>After</h3>
+                    <ul>
+                        <li>Shared data products with automated QA/QC and lineage</li>
+                        <li>Field and executive dashboards showing live service status and incidents</li>
+                        <li>Governance council with defined responsibilities and cadence</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="section light">
+            <div class="section-header">
+                <h2>Measurable Results</h2>
+                <p>Performance gains were tracked against the roadmap to prove value.</p>
+            </div>
+            <ul class="pill-list">
+                <li>32% faster service response across participating departments</li>
+                <li>68% reduction in manual data corrections</li>
+                <li>Six departments operating from the same authoritative datasets</li>
+                <li>New executive dashboards used in emergency coordination briefings</li>
+            </ul>
+        </section>
+
+        <section class="section dark">
+            <div class="section-header">
+                <h2>Technologies and Standards Used</h2>
+                <p>Architecture choices balanced availability, accessibility, and compliance.</p>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <h3>Platform</h3>
+                    <p>ArcGIS Enterprise, ArcGIS Hub, SQL Server, and FME-powered automations.</p>
+                </article>
+                <article class="card">
+                    <h3>Standards</h3>
+                    <p>ADA/WCAG 2.1 AA interfaces, CJIS-aware access controls, and NIST-aligned logging.</p>
+                </article>
+                <article class="card">
+                    <h3>Methods</h3>
+                    <p>Data quality scoring, iterative user testing, and change management with departmental champions.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section light">
+            <div class="section-header">
+                <h2>Process Summary</h2>
+                <p>Phased delivery ensured benefits landed early while preparing teams for long-term ownership.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span>Weeks 1–3</span>
+                    <h3>Discovery &amp; governance setup</h3>
+                    <p>Workshops and capability assessment to define priorities, risks, and data stewardship.</p>
+                </div>
+                <div class="timeline-item">
+                    <span>Weeks 4–8</span>
+                    <h3>Platform upgrades</h3>
+                    <p>ArcGIS Enterprise upgrades, security hardening, and automated deployments validated in staging.</p>
+                </div>
+                <div class="timeline-item">
+                    <span>Weeks 9–14</span>
+                    <h3>Data migration &amp; QA/QC</h3>
+                    <p>Migrated priority datasets with repeatable QA/QC and field validation loops.</p>
+                </div>
+                <div class="timeline-item">
+                    <span>Weeks 15–20</span>
+                    <h3>Adoption &amp; scale</h3>
+                    <p>Launched dashboards, conducted academies, and transitioned runbooks to county teams.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section dark">
+            <div class="section-header">
                 <h2>Looking ahead</h2>
                 <p>St. Lucie County continues to expand its digital services roadmap with a sustainable foundation for analytics and transparency.</p>
             </div>
@@ -278,7 +392,7 @@
                     <li><a href="mailto:hello@etl-gis.com" data-relay-email="true">hello@etl-gis.com</a></li>
                     <li><a href="https://cal.com/etl-gis/consult" target="_blank" rel="noopener">Schedule a meeting</a></li>
                 </ul>
-                <p class="footer-note">Click to reveal the live email or phone number—our relay masks direct details until you engage on the site.</p>
+                <p class="footer-note">Direct email and phone details reveal after you click to keep scrapers out; your message still routes straight to our team without sharing it with third parties.</p>
             </div>
             <div>
                 <h4>Connect</h4>
