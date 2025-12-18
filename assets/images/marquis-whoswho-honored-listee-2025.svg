@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
+  <title id="title">Marquis Who's Who 2025 Honored Listee badge</title>
+  <desc id="desc">Circular badge noting Marquis Who's Who, established 1898, honoring a 2025 listee.</desc>
+  <defs>
+    <linearGradient id="ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d6b471" />
+      <stop offset="100%" stop-color="#b68738" />
+    </linearGradient>
+  </defs>
+  <circle cx="200" cy="200" r="188" fill="#f5f2eb" stroke="url(#ring)" stroke-width="12" />
+  <circle cx="200" cy="200" r="154" fill="#fdfbf7" stroke="#1b3158" stroke-width="10" />
+  <text x="200" y="86" text-anchor="middle" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="32" letter-spacing="4" fill="#b68738">HONORED LISTEE</text>
+  <text x="200" y="120" text-anchor="middle" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="22" letter-spacing="5" fill="#b68738">2025</text>
+  <g fill="#1b3158" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" text-anchor="middle">
+    <text x="200" y="180" font-size="18" letter-spacing="3">Est. 1898</text>
+    <text x="200" y="216" font-size="36" font-weight="700">MARQUIS</text>
+    <text x="200" y="248" font-size="32" font-weight="700">WHO'S WHO</text>
+  </g>
+  <g fill="#b68738" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" text-anchor="middle">
+    <text x="200" y="292" font-size="16" letter-spacing="1.5">OVER</text>
+    <text x="200" y="318" font-size="24" font-weight="700">125 YEARS</text>
+    <text x="200" y="344" font-size="14" letter-spacing="2">BIOS &amp; WHO'S WHO PUBLICATIONS</text>
+  </g>
+</svg>
