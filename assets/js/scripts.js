@@ -9,11 +9,11 @@ const metricElements = Array.from(document.querySelectorAll('.metric[data-count-
 let metricObserver = null;
 const metricFormatters = new WeakMap();
 
-const relayEmailTokenSegments = ['b21v', 'bHVh', 'Ymlw', 'M2Fr', 'QGdt', 'YWls', 'LmNv', 'bQ=='];
+const relayEmailTokenSegments = ['ZXRs', 'Z2lz', 'Y29u', 'c3Vs', 'dGlu', 'Z0Bn', 'bWFp', 'bC5j', 'b20='];
 const relayEmailToken = relayEmailTokenSegments.join('');
 const relayPhoneTokenSegments = ['KzE4', 'NjMy', 'NjEz', 'MTAz'];
 const relayPhoneToken = relayPhoneTokenSegments.join('');
-const displayEmailAddress = 'hello@etl-gis.com';
+const displayEmailAddress = 'etlgisconsulting@gmail.com';
 const displayPhoneNumber = '+1 (888) 555-0149';
 const displayPhoneHref = 'tel:+18885550149';
 
