@@ -402,6 +402,21 @@ header {
     transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--color-secondary);
+    font-weight: 600;
+    padding: 0;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.btn-link:hover,
+.btn-link:focus {
+    color: var(--color-accent);
+}
+
 .btn-primary {
     background: var(--color-accent);
     color: #0f1b2a;
@@ -545,6 +560,28 @@ header {
     font-size: 0.95rem;
 }
 
+.trust-center {
+    margin-top: 2rem;
+    background: rgba(15, 122, 229, 0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    max-width: 720px;
+}
+
+.trust-center-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-left: 0;
+}
+
+.trust-center-links a {
+    color: var(--color-secondary);
+    font-weight: 600;
+}
+
 .consent-banner {
     position: fixed;
     bottom: 1.5rem;
@@ -564,6 +601,12 @@ header {
     transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
+.consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
 .consent-banner.visible {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
@@ -580,9 +623,27 @@ header {
     cursor: pointer;
 }
 
+.consent-banner .btn-ghost {
+    background: rgba(26, 77, 143, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
 .consent-banner a {
     color: var(--color-secondary);
     text-decoration: underline;
+}
+
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
 }
 
 img {
