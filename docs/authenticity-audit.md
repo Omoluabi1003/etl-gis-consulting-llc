@@ -26,7 +26,7 @@
 136: https://etl-gis-consulting-llc.vercel.app/services.html
 137: #connect
 138: https://cal.com/etl-gis/consultation
-151: mailto:contact@etl-gis.com
+151: mailto:etlgisconsulting@gmail.com
 153: https://linkedin.com/in/paul-iyogun-7591a571
 177: services/strategy-roadmapping.html
 178: #connect
@@ -53,9 +53,9 @@
 423: https://linkedin.com/in/paul-iyogun-7591a571
 424: #connect
 435: https://etl-gis-consulting-llc.vercel.app/contact.html
-436: mailto:contact@etl-gis.com
+436: mailto:etlgisconsulting@gmail.com
 505: #connect
-526: mailto:contact@etl-gis.com
+526: mailto:etlgisconsulting@gmail.com
 531: https://etl-gis-consulting-llc.vercel.app/services.html
 532: https://etl-gis-consulting-llc.vercel.app/projects.html
 533: https://etl-gis-consulting-llc.vercel.app/contact.html
@@ -86,11 +86,11 @@ Source: `index.html` line references above.【F:index.html†L91-L627】
 99: https://cal.com/etl-gis/consultation
 104: https://cal.com/etl-gis/consultation
 117: projects.html
-118: mailto:contact@etl-gis.com
+118: mailto:etlgisconsulting@gmail.com
 264: contact.html
-265: mailto:contact@etl-gis.com
+265: mailto:etlgisconsulting@gmail.com
 271: contact.html
-292: mailto:contact@etl-gis.com
+292: mailto:etlgisconsulting@gmail.com
 297: services.html
 298: projects.html
 299: contact.html
@@ -125,7 +125,7 @@ Source: `about.html` line references above.【F:about.html†L76-L327】
 258: services/managed-gis-operations.html
 259: contact.html
 400: contact.html
-421: mailto:contact@etl-gis.com
+421: mailto:etlgisconsulting@gmail.com
 426: services.html
 427: projects.html
 428: contact.html
@@ -157,7 +157,7 @@ Source: `services.html` line references above.【F:services.html†L116-L456】
 272: contact.html
 273: services.html
 278: contact.html
-299: mailto:contact@etl-gis.com
+299: mailto:etlgisconsulting@gmail.com
 304: services.html
 305: projects.html
 306: contact.html
@@ -183,15 +183,15 @@ Source: `projects.html` line references above.【F:projects.html†L90-L334】
 125: https://cal.com/etl-gis/consultation
 138: #contact-form
 139: https://cal.com/etl-gis/consultation
-156: mailto:contact@etl-gis.com
-173: mailto:contact@etl-gis.com
+156: mailto:etlgisconsulting@gmail.com
+173: mailto:etlgisconsulting@gmail.com
 174: https://cal.com/etl-gis/consultation
-176: mailto:press@etl-gis.com
-177: mailto:careers@etl-gis.com
-294: mailto:newsletter@etl-gis.com
+176: mailto:etlgisconsulting@gmail.com
+177: mailto:etlgisconsulting@gmail.com
+294: mailto:etlgisconsulting@gmail.com
 295: about.html
 300: #contact-form
-321: mailto:contact@etl-gis.com
+321: mailto:etlgisconsulting@gmail.com
 326: services.html
 327: projects.html
 328: contact.html
@@ -206,8 +206,8 @@ Source: `contact.html` line references above.【F:contact.html†L97-L356】
 
 ### Case Studies (`case-studies/metro-mobility-analytics.html`, `case-studies/st-lucie-modernization.html`)
 ```
-Metro: 119 #main-content, 122 ../index.html, 137-141 site nav, 142/147 https://cal.com/etl-gis/consultation, 360-361 CTAs, 388 mailto:contact@etl-gis.com, 389 https://cal.com/etl-gis/consult, 395 LinkedIn, 396 ../index.html#compliance, 402-404 trust links, 419 ../privacy.html, 421 #
-St. Lucie: 119 #main-content, 122 ../index.html, 137-141 site nav, 142/147 https://cal.com/etl-gis/consultation, 360-361 CTAs, 388 mailto:contact@etl-gis.com, 389 https://cal.com/etl-gis/consult, 395 LinkedIn, 396 ../index.html#compliance, 402-404 trust links, 419 ../privacy.html, 421 #
+Metro: 119 #main-content, 122 ../index.html, 137-141 site nav, 142/147 https://cal.com/etl-gis/consultation, 360-361 CTAs, 388 mailto:etlgisconsulting@gmail.com, 389 https://cal.com/etl-gis/consult, 395 LinkedIn, 396 ../index.html#compliance, 402-404 trust links, 419 ../privacy.html, 421 #
+St. Lucie: 119 #main-content, 122 ../index.html, 137-141 site nav, 142/147 https://cal.com/etl-gis/consultation, 360-361 CTAs, 388 mailto:etlgisconsulting@gmail.com, 389 https://cal.com/etl-gis/consult, 395 LinkedIn, 396 ../index.html#compliance, 402-404 trust links, 419 ../privacy.html, 421 #
 ```
 Source: case study files line references above.【F:case-studies/metro-mobility-analytics.html†L119-L421】【F:case-studies/st-lucie-modernization.html†L119-L421】
 
@@ -222,14 +222,14 @@ Sources: service detail files line references above.【F:services/enterprise-arc
 
 ### Trust pages (`privacy.html`, `terms.html`)
 ```
-Privacy: 36 #main-content, 39-65 nav, 126 mailto:contact@etl-gis.com, 166-178 trust links, 187-193 consent banner
-Terms: 36 #main-content, 39-65 nav, 129 mailto:contact@etl-gis.com, 165-167 trust links, 183 consent banner
+Privacy: 36 #main-content, 39-65 nav, 126 mailto:etlgisconsulting@gmail.com, 166-178 trust links, 187-193 consent banner
+Terms: 36 #main-content, 39-65 nav, 129 mailto:etlgisconsulting@gmail.com, 165-167 trust links, 183 consent banner
 ```
 Sources: trust pages line references above.【F:privacy.html†L36-L193】【F:terms.html†L36-L183】
 
 ## Contact Details, Addresses, Brand Identifiers
-**Primary business email:** `contact@etl-gis.com` used across site and footers.【F:index.html†L526-L543】  
-**Additional inboxes:** `press@etl-gis.com`, `careers@etl-gis.com`, and `newsletter@etl-gis.com` (for updates).【F:contact.html†L173-L295】  
+**Primary business email:** `etlgisconsulting@gmail.com` used across site and footers.【F:index.html†L526-L543】  
+**Additional inboxes:** `etlgisconsulting@gmail.com`, `etlgisconsulting@gmail.com`, and `etlgisconsulting@gmail.com` (for updates).【F:contact.html†L173-L295】  
 **Headquarters statement:** Port St. Lucie, Florida (EST), remote-first team.【F:index.html†L523-L526】  
 **Brand identifiers:** ETL GIS Consulting LLC name, logo, and taglines in headers/footers.【F:index.html†L510-L548】
 

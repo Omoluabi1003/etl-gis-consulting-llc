@@ -9,9 +9,9 @@ const metricElements = Array.from(document.querySelectorAll('.metric[data-count-
 let metricObserver = null;
 const metricFormatters = new WeakMap();
 
-const relayEmailTokenSegments = ['Y29u', 'dGFj', 'dEBld', 'GwtZ2', 'lzLm', 'NvbQ=='];
+const relayEmailTokenSegments = ['ZXRsZ2', 'lzY29u', 'c3VsdG', 'luZ0Bn', 'bWFpbC', '5jb20='];
 const relayEmailToken = relayEmailTokenSegments.join('');
-const displayEmailAddress = 'contact@etl-gis.com';
+const displayEmailAddress = 'etlgisconsulting@gmail.com';
 
 const decodeToken = (token) => {
     if (!token || typeof atob !== 'function') {
