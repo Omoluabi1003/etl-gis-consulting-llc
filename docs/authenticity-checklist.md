@@ -3,7 +3,7 @@
 Use this checklist in staging/production to confirm trust promises and operational readiness.
 
 ## 1) Contact Identity & Trust Center
-- [ ] Confirm primary inbox `contact@etl-gis.com` appears across homepage, contact page, and footer links.
+- [ ] Confirm primary inbox `etlgisconsulting@gmail.com` appears across homepage, contact page, and footer links.
 - [ ] Confirm Trust Center links resolve to `/privacy` and `/terms`.
 - [ ] Confirm CJIS alignment brief downloads from `/assets/downloads/cjis-alignment-brief.pdf`.
 

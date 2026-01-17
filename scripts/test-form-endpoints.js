@@ -3,8 +3,8 @@ const path = require('path');
 process.env.SUPABASE_URL = 'https://example.supabase.co';
 process.env.SUPABASE_SERVICE_ROLE_KEY = 'test-key';
 process.env.RESEND_API_KEY = 'test-resend';
-process.env.RESEND_FROM_EMAIL = 'contact@etl-gis.com';
-process.env.PRIMARY_INBOX = 'contact@etl-gis.com';
+process.env.RESEND_FROM_EMAIL = 'etlgisconsulting@gmail.com';
+process.env.PRIMARY_INBOX = 'etlgisconsulting@gmail.com';
 process.env.SITE_URL = 'https://etl-gis-consulting-llc.vercel.app';
 
 const consultation = require(path.join(__dirname, '..', 'api', 'consultation.js'));
