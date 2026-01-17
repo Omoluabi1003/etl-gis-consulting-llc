@@ -9,13 +9,9 @@ const metricElements = Array.from(document.querySelectorAll('.metric[data-count-
 let metricObserver = null;
 const metricFormatters = new WeakMap();
 
-const relayEmailTokenSegments = ['ZXRs', 'Z2lz', 'Y29u', 'c3Vs', 'dGlu', 'Z0Bn', 'bWFp', 'bC5j', 'b20='];
+const relayEmailTokenSegments = ['Y29u', 'dGFj', 'dEBld', 'GwtZ2', 'lzLm', 'NvbQ=='];
 const relayEmailToken = relayEmailTokenSegments.join('');
-const relayPhoneTokenSegments = ['KzE4', 'NjMy', 'NjEz', 'MTAz'];
-const relayPhoneToken = relayPhoneTokenSegments.join('');
-const displayEmailAddress = 'etlgisconsulting@gmail.com';
-const displayPhoneNumber = '+1 (888) 555-0149';
-const displayPhoneHref = 'tel:+18885550149';
+const displayEmailAddress = 'contact@etl-gis.com';
 
 const decodeToken = (token) => {
     if (!token || typeof atob !== 'function') {
@@ -30,7 +26,6 @@ const decodeToken = (token) => {
 };
 
 const resolvedRelayEmail = decodeToken(relayEmailToken);
-const resolvedRelayPhone = decodeToken(relayPhoneToken);
 
 const extractMailtoQuery = (href) => {
     if (!href) {
@@ -63,24 +58,6 @@ const applyEmailRelayToLinks = () => {
 };
 
 applyEmailRelayToLinks();
-
-const applyPhoneRelayToLinks = () => {
-    if (!resolvedRelayPhone) {
-        return;
-    }
-
-    document.querySelectorAll('[data-relay-phone]').forEach((link) => {
-        link.setAttribute('href', displayPhoneHref);
-
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            const destination = `tel:${resolvedRelayPhone}`;
-            window.location.href = destination;
-        });
-    });
-};
-
-applyPhoneRelayToLinks();
 
 const metricEaseOut = (t) => 1 - Math.pow(1 - t, 3);
 
@@ -367,30 +344,56 @@ if (!storedMotionPreference) {
     });
 }
 
-const contactForm = document.getElementById('contact-form');
-const formResponse = document.querySelector('.form-response');
-const formEndpoint = resolvedRelayEmail
-    ? `https://formsubmit.co/ajax/${resolvedRelayEmail}`
-    : `https://formsubmit.co/ajax/${displayEmailAddress}`;
+const buildTrackingPayload = () => {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        pagePath: window.location.pathname,
+        referrer: document.referrer || '',
+        utmSource: params.get('utm_source') || '',
+        utmMedium: params.get('utm_medium') || '',
+        utmCampaign: params.get('utm_campaign') || '',
+        utmTerm: params.get('utm_term') || '',
+        utmContent: params.get('utm_content') || '',
+    };
+};
 
-if (contactForm && formResponse) {
-    contactForm.addEventListener('submit', async (event) => {
+const updateHiddenTrackingFields = (form) => {
+    if (!form) {
+        return;
+    }
+    const tracking = buildTrackingPayload();
+    Object.entries(tracking).forEach(([key, value]) => {
+        const input = form.querySelector(`input[name="${key}"]`);
+        if (input) {
+            input.value = value;
+        }
+    });
+};
+
+const submitSecureForm = async ({ form, responseEl, endpoint, successMessage }) => {
+    if (!form || !responseEl) {
+        return;
+    }
+
+    form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        if (!contactForm.checkValidity()) {
-            formResponse.textContent = 'Please complete all required fields before submitting.';
-            formResponse.style.color = '#e38b17';
+        updateHiddenTrackingFields(form);
+
+        if (!form.checkValidity()) {
+            responseEl.textContent = 'Please complete all required fields before submitting.';
+            responseEl.style.color = '#e38b17';
             return;
         }
 
-        formResponse.textContent = 'Submitting your inquiry securely…';
-        formResponse.style.color = '#0f7ae5';
+        responseEl.textContent = 'Submitting your request securely…';
+        responseEl.style.color = '#0f7ae5';
 
-        const formData = new FormData(contactForm);
+        const formData = new FormData(form);
         const payload = Object.fromEntries(formData.entries());
 
         try {
-            const response = await fetch(formEndpoint, {
+            const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -399,17 +402,35 @@ if (contactForm && formResponse) {
                 body: JSON.stringify(payload),
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error(data?.message || 'Network response was not ok');
             }
 
-            formResponse.textContent = `Thanks${payload['full-name'] ? `, ${payload['full-name']}` : ''}! Our team has received your details and will respond within one business day.`;
-            formResponse.style.color = '#0f7ae5';
-            contactForm.reset();
+            responseEl.textContent = successMessage(data, payload);
+            responseEl.style.color = '#0f7ae5';
+            form.reset();
         } catch (error) {
-            formResponse.textContent = `We were unable to submit your request automatically. Please email ${displayEmailAddress} or call ${displayPhoneNumber}.`;
-            formResponse.style.color = '#d9423a';
+            responseEl.textContent = error?.message || `We were unable to submit your request automatically. Please email ${displayEmailAddress}.`;
+            responseEl.style.color = '#d9423a';
         }
+    });
+};
+
+const contactForm = document.getElementById('contact-form');
+const formResponse = document.querySelector('.form-response');
+
+if (contactForm && formResponse) {
+    submitSecureForm({
+        form: contactForm,
+        responseEl: formResponse,
+        endpoint: '/api/consultation',
+        successMessage: (data, payload) => {
+            const name = payload['full-name'] ? `, ${payload['full-name']}` : '';
+            const leadId = data?.leadId ? ` Your reference ID is ${data.leadId}.` : '';
+            return `Thanks${name}! We received your request and will follow up within one business day.${leadId}`;
+        },
     });
 }
 
@@ -435,55 +456,16 @@ if (localStorage.getItem(playbookAccessKey) === 'true') {
 }
 
 if (playbookForm) {
-    playbookForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        if (!playbookForm.checkValidity()) {
-            if (playbookMessage) {
-                playbookMessage.textContent = 'Please complete each required field and confirm consent to unlock the playbooks.';
-                playbookMessage.style.color = '#e38b17';
-            }
-            return;
-        }
-
-        if (playbookMessage) {
-            playbookMessage.textContent = 'Preparing your downloads…';
-            playbookMessage.style.color = '#0f7ae5';
-        }
-
-        const formData = new FormData(playbookForm);
-        const payload = Object.fromEntries(formData.entries());
-        payload._subject = 'ETL GIS Playbook Request';
-        payload._template = 'table';
-
-        try {
-            const response = await fetch(formEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                },
-                body: JSON.stringify(payload),
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            if (playbookMessage) {
-                playbookMessage.textContent = 'Playbooks unlocked! Downloads are ready and a copy is on the way to your inbox.';
-                playbookMessage.style.color = '#0f7ae5';
-            }
+    submitSecureForm({
+        form: playbookForm,
+        responseEl: playbookMessage,
+        endpoint: '/api/playbook',
+        successMessage: (data) => {
             localStorage.setItem(playbookAccessKey, 'true');
             revealPlaybookDownloads();
-            playbookForm.reset();
-        } catch (error) {
-            if (playbookMessage) {
-                playbookMessage.textContent = `We couldn’t submit automatically. Email ${displayEmailAddress} and we’ll send the playbooks manually.`;
-                playbookMessage.style.color = '#d9423a';
-            }
-            revealPlaybookDownloads();
-        }
+            const leadId = data?.leadId ? ` Reference ID ${data.leadId}.` : '';
+            return `Playbooks unlocked! Downloads are ready and a copy has been emailed.${leadId}`;
+        },
     });
 }
 
@@ -597,9 +579,12 @@ const loadAnalytics = () => {
     document.head.appendChild(script);
 };
 
-const acknowledgeConsent = () => {
-    localStorage.setItem('analytics-consent', 'granted');
-    loadAnalytics();
+const setAnalyticsConsent = (status) => {
+    localStorage.setItem('analytics-consent', status);
+    localStorage.setItem('analytics-consent-ts', new Date().toISOString());
+    if (status === 'granted') {
+        loadAnalytics();
+    }
     if (consentBanner) {
         consentBanner.classList.remove('visible');
     }
@@ -609,17 +594,29 @@ if (consentBanner) {
     const storedConsent = localStorage.getItem('analytics-consent');
     if (storedConsent === 'granted') {
         loadAnalytics();
-    } else {
+    } else if (storedConsent !== 'denied') {
         requestAnimationFrame(() => {
             consentBanner.classList.add('visible');
         });
     }
 
-    const consentButton = consentBanner.querySelector('button');
-    if (consentButton) {
-        consentButton.addEventListener('click', acknowledgeConsent);
+    const acceptButton = consentBanner.querySelector('[data-consent-accept]');
+    const declineButton = consentBanner.querySelector('[data-consent-decline]');
+    if (acceptButton) {
+        acceptButton.addEventListener('click', () => setAnalyticsConsent('granted'));
+    }
+    if (declineButton) {
+        declineButton.addEventListener('click', () => setAnalyticsConsent('denied'));
     }
 }
+
+document.querySelectorAll('[data-analytics-preferences]').forEach((button) => {
+    button.addEventListener('click', () => {
+        if (consentBanner) {
+            consentBanner.classList.add('visible');
+        }
+    });
+});
 
 window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && consentBanner?.classList.contains('visible')) {

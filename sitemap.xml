@@ -55,6 +55,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://etl-gis-consulting-llc.vercel.app/privacy</loc>
+    <lastmod>2024-11-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://etl-gis-consulting-llc.vercel.app/terms</loc>
+    <lastmod>2024-11-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://etl-gis-consulting-llc.vercel.app/case-studies/metro-mobility-analytics.html</loc>
     <lastmod>2024-05-01</lastmod>
     <changefreq>quarterly</changefreq>

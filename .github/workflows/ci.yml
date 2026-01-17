@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Lint HTML
+        run: node scripts/lint-html.js
+
+      - name: Typecheck config
+        run: node scripts/typecheck-config.js
+
+      - name: Build check
+        run: node scripts/build-check.js
+
+      - name: Form endpoint integration test
+        run: node scripts/test-form-endpoints.js
+
+      - name: Link checker
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --config .lychee.toml .

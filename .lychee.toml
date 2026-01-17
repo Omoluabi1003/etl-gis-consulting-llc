@@ -1,0 +1,11 @@
+exclude = [
+  "mailto:",
+  "https://cal.com/etl-gis/consultation",
+  "https://cal.com/etl-gis/consult",
+  "https://linkedin.com/in/paul-iyogun-7591a571",
+  "https://www.linkedin.com/company/etl-gis-consulting",
+  "https://keyville.vercel.app/platform"
+]
+exclude_all_private = true
+accept = [200, 202, 204, 301, 302, 307, 308, 429]
+max_concurrency = 8
