@@ -2452,6 +2452,7 @@ main .section.light .section-header p {
 
     .metrics-grid {
         gap: 1rem;
+        grid-template-columns: 1fr;
     }
 
     .process-list li {
