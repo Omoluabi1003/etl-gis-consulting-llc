@@ -864,6 +864,14 @@ img {
     color: rgba(255, 255, 255, 0.75);
 }
 
+.card.dark ul {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.card.dark ul li {
+    color: rgba(255, 255, 255, 0.78);
+}
+
 .card ul {
     margin-top: 1rem;
     display: grid;
