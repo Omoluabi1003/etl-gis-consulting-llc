@@ -2194,9 +2194,13 @@ main .section.light .section-header p {
 
 .metric-value {
     font-family: var(--font-heading);
-    font-size: 2.4rem;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
     font-weight: 700;
     color: #fff;
+    display: block;
+    line-height: 1.2;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 .metric:hover,
@@ -2448,6 +2452,7 @@ main .section.light .section-header p {
 
     .metrics-grid {
         gap: 1rem;
+        grid-template-columns: 1fr;
     }
 
     .process-list li {
