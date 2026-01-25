@@ -2194,9 +2194,13 @@ main .section.light .section-header p {
 
 .metric-value {
     font-family: var(--font-heading);
-    font-size: 2.4rem;
+    font-size: clamp(1.6rem, 2.6vw, 2.4rem);
     font-weight: 700;
     color: #fff;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 .metric:hover,
