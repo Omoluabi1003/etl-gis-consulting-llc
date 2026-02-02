@@ -2498,6 +2498,17 @@ body[data-motion="reduced"] .back-to-top {
     transition: none !important;
 }
 
+@media (max-width: 768px) {
+    iframe[src*="helloskip.com"] {
+        width: min(360px, 90vw) !important;
+        height: min(520px, 70vh) !important;
+        max-width: 90vw !important;
+        max-height: 70vh !important;
+        inset: auto 16px 16px auto !important;
+        border-radius: 16px !important;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
