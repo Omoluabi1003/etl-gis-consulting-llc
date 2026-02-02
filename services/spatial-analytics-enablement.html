@@ -269,6 +269,13 @@
     </div>
 
     <script src="../assets/js/scripts.js" defer></script>
-    <script src="https://helloskip.com/agent.js" data-agent-id="hFOUWrcFpjzneRB7o6Md"></script>
+    <script>
+        if (!window.matchMedia('(max-width: 768px)').matches) {
+            const script = document.createElement('script');
+            script.src = 'https://helloskip.com/agent.js';
+            script.dataset.agentId = 'hFOUWrcFpjzneRB7o6Md';
+            document.body.appendChild(script);
+        }
+    </script>
 </body>
 </html>
