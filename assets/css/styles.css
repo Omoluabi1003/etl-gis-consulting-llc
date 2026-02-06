@@ -2701,7 +2701,7 @@ main .section.light .section-header p {
 }
 
 .team-card p {
-    color: var(--color-muted);
+    color: var(--color-dark);
 }
 
 .team-card img {
@@ -2717,7 +2717,7 @@ main .section.light .section-header p {
     list-style: none;
     display: grid;
     gap: 0.6rem;
-    color: var(--color-muted);
+    color: var(--color-dark);
     padding: 0;
 }
 
