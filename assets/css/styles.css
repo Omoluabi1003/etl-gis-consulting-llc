@@ -2477,11 +2477,11 @@ main .section.light .section-header p {
 }
 
 .metric {
-    background: rgba(255, 255, 255, 0.08);
+    background: #fff;
     border-radius: 18px;
     padding: 1.75rem 1.5rem;
     text-align: center;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 0 0 1px rgba(17, 17, 17, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
@@ -2489,7 +2489,7 @@ main .section.light .section-header p {
     font-family: var(--font-heading);
     font-size: clamp(1.6rem, 4vw, 2.4rem);
     font-weight: 700;
-    color: #fff;
+    color: var(--color-dark);
     display: block;
     line-height: 1.2;
     word-break: break-word;
@@ -2506,8 +2506,15 @@ main .section.light .section-header p {
 .metric-label {
     display: block;
     margin-top: 0.75rem;
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--color-muted);
     font-size: 0.95rem;
+}
+
+.metric:hover .metric-value,
+.metric:focus-within .metric-value,
+.metric:hover .metric-label,
+.metric:focus-within .metric-label {
+    color: #fff;
 }
 
 .case-grid {
