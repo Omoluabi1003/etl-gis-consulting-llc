@@ -2708,6 +2708,7 @@ main .section.light .section-header p {
     width: 160px;
     height: 160px;
     object-fit: cover;
+    object-position: center top;
     margin: 0 auto;
     border-radius: 50%;
     box-shadow: var(--shadow-soft);
