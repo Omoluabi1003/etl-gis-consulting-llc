@@ -2182,6 +2182,13 @@ main .section.light .section-header p {
         padding: 0.6rem 0.75rem;
     }
 
+    .nav-links a:hover,
+    .nav-links a:focus,
+    .nav-links a.active {
+        background-color: rgba(255, 255, 255, 0.16);
+        color: #fff;
+    }
+
     .nav-links .motion-toggle {
         display: inline-flex;
         margin-top: 0.5rem;
