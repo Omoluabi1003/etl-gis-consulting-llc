@@ -1030,6 +1030,7 @@ img {
     width: 100%;
     height: clamp(260px, 32vw, 360px);
     object-fit: cover;
+    object-position: center top;
     border-radius: 20px;
     box-shadow: var(--shadow-soft);
 }
@@ -2708,6 +2709,7 @@ main .section.light .section-header p {
     width: 160px;
     height: 160px;
     object-fit: cover;
+    object-position: center top;
     margin: 0 auto;
     border-radius: 50%;
     box-shadow: var(--shadow-soft);
