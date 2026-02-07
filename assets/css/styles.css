@@ -1030,6 +1030,7 @@ img {
     width: 100%;
     height: clamp(260px, 32vw, 360px);
     object-fit: cover;
+    object-position: center top;
     border-radius: 20px;
     box-shadow: var(--shadow-soft);
 }
