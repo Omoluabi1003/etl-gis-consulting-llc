@@ -1238,15 +1238,16 @@ img {
 }
 
 .card.dark p {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--color-muted);
+    text-shadow: none;
 }
 
 .card.dark ul {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--color-muted);
 }
 
 .card.dark ul li {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--color-muted);
 }
 
 .card ul {
