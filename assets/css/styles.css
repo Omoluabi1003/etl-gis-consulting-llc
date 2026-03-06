@@ -715,8 +715,7 @@ img {
 }
 
 .capability-list,
-.differentiator-list,
-.procurement-list {
+.differentiator-list {
     max-width: var(--max-width);
     margin: 0 auto;
     list-style: none;
@@ -729,8 +728,7 @@ img {
 }
 
 .capability-list li,
-.differentiator-list li,
-.procurement-list li {
+.differentiator-list li {
     background: var(--color-surface);
     border: 1px solid rgba(17, 17, 17, 0.08);
     border-radius: 12px;
@@ -738,9 +736,59 @@ img {
     font-weight: 600;
 }
 
-.differentiator-list li,
-.procurement-list li {
+.differentiator-list li {
     background: transparent;
+}
+
+.credentials-grid {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.credential-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 247, 251, 0.92));
+    border: 1px solid rgba(17, 17, 17, 0.09);
+    border-radius: 14px;
+    padding: 1.2rem 1.2rem 1.25rem;
+    min-height: 100%;
+}
+
+.credential-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.credential-value {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 650;
+    color: var(--color-dark);
+    margin: 0;
+}
+
+.naics-codes {
+    font-family: var(--font-body);
+    letter-spacing: 0.01em;
+}
+
+.naics-codes span {
+    margin: 0 0.35rem;
+    color: rgba(17, 17, 17, 0.45);
+}
+
+.credentials-note {
+    max-width: 760px;
+    margin: 1rem auto 0;
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 0.92rem;
 }
 
 .lifecycle-stepper {
@@ -2971,6 +3019,18 @@ body[data-motion="reduced"] .back-to-top {
 @media (max-width: 768px) {
     .capability-list {
         grid-template-columns: 1fr;
+    }
+
+    .credentials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .credential-card {
+        padding: 1rem 1rem 1.1rem;
+    }
+
+    .naics-codes span {
+        margin: 0 0.25rem;
     }
 
     .lifecycle-stepper {
