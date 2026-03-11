@@ -1,1 +1,5 @@
 assets/images/generated/*.png
+node_modules/
+.next/
+.next-env
+.env
