@@ -205,3 +205,82 @@ a { color: inherit; text-decoration: none; }
     .portfolio-grid { grid-template-columns: 1fr; }
     .section { padding: 4.5rem 0; }
 }
+
+.records-modernization {
+    padding-top: 2.5rem;
+}
+.records-hero,
+.records-about,
+.records-services,
+.records-process,
+.records-finale {
+    margin-bottom: 1.5rem;
+}
+.records-lead {
+    max-width: 72ch;
+    color: #dbeaff;
+    font-size: 1.05rem;
+}
+.records-trust-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: #d9e8ff;
+}
+.records-trust-list li {
+    margin-bottom: .5rem;
+}
+.records-banner {
+    border: 1px solid rgba(255, 200, 87, .72);
+    border-radius: 12px;
+    background: rgba(255, 200, 87, .12);
+    color: #ffe4ab;
+    padding: .9rem 1rem;
+}
+.records-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.flagship-service {
+    border-color: rgba(255, 200, 87, .78);
+    box-shadow: 0 16px 40px rgba(255, 200, 87, .16);
+}
+.records-badge {
+    display: inline-block;
+    border: 1px solid rgba(255, 200, 87, .8);
+    border-radius: 999px;
+    padding: .2rem .7rem;
+    color: #ffe4ab;
+    background: rgba(255, 200, 87, .13);
+    font-size: .82rem;
+    font-weight: 700;
+}
+.records-process-note {
+    color: #dceafe;
+    margin-bottom: .45rem;
+}
+.section-cta {
+    margin-top: 1rem;
+}
+.records-steps {
+    margin-top: 1rem;
+    padding-left: 1.2rem;
+    color: #dceafe;
+}
+.records-steps li {
+    margin-bottom: .6rem;
+}
+.records-finale p a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+@media (max-width: 1024px) {
+    .records-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .records-grid {
+        grid-template-columns: 1fr;
+    }
+}
