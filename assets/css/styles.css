@@ -3055,19 +3055,45 @@ body[data-motion="reduced"] .back-to-top {
 
 /* Replica homepage styling */
 body.jim-replica {
-    background: #05070f;
+    background: radial-gradient(circle at 0% 0%, #1a3d80 0%, #0a1428 38%, #050810 100%);
     color: #f2f5ff;
+}
+
+body.jim-replica::before,
+body.jim-replica::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+}
+
+body.jim-replica::before {
+    background:
+        radial-gradient(70% 60% at 13% 5%, rgba(78, 148, 255, 0.34), transparent 72%),
+        radial-gradient(55% 50% at 84% 12%, rgba(82, 224, 255, 0.2), transparent 78%),
+        radial-gradient(40% 40% at 50% 92%, rgba(163, 99, 255, 0.16), transparent 78%);
+}
+
+body.jim-replica::after {
+    z-index: -1;
+    opacity: 0.32;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(circle at 50% 22%, rgba(0, 0, 0, 0.9), transparent 72%);
 }
 
 .jim-main {
     max-width: 1120px;
     margin: 0 auto;
-    padding: 1rem 1rem 4rem;
+    padding: 1.5rem 1rem 4rem;
 }
 
 .jim-header {
-    background: rgba(5, 8, 17, 0.88);
-    border-bottom: 1px solid rgba(118, 165, 255, 0.2);
+    background: rgba(8, 14, 30, 0.72);
+    border-bottom: 1px solid rgba(118, 165, 255, 0.22);
 }
 
 .jim-navbar .logo-name,
@@ -3079,25 +3105,35 @@ body.jim-replica {
 .section-card {
     border-radius: 1.25rem;
     overflow: hidden;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
 }
 
 .jim-hero {
-    min-height: 420px;
+    min-height: 490px;
     position: relative;
     display: flex;
     align-items: center;
-    background: radial-gradient(circle at 75% 20%, rgba(55, 146, 255, 0.4), transparent 45%),
-        linear-gradient(140deg, rgba(5, 20, 36, 0.94), rgba(3, 8, 22, 0.98)),
+    background: radial-gradient(circle at 78% 18%, rgba(109, 201, 255, 0.55), transparent 38%),
+        radial-gradient(circle at 26% 10%, rgba(56, 118, 255, 0.42), transparent 52%),
+        linear-gradient(136deg, rgba(5, 20, 36, 0.93), rgba(4, 10, 25, 0.98)),
         url('../images/hero-pattern.svg') center/cover no-repeat;
-    border: 1px solid rgba(112, 179, 255, 0.3);
+    border: 1px solid rgba(130, 191, 255, 0.38);
+    box-shadow: 0 28px 58px rgba(2, 8, 24, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.jim-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(100deg, rgba(5, 10, 24, 0.44) 8%, rgba(5, 10, 24, 0.18) 52%, rgba(5, 10, 24, 0.4) 100%),
+        radial-gradient(circle at 65% 50%, rgba(112, 228, 255, 0.17), transparent 58%);
 }
 
 .jim-hero-content {
     position: relative;
     z-index: 1;
     max-width: 620px;
-    padding: 2rem;
+    padding: 2.8rem;
 }
 
 .jim-kicker {
@@ -3125,10 +3161,12 @@ body.jim-replica {
 
 .jim-section {
     margin: 1.8rem 0;
-    padding: 1.4rem 1.25rem;
-    border-radius: 1.1rem;
-    border: 1px solid rgba(122, 174, 255, 0.26);
-    background: linear-gradient(160deg, rgba(10, 22, 43, 0.96), rgba(4, 10, 24, 0.98));
+    padding: 1.8rem 1.5rem;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(147, 196, 255, 0.28);
+    background: linear-gradient(155deg, rgba(9, 20, 42, 0.88), rgba(8, 14, 32, 0.82));
+    backdrop-filter: blur(4px);
+    box-shadow: 0 22px 50px rgba(3, 9, 24, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 .jim-section h2 {
@@ -3143,10 +3181,11 @@ body.jim-replica {
 }
 
 .jim-service-card {
-    background: linear-gradient(180deg, #101936, #090f22);
-    border: 1px solid rgba(122, 174, 255, 0.2);
+    background: linear-gradient(180deg, rgba(24, 36, 69, 0.94), rgba(11, 18, 40, 0.98));
+    border: 1px solid rgba(151, 201, 255, 0.18);
     border-radius: 0.8rem;
-    padding: 1rem;
+    padding: 1.1rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .jim-service-card h3 {
@@ -3170,13 +3209,15 @@ body.jim-replica {
 }
 
 .jim-panel {
-    background: #23497a;
+    background: linear-gradient(145deg, rgba(40, 84, 145, 0.9), rgba(30, 57, 105, 0.95));
+    border: 1px solid rgba(153, 203, 255, 0.2);
     border-radius: 1rem;
-    padding: 1.35rem;
+    padding: 1.5rem;
+    box-shadow: 0 18px 42px rgba(3, 9, 24, 0.36);
 }
 
 .jim-panel-gradient {
-    background: linear-gradient(135deg, #204977, #3f91da);
+    background: linear-gradient(136deg, rgba(38, 92, 148, 0.92), rgba(60, 139, 220, 0.96));
 }
 
 .jim-panel ul {
@@ -3185,9 +3226,11 @@ body.jim-replica {
 }
 
 .jim-testimonial.light {
-    background: #eceef3;
-    color: #191c24;
+    background: linear-gradient(145deg, #f8fbff, #e8effd);
+    color: #161b2a;
     padding: 1.8rem;
+    border: 1px solid rgba(150, 175, 216, 0.35);
+    box-shadow: 0 22px 50px rgba(2, 8, 24, 0.2);
 }
 
 .jim-testimonial blockquote {
@@ -3198,13 +3241,17 @@ body.jim-replica {
 
 .jim-contact {
     margin-top: 1.4rem;
-    padding: 1.2rem;
-    color: #1b2233;
+    padding: 1.45rem;
+    color: #f2f6ff;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(147, 196, 255, 0.26);
+    background: linear-gradient(150deg, rgba(10, 22, 43, 0.84), rgba(8, 16, 36, 0.88));
+    box-shadow: 0 20px 46px rgba(2, 8, 24, 0.35);
 }
 
 .jim-contact p,
 .jim-contact li {
-    color: #1b2233;
+    color: #deebff;
 }
 
 .jim-contact ul {
@@ -3219,7 +3266,7 @@ body.jim-replica {
 
 .jim-contact ul a,
 .jim-footer a {
-    color: #2f70d8;
+    color: #8ec5ff;
 }
 
 .btn-light {
@@ -3236,5 +3283,15 @@ body.jim-replica {
     max-width: 1120px;
     margin: 0 auto;
     padding: 0 1rem 2.5rem;
-    color: #9ca6c3;
+    color: #b7c0de;
+}
+
+@media (max-width: 768px) {
+    .jim-hero {
+        min-height: 430px;
+    }
+
+    .jim-hero-content {
+        padding: 1.8rem 1.3rem;
+    }
 }
