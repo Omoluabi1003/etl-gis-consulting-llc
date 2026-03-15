@@ -3125,6 +3125,15 @@ body.jim-replica {
 
 .jim-section {
     margin: 1.8rem 0;
+    padding: 1.4rem 1.25rem;
+    border-radius: 1.1rem;
+    border: 1px solid rgba(122, 174, 255, 0.26);
+    background: linear-gradient(160deg, rgba(10, 22, 43, 0.96), rgba(4, 10, 24, 0.98));
+}
+
+.jim-section h2 {
+    color: #f3f7ff;
+    text-shadow: 0 2px 12px rgba(4, 13, 34, 0.45);
 }
 
 .jim-service-grid {
