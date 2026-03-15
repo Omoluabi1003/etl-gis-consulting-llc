@@ -43,14 +43,14 @@ body {
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
-    text-shadow: var(--text-shadow-dark);
+    text-shadow: none;
 }
 
 input,
 textarea,
 select,
 button {
-    text-shadow: var(--text-shadow-dark);
+    text-shadow: none;
 }
 
 body::before,
@@ -3190,6 +3190,12 @@ body.jim-replica {
 .jim-contact {
     margin-top: 1.4rem;
     padding: 1.2rem;
+    color: #1b2233;
+}
+
+.jim-contact p,
+.jim-contact li {
+    color: #1b2233;
 }
 
 .jim-contact ul {
@@ -3202,9 +3208,9 @@ body.jim-replica {
     margin-bottom: 0.3rem;
 }
 
-.jim-contact a,
+.jim-contact ul a,
 .jim-footer a {
-    color: #9ecbff;
+    color: #2f70d8;
 }
 
 .btn-light {
