@@ -133,11 +133,12 @@ body.has-sticky-cta header {
 
 body.has-sticky-cta .logo,
 body.has-sticky-cta .logo-tagline,
-body.has-sticky-cta .nav-links a,
-body.has-sticky-cta .section .section-header p,
-body.has-sticky-cta p,
-body.has-sticky-cta li,
-body.has-sticky-cta label {
+body.has-sticky-cta .nav-links a {
+    color: #d6e5f8;
+}
+
+body.has-sticky-cta main :is(.hero, .section.dark, .consultation-form) :is(p, li, label),
+body.has-sticky-cta footer :is(p, li, label) {
     color: #d6e5f8;
 }
 
