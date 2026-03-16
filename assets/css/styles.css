@@ -2272,6 +2272,84 @@ main {
     background: #fff;
 }
 
+body.insight-detail-page {
+    color: #e9f4ff;
+}
+
+body.insight-detail-page::before {
+    background-image:
+        radial-gradient(circle at 14% 18%, rgba(47, 239, 211, 0.2), transparent 30%),
+        radial-gradient(circle at 80% 14%, rgba(74, 151, 255, 0.32), transparent 34%),
+        linear-gradient(132deg, #021126 0%, #04264a 42%, #01101f 100%);
+}
+
+body.insight-detail-page::after {
+    opacity: 0.8;
+    background-image:
+        linear-gradient(0deg, rgba(6, 35, 69, 0.32) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11, 78, 122, 0.25) 1px, transparent 1px),
+        radial-gradient(circle at 25% 34%, rgba(35, 233, 201, 0.5) 0 2px, transparent 9px),
+        radial-gradient(circle at 78% 22%, rgba(94, 176, 255, 0.45) 0 2px, transparent 11px),
+        radial-gradient(circle at 62% 70%, rgba(31, 199, 243, 0.38) 0 2px, transparent 10px);
+    background-size: 64px 64px, 64px 64px, auto, auto, auto;
+}
+
+body.insight-detail-page main {
+    background: transparent;
+}
+
+.insight-detail-shell {
+    max-width: 900px;
+    margin: 0 auto;
+    border: 1px solid rgba(104, 202, 255, 0.35);
+    border-radius: 20px;
+    padding: clamp(1.4rem, 2vw, 2rem);
+    background: linear-gradient(155deg, rgba(5, 27, 56, 0.88), rgba(4, 15, 34, 0.84));
+    box-shadow: 0 20px 60px rgba(0, 6, 16, 0.55);
+    backdrop-filter: blur(2px);
+}
+
+.insight-detail-shell h1,
+.insight-detail-shell h2 {
+    color: #f1f8ff;
+}
+
+.insight-detail-shell h1 {
+    margin-bottom: 1rem;
+}
+
+.insight-detail-shell p,
+.insight-detail-shell li {
+    color: rgba(221, 239, 255, 0.95);
+}
+
+.insight-detail-shell h2 {
+    margin-top: 1.6rem;
+    margin-bottom: 0.85rem;
+}
+
+.insight-detail-shell ul {
+    margin-left: 1.25rem;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.insight-detail-shell .eyebrow {
+    color: #73e5ca;
+}
+
+.insight-detail-shell .btn-secondary {
+    border-color: rgba(115, 229, 202, 0.6);
+    color: #d8fff5;
+    background: rgba(14, 95, 110, 0.32);
+}
+
+.insight-detail-shell .btn-secondary:hover,
+.insight-detail-shell .btn-secondary:focus {
+    background: rgba(31, 199, 243, 0.28);
+    color: #f3fdff;
+}
+
 main .section:first-child {
     padding-top: 3.5rem;
 }
