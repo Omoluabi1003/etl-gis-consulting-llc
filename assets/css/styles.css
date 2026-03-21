@@ -161,6 +161,10 @@ body.has-sticky-cta.legal-page main .card li {
     color: #ffffff;
 }
 
+body.has-sticky-cta.legal-page main .card :is(h2, h3, strong, a) {
+    color: #ffffff;
+}
+
 body.has-sticky-cta .card,
 body.has-sticky-cta .contact-form,
 body.has-sticky-cta .map-card,
