@@ -1779,6 +1779,23 @@ img {
     color: var(--color-muted);
 }
 
+
+.legal-inline {
+    margin-top: 0.5rem;
+    font-size: 0.88rem;
+}
+
+.hero-legal-note {
+    margin-top: 1rem;
+    font-size: 0.92rem;
+    color: rgba(247, 249, 252, 0.82);
+}
+
+.hero-legal-note a,
+.legal-inline a {
+    font-weight: 600;
+}
+
 .map-layout {
     max-width: var(--max-width);
     margin: 0 auto;
