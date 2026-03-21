@@ -155,6 +155,12 @@ body.has-sticky-cta main :is(.contact-card, .contact-form, .map-card, .card:not(
     color: #4b5563;
 }
 
+body.has-sticky-cta.legal-page main .section-header p,
+body.has-sticky-cta.legal-page main .card p,
+body.has-sticky-cta.legal-page main .card li {
+    color: #ffffff;
+}
+
 body.has-sticky-cta .card,
 body.has-sticky-cta .contact-form,
 body.has-sticky-cta .map-card,
