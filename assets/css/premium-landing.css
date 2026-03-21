@@ -157,6 +157,14 @@ a { color: inherit; text-decoration: none; }
 .contact-shell { display: grid; grid-template-columns: 1.2fr .8fr; gap: 1.4rem; align-items: center; }
 .contact-card p { margin-bottom: .4rem; }
 
+.service-legal-note { margin-top: 1rem; color: #bcd9ff; font-size: .92rem; }
+.service-legal-note a { color: #7fd7ff; font-weight: 600; }
+.compliance-panel { border-color: rgba(127, 215, 255, 0.45); }
+.compliance-note { margin-top: .7rem; color: #bcd9ff; font-size: .9rem; }
+.legal-tag { margin-left: .45rem; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: #7fd7ff; }
+.footer-legal-links a { color: #7fd7ff; font-weight: 600; }
+
+
 .map-motif { position: relative; overflow: hidden; }
 .map-motif::before { opacity: .22; z-index: -1; }
 
