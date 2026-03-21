@@ -1442,6 +1442,12 @@ img {
     color: var(--color-secondary);
 }
 
+body.has-sticky-cta.legal-page main .section .section-header :is(h1, h2, p),
+body.has-sticky-cta.legal-page main .card,
+body.has-sticky-cta.legal-page main .card :is(h2, h3, p, ul, li, strong, a) {
+    color: #ffffff;
+}
+
 .highlight {
     color: var(--color-secondary);
     font-weight: 700;
