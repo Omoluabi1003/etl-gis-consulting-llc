@@ -1361,7 +1361,7 @@ img {
 .hero .card.dark p,
 .hero .card.dark ul,
 .hero .card.dark ul li {
-    color: var(--color-muted);
+    color: #334155;
 }
 
 .card h3 {
