@@ -2896,7 +2896,7 @@ main .section.light .section-header p {
     font-family: var(--font-heading);
     font-size: clamp(1.6rem, 4vw, 2.4rem);
     font-weight: 700;
-    color: var(--color-dark);
+    color: #0f2547;
     display: block;
     line-height: 1.2;
     word-break: break-word;
@@ -2913,7 +2913,7 @@ main .section.light .section-header p {
 .metric-label {
     display: block;
     margin-top: 0.75rem;
-    color: var(--color-muted);
+    color: #5b6c86;
     font-size: 0.95rem;
 }
 
