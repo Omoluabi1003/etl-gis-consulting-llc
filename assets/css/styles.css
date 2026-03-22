@@ -1347,13 +1347,13 @@ img {
 
 .hero .card.dark {
     background: rgba(255, 255, 255, 0.92);
-    color: var(--color-dark);
+    color: #0f172a;
     border: 1px solid rgba(15, 23, 42, 0.08);
     box-shadow: var(--shadow-soft);
 }
 
 .hero .card.dark h3 {
-    color: var(--color-dark);
+    color: #0f172a;
     border-bottom: 1px solid rgba(17, 17, 17, 0.12);
     padding-bottom: 0.65rem;
 }
