@@ -1,0 +1,13 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Arklanded Properties Limited logo</title>
+  <desc id="desc">Stylized blue and green roof icon above Arklanded Properties Limited text.</desc>
+  <rect width="1200" height="700" fill="white"/>
+  <g transform="translate(420 70)">
+    <path d="M180 0L360 190V240L180 52L0 240V190L180 0Z" fill="#0D436F"/>
+    <path d="M180 42L330 196V228L180 80L30 228V196L180 42Z" fill="#1679BA"/>
+    <path d="M180 94L302 214V236L180 116L58 236V214L180 94Z" fill="#42A9E0"/>
+    <path d="M180 138L270 226V244L180 156L90 244V226L180 138Z" fill="#6ACD2F"/>
+  </g>
+  <text x="600" y="465" text-anchor="middle" fill="#0D436F" font-family="Georgia, 'Times New Roman', serif" font-size="118" letter-spacing="3">ARKLANDED</text>
+  <text x="600" y="540" text-anchor="middle" fill="#1E3550" font-family="Georgia, 'Times New Roman', serif" font-size="58" letter-spacing="4">Properties Limited</text>
+</svg>
