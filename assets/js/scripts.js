@@ -59,15 +59,15 @@ const applyEmailRelayToLinks = () => {
 
 applyEmailRelayToLinks();
 
-const partnerDirectory = '/partners/arklanded';
+const partnerLogoPath = '/assets/images/7b1128b2-0e23-4d63-85c1-659301e3575c.jpeg';
 const partners = {
     'arklanded-properties-limited': {
         name: 'Arklanded Properties Limited',
         tagline: 'Trusted Real Estate Partner',
         location: 'Nigeria',
         ceo: 'John A. Olaitan',
-        logo: `${partnerDirectory}/logo.png`,
-        logoSquare: `${partnerDirectory}/logo-square.png`,
+        logo: partnerLogoPath,
+        logoSquare: partnerLogoPath,
         ctaLabel: 'Explore Properties',
         sponsoredLabel: 'Sponsored',
         supportingLine: 'A Nigeria-based real estate firm led by John A. Olaitan',
