@@ -59,6 +59,109 @@ const applyEmailRelayToLinks = () => {
 
 applyEmailRelayToLinks();
 
+const partnerDirectory = '/partners/arklanded';
+const partners = {
+    'arklanded-properties-limited': {
+        name: 'Arklanded Properties Limited',
+        tagline: 'Trusted Real Estate Partner',
+        location: 'Nigeria',
+        ceo: 'John A. Olaitan',
+        logo: `${partnerDirectory}/logo.png`,
+        logoSquare: `${partnerDirectory}/logo-square.png`,
+        ctaLabel: 'Explore Properties',
+        sponsoredLabel: 'Sponsored',
+        supportingLine: 'A Nigeria-based real estate firm led by John A. Olaitan',
+        link: '#contact', // TODO: Replace with official Arklanded destination URL when available.
+        alt: 'Arklanded Properties Limited logo',
+    },
+};
+
+const createPartnerLogo = ({
+    src,
+    squareSrc,
+    alt,
+    mode,
+    priority = false,
+    className = '',
+}) => {
+    const logo = document.createElement('div');
+    const isThumbnailMode = mode === 'thumbnail';
+    const imageSrc = isThumbnailMode ? (squareSrc || src) : src;
+    logo.className = `partner-logo partner-logo--${mode}${className ? ` ${className}` : ''}`;
+
+    if (isThumbnailMode && !squareSrc) {
+        logo.classList.add('partner-logo--fallback-square');
+    }
+
+    const img = document.createElement('img');
+    img.src = imageSrc;
+    img.alt = alt;
+    img.decoding = 'async';
+    img.loading = priority ? 'eager' : 'lazy';
+    img.width = isThumbnailMode ? 240 : 760;
+    img.height = isThumbnailMode ? 240 : 160;
+
+    img.addEventListener('error', () => {
+        if (isThumbnailMode && squareSrc && img.src !== new URL(src, window.location.origin).toString()) {
+            logo.classList.add('partner-logo--fallback-square');
+            img.src = src;
+            return;
+        }
+        logo.classList.add('partner-logo--image-failed');
+        logo.textContent = alt;
+    }, { once: true });
+
+    logo.append(img);
+    return logo;
+};
+
+const applyPartnerData = (rootNode, partner) => {
+    rootNode.querySelectorAll('[data-partner-field]').forEach((fieldNode) => {
+        const fieldName = fieldNode.dataset.partnerField;
+        if (!fieldName || !Object.prototype.hasOwnProperty.call(partner, fieldName)) {
+            return;
+        }
+
+        if (fieldNode.tagName === 'A' && fieldName === 'ctaLabel') {
+            fieldNode.textContent = partner[fieldName];
+            fieldNode.href = partner.link || '#';
+            return;
+        }
+
+        fieldNode.textContent = partner[fieldName];
+    });
+};
+
+const renderPartnerLogos = (rootNode, partner) => {
+    rootNode.querySelectorAll('[data-partner-logo]').forEach((logoSlot) => {
+        const mode = logoSlot.dataset.partnerLogo === 'thumbnail' ? 'thumbnail' : 'featured';
+        const logo = createPartnerLogo({
+            src: partner.logo,
+            squareSrc: partner.logoSquare,
+            alt: partner.alt,
+            mode,
+            priority: mode === 'featured',
+        });
+
+        logoSlot.replaceChildren(logo);
+    });
+};
+
+const hydratePartnerPlacements = () => {
+    document.querySelectorAll('[data-featured-partner], [data-ad-thumbnail]').forEach((placement) => {
+        const partnerKey = placement.dataset.featuredPartner || placement.dataset.adThumbnail;
+        if (!partnerKey || !partners[partnerKey]) {
+            return;
+        }
+
+        const partner = partners[partnerKey];
+        applyPartnerData(placement, partner);
+        renderPartnerLogos(placement, partner);
+    });
+};
+
+hydratePartnerPlacements();
+
 const metricEaseOut = (t) => 1 - Math.pow(1 - t, 3);
 
 const getMetricFormattingConfig = (metric) => {
