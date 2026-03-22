@@ -60,6 +60,23 @@ const applyEmailRelayToLinks = () => {
 applyEmailRelayToLinks();
 
 const partnerLogoPath = '/assets/images/7b1128b2-0e23-4d63-85c1-659301e3575c.jpeg';
+const arklandedPropertyImagePaths = [
+    '/assets/images/051e492f-e70a-4379-a2a2-4b116c39f0ee.jpeg',
+    '/assets/images/25f9b81b-b546-49f8-8a2e-c498a03bc32a.jpeg',
+    '/assets/images/219f9403-4567-4d7a-9faa-67b93e00f436.jpeg',
+    '/assets/images/30fa0fe1-2e27-43bf-bb5d-5d749e794fda.jpeg',
+    '/assets/images/6a520af7-f471-44e8-80e6-1b839f46142d.jpeg',
+    '/assets/images/862a13cc-773e-46d6-a629-8d6254f5fb99.jpeg',
+    '/assets/images/90470e2e-f875-4bfd-a778-94c18e9f2a00.jpeg',
+    '/assets/images/ad505ff9-b1ea-4083-8e5a-4f8c77d6321d.jpeg',
+    '/assets/images/c8711cfb-f114-494c-bf48-c864b4699c0d.jpeg',
+    '/assets/images/c9a654bf-a281-4f3f-9316-42986448340e.jpeg',
+    '/assets/images/e6c671e7-0bcd-4f5d-a742-0e4af085d147.jpeg',
+    '/assets/images/f2017961-0211-43fd-b875-a7665db5bca0.jpeg',
+    '/assets/images/fa2b2786-414c-4c1e-bbfa-8dd9d086b1c8.jpeg',
+    '/assets/images/fb54a1e5-d0f6-4ec0-8b99-afedbeb1963e.jpeg',
+    '/assets/images/IMG_2173.jpeg',
+];
 const partners = {
     'arklanded-properties-limited': {
         name: 'Arklanded Properties Limited',
@@ -71,8 +88,9 @@ const partners = {
         ctaLabel: 'Explore Properties',
         sponsoredLabel: 'Sponsored',
         supportingLine: 'A Nigeria-based real estate firm led by John A. Olaitan',
-        link: '#contact', // TODO: Replace with official Arklanded destination URL when available.
+        link: '#featured-partner-gallery',
         alt: 'Arklanded Properties Limited logo',
+        propertyImages: arklandedPropertyImagePaths,
     },
 };
 
@@ -161,6 +179,72 @@ const hydratePartnerPlacements = () => {
 };
 
 hydratePartnerPlacements();
+
+const renderPartnerGallery = (partnerKey) => {
+    const partner = partners[partnerKey];
+    if (!partner) {
+        return;
+    }
+
+    const galleryRoot = document.querySelector(`[data-partner-gallery="${partnerKey}"]`);
+    if (!galleryRoot) {
+        return;
+    }
+
+    const previewImage = galleryRoot.querySelector('[data-partner-gallery-active-image]');
+    const thumbnailTrack = galleryRoot.querySelector('.featured-partner-gallery-thumbnails');
+    const propertyImages = Array.isArray(partner.propertyImages) ? partner.propertyImages : [];
+    if (!previewImage || !thumbnailTrack || propertyImages.length === 0) {
+        return;
+    }
+
+    const setActiveImage = (imagePath, imageIndex) => {
+        previewImage.src = imagePath;
+        previewImage.alt = `${partner.name} property ${imageIndex + 1}`;
+
+        thumbnailTrack.querySelectorAll('.featured-partner-gallery-thumbnail').forEach((thumbnailButton, currentIndex) => {
+            const isCurrent = currentIndex === imageIndex;
+            thumbnailButton.setAttribute('aria-current', isCurrent ? 'true' : 'false');
+        });
+    };
+
+    thumbnailTrack.replaceChildren();
+    propertyImages.forEach((imagePath, imageIndex) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'featured-partner-gallery-thumbnail';
+        button.setAttribute('role', 'listitem');
+        button.setAttribute('aria-label', `View Arklanded property ${imageIndex + 1}`);
+
+        const image = document.createElement('img');
+        image.src = imagePath;
+        image.alt = '';
+        image.loading = 'lazy';
+        image.decoding = 'async';
+
+        button.append(image);
+        button.addEventListener('click', () => {
+            setActiveImage(imagePath, imageIndex);
+        });
+        thumbnailTrack.append(button);
+    });
+
+    setActiveImage(propertyImages[0], 0);
+
+    document.querySelectorAll(`[data-partner-gallery-trigger="${partnerKey}"]`).forEach((triggerNode) => {
+        triggerNode.addEventListener('click', (event) => {
+            event.preventDefault();
+            galleryRoot.hidden = false;
+            galleryRoot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            const firstThumb = thumbnailTrack.querySelector('.featured-partner-gallery-thumbnail');
+            if (firstThumb instanceof HTMLButtonElement) {
+                firstThumb.focus();
+            }
+        });
+    });
+};
+
+renderPartnerGallery('arklanded-properties-limited');
 
 const metricEaseOut = (t) => 1 - Math.pow(1 - t, 3);
 
