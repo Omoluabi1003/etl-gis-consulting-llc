@@ -235,18 +235,25 @@
                         <p class="featured-partner-lead" data-partner-field="tagline">Trusted Real Estate Partner</p>
                         <p class="featured-partner-copy featured-partner-supporting" data-partner-field="supportingLine">A Nigeria-based real estate firm led by John A. Olaitan</p>
                         <div class="hero-actions featured-partner-cta">
-                            <a class="btn btn-primary" href="#contact" data-partner-field="ctaLabel">Explore Properties</a>
+                            <a class="btn btn-primary" href="#featured-partner-gallery" data-partner-field="ctaLabel" data-partner-gallery-trigger="arklanded-properties-limited">Explore Properties</a>
                         </div>
                     </div>
 
                     <div class="ad-thumbnail" data-ad-thumbnail="arklanded-properties-limited">
                         <p class="ad-thumbnail-sponsored" data-partner-field="sponsoredLabel">Sponsored</p>
-                        <a class="ad-thumbnail-link" href="#contact" aria-label="Explore properties with Arklanded Properties Limited">
+                        <a class="ad-thumbnail-link" href="#featured-partner-gallery" aria-label="Explore properties with Arklanded Properties Limited" data-partner-gallery-trigger="arklanded-properties-limited">
                             <div class="ad-thumbnail-logo" data-partner-logo="thumbnail" aria-hidden="true"></div>
                             <p class="ad-thumbnail-title" data-partner-field="name">Arklanded Properties Limited</p>
                         </a>
                     </div>
                 </article>
+
+                <div id="featured-partner-gallery" class="featured-partner-gallery" data-partner-gallery="arklanded-properties-limited" hidden aria-live="polite">
+                    <div class="featured-partner-gallery-preview">
+                        <img src="" alt="" data-partner-gallery-active-image loading="lazy" decoding="async">
+                    </div>
+                    <div class="featured-partner-gallery-thumbnails" role="list" aria-label="Arklanded available property thumbnails"></div>
+                </div>
             </div>
         </section>
 
