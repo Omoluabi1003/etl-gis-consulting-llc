@@ -93,6 +93,44 @@ const partners = {
         propertyImages: arklandedPropertyImagePaths,
     },
 };
+const sponsoredProperties = {
+    'arklanded-core-portfolio': {
+        id: 'arklanded-core-portfolio',
+        slug: 'arklanded-core-portfolio',
+        title: 'Arklanded Property Gallery',
+        partnerName: 'Arklanded Properties Limited',
+        partnershipLabel: 'In partnership with Arklanded Properties Limited',
+        location: 'Nigeria',
+        sourcePdfUrl: '',
+        galleryLabel: 'Arklanded available property thumbnails',
+        category: 'featured-partner-properties',
+        galleryImages: arklandedPropertyImagePaths,
+    },
+    'the-legacy-ibadan': {
+        id: 'the-legacy-ibadan',
+        slug: 'the-legacy-ibadan',
+        title: 'THE LEGACY (Ibadan)',
+        partnerName: 'MKH Properties',
+        partnershipLabel: 'In partnership with Arklanded Properties Limited',
+        location: 'Ibadan-Ijebu Ode Road Corridor, Oyo State',
+        sourcePdfUrl: 'https://mkhproperties.com/wp-content/uploads/2026/03/The-Legacy-Brochure-1.pdf',
+        galleryLabel: 'Legacy Brochure Gallery',
+        category: 'partner-sponsored-property',
+        galleryImages: Array.from({ length: 24 }, (_, index) => `/assets/images/partners/mkh/the-legacy/page-${String(index + 1).padStart(2, '0')}.jpg`),
+    },
+};
+
+const resolveAvailableImages = async (paths) => {
+    const candidates = Array.isArray(paths) ? paths : [];
+    const checks = candidates.map((path) => new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(path);
+        img.onerror = () => resolve('');
+        img.src = path;
+    }));
+    const resolved = await Promise.all(checks);
+    return resolved.filter(Boolean);
+};
 
 const createPartnerLogo = ({
     src,
@@ -178,29 +216,78 @@ const hydratePartnerPlacements = () => {
     });
 };
 
-hydratePartnerPlacements();
+const hydrateSponsoredItems = () => {
+    document.querySelectorAll('[data-sponsored-item]').forEach((itemNode) => {
+        const sponsoredKey = itemNode.dataset.sponsoredItem;
+        const sponsoredItem = sponsoredProperties[sponsoredKey];
+        if (!sponsoredItem) {
+            return;
+        }
 
-const renderPartnerGallery = (partnerKey) => {
-    const partner = partners[partnerKey];
-    if (!partner) {
+        const titleNode = itemNode.querySelector('.ad-thumbnail-title');
+        if (titleNode) {
+            titleNode.textContent = sponsoredItem.title;
+        }
+
+        const partnerLabelNode = itemNode.querySelector('.ad-thumbnail-partner-label');
+        if (partnerLabelNode) {
+            partnerLabelNode.textContent = sponsoredItem.partnershipLabel;
+        }
+    });
+};
+
+hydratePartnerPlacements();
+hydrateSponsoredItems();
+
+const renderSponsoredGallery = async (galleryKey) => {
+    const sponsoredItem = sponsoredProperties[galleryKey];
+    if (!sponsoredItem) {
         return;
     }
 
-    const galleryRoot = document.querySelector(`[data-partner-gallery="${partnerKey}"]`);
+    const galleryRoot = document.querySelector(`[data-sponsored-gallery="${galleryKey}"]`);
     if (!galleryRoot) {
         return;
     }
 
     const previewImage = galleryRoot.querySelector('[data-partner-gallery-active-image]');
     const thumbnailTrack = galleryRoot.querySelector('.featured-partner-gallery-thumbnails');
-    const propertyImages = Array.isArray(partner.propertyImages) ? partner.propertyImages : [];
-    if (!previewImage || !thumbnailTrack || propertyImages.length === 0) {
+    const fallbackMessage = galleryRoot.querySelector('[data-gallery-fallback-message]');
+    const previousButton = galleryRoot.querySelector('[data-gallery-prev]');
+    const nextButton = galleryRoot.querySelector('[data-gallery-next]');
+    const previewTrigger = galleryRoot.querySelector('[data-gallery-preview-trigger]');
+    const pdfLink = galleryRoot.querySelector('[data-gallery-pdf-link]');
+    const galleryImages = await resolveAvailableImages(sponsoredItem.galleryImages);
+    if (!previewImage || !thumbnailTrack) {
         return;
     }
 
+    if (pdfLink instanceof HTMLAnchorElement && sponsoredItem.sourcePdfUrl) {
+        pdfLink.href = sponsoredItem.sourcePdfUrl;
+    }
+
+    if (galleryImages.length === 0) {
+        if (fallbackMessage) {
+            fallbackMessage.hidden = false;
+        }
+        if (previousButton instanceof HTMLButtonElement) {
+            previousButton.disabled = true;
+        }
+        if (nextButton instanceof HTMLButtonElement) {
+            nextButton.disabled = true;
+        }
+        previewImage.removeAttribute('src');
+        previewImage.alt = `${sponsoredItem.title} brochure preview unavailable`;
+        thumbnailTrack.replaceChildren();
+        console.warn(`[sponsored-gallery] No gallery images available for "${galleryKey}". Falling back to PDF-only mode.`);
+    }
+
+    let activeImageIndex = 0;
+
     const setActiveImage = (imagePath, imageIndex) => {
         previewImage.src = imagePath;
-        previewImage.alt = `${partner.name} property ${imageIndex + 1}`;
+        previewImage.alt = `${sponsoredItem.title} media ${imageIndex + 1}`;
+        activeImageIndex = imageIndex;
 
         thumbnailTrack.querySelectorAll('.featured-partner-gallery-thumbnail').forEach((thumbnailButton, currentIndex) => {
             const isCurrent = currentIndex === imageIndex;
@@ -209,12 +296,12 @@ const renderPartnerGallery = (partnerKey) => {
     };
 
     thumbnailTrack.replaceChildren();
-    propertyImages.forEach((imagePath, imageIndex) => {
+    galleryImages.forEach((imagePath, imageIndex) => {
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'featured-partner-gallery-thumbnail';
         button.setAttribute('role', 'listitem');
-        button.setAttribute('aria-label', `View Arklanded property ${imageIndex + 1}`);
+        button.setAttribute('aria-label', `View ${sponsoredItem.title} media ${imageIndex + 1}`);
 
         const image = document.createElement('img');
         image.src = imagePath;
@@ -229,9 +316,40 @@ const renderPartnerGallery = (partnerKey) => {
         thumbnailTrack.append(button);
     });
 
-    setActiveImage(propertyImages[0], 0);
+    if (galleryImages.length > 0) {
+        setActiveImage(galleryImages[0], 0);
+    }
 
-    document.querySelectorAll(`[data-partner-gallery-trigger="${partnerKey}"]`).forEach((triggerNode) => {
+    const cycleImage = (direction) => {
+        if (!galleryImages.length) {
+            return;
+        }
+        const nextIndex = (activeImageIndex + direction + galleryImages.length) % galleryImages.length;
+        setActiveImage(galleryImages[nextIndex], nextIndex);
+    };
+
+    if (previousButton instanceof HTMLButtonElement) {
+        previousButton.addEventListener('click', () => cycleImage(-1));
+    }
+
+    if (nextButton instanceof HTMLButtonElement) {
+        nextButton.addEventListener('click', () => cycleImage(1));
+    }
+
+    if (previewTrigger && galleryImages.length > 0) {
+        const openPreview = () => {
+            window.open(galleryImages[activeImageIndex], '_blank', 'noopener,noreferrer');
+        };
+        previewTrigger.addEventListener('click', openPreview);
+        previewTrigger.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openPreview();
+            }
+        });
+    }
+
+    document.querySelectorAll(`[data-sponsored-gallery-trigger="${galleryKey}"]`).forEach((triggerNode) => {
         triggerNode.addEventListener('click', (event) => {
             event.preventDefault();
             galleryRoot.hidden = false;
@@ -244,7 +362,8 @@ const renderPartnerGallery = (partnerKey) => {
     });
 };
 
-renderPartnerGallery('arklanded-properties-limited');
+renderSponsoredGallery('arklanded-core-portfolio');
+renderSponsoredGallery('the-legacy-ibadan');
 
 const metricEaseOut = (t) => 1 - Math.pow(1 - t, 3);
 
