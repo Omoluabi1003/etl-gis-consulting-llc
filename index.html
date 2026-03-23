@@ -235,24 +235,65 @@
                         <p class="featured-partner-lead" data-partner-field="tagline">Trusted Real Estate Partner</p>
                         <p class="featured-partner-copy featured-partner-supporting" data-partner-field="supportingLine">A Nigeria-based real estate firm led by John A. Olaitan</p>
                         <div class="hero-actions featured-partner-cta">
-                            <a class="btn btn-primary" href="#featured-partner-gallery" data-partner-field="ctaLabel" data-partner-gallery-trigger="arklanded-properties-limited">Explore Properties</a>
+                            <a class="btn btn-primary" href="#featured-partner-gallery" data-partner-field="ctaLabel" data-sponsored-gallery-trigger="arklanded-core-portfolio">Explore Properties</a>
                         </div>
                     </div>
 
-                    <div class="ad-thumbnail" data-ad-thumbnail="arklanded-properties-limited">
-                        <p class="ad-thumbnail-sponsored" data-partner-field="sponsoredLabel">Sponsored</p>
-                        <a class="ad-thumbnail-link" href="#featured-partner-gallery" aria-label="Explore properties with Arklanded Properties Limited" data-partner-gallery-trigger="arklanded-properties-limited">
-                            <div class="ad-thumbnail-logo" data-partner-logo="thumbnail" aria-hidden="true"></div>
-                            <p class="ad-thumbnail-title" data-partner-field="name">Arklanded Properties Limited</p>
-                        </a>
+                    <div class="ad-thumbnail-stack">
+                        <div class="ad-thumbnail" data-ad-thumbnail="arklanded-properties-limited">
+                            <p class="ad-thumbnail-sponsored" data-partner-field="sponsoredLabel">Sponsored</p>
+                            <a class="ad-thumbnail-link" href="#featured-partner-gallery" aria-label="Explore properties with Arklanded Properties Limited" data-sponsored-gallery-trigger="arklanded-core-portfolio">
+                                <div class="ad-thumbnail-logo" data-partner-logo="thumbnail" aria-hidden="true"></div>
+                                <p class="ad-thumbnail-title" data-partner-field="name">Arklanded Properties Limited</p>
+                            </a>
+                        </div>
+                        <div class="ad-thumbnail" data-sponsored-item="the-legacy-ibadan" data-ad-thumbnail="arklanded-properties-limited">
+                            <p class="ad-thumbnail-sponsored">Sponsored</p>
+                            <a class="ad-thumbnail-link" href="#featured-partner-gallery-legacy" aria-label="Open THE LEGACY (Ibadan) sponsored gallery" data-sponsored-gallery-trigger="the-legacy-ibadan">
+                                <div class="ad-thumbnail-logo" data-partner-logo="thumbnail" aria-hidden="true"></div>
+                                <p class="ad-thumbnail-title">THE LEGACY (Ibadan)</p>
+                                <p class="ad-thumbnail-partner-label">In partnership with Arklanded Properties Limited</p>
+                            </a>
+                        </div>
                     </div>
                 </article>
 
-                <div id="featured-partner-gallery" class="featured-partner-gallery" data-partner-gallery="arklanded-properties-limited" hidden aria-live="polite">
-                    <div class="featured-partner-gallery-preview">
+                <div id="featured-partner-gallery" class="featured-partner-gallery" data-sponsored-gallery="arklanded-core-portfolio" hidden aria-live="polite">
+                    <div class="featured-partner-gallery-header">
+                        <div>
+                            <p class="ad-thumbnail-sponsored">Sponsored</p>
+                            <h3 class="featured-partner-gallery-title">Arklanded Property Gallery</h3>
+                            <p class="featured-partner-gallery-meta">In partnership with Arklanded Properties Limited</p>
+                        </div>
+                    </div>
+                    <div class="featured-partner-gallery-preview" data-gallery-preview-trigger role="button" tabindex="0" aria-label="Open larger image preview">
                         <img src="" alt="" data-partner-gallery-active-image loading="lazy" decoding="async">
                     </div>
+                    <div class="featured-partner-gallery-controls">
+                        <button type="button" class="btn btn-secondary" data-gallery-prev>Previous</button>
+                        <button type="button" class="btn btn-secondary" data-gallery-next>Next</button>
+                    </div>
                     <div class="featured-partner-gallery-thumbnails" role="list" aria-label="Arklanded available property thumbnails"></div>
+                </div>
+
+                <div id="featured-partner-gallery-legacy" class="featured-partner-gallery" data-sponsored-gallery="the-legacy-ibadan" hidden aria-live="polite">
+                    <div class="featured-partner-gallery-header">
+                        <div>
+                            <p class="ad-thumbnail-sponsored">Sponsored</p>
+                            <h3 class="featured-partner-gallery-title">Legacy Brochure Gallery</h3>
+                            <p class="featured-partner-gallery-meta">In partnership with Arklanded Properties Limited</p>
+                        </div>
+                        <a class="btn btn-secondary" href="https://mkhproperties.com/wp-content/uploads/2026/03/The-Legacy-Brochure-1.pdf" target="_blank" rel="noopener noreferrer" data-gallery-pdf-link>View Brochure PDF</a>
+                    </div>
+                    <div class="featured-partner-gallery-preview" data-gallery-preview-trigger role="button" tabindex="0" aria-label="Open larger image preview">
+                        <img src="" alt="" data-partner-gallery-active-image loading="lazy" decoding="async">
+                    </div>
+                    <div class="featured-partner-gallery-controls">
+                        <button type="button" class="btn btn-secondary" data-gallery-prev>Previous</button>
+                        <button type="button" class="btn btn-secondary" data-gallery-next>Next</button>
+                    </div>
+                    <p class="featured-partner-gallery-fallback" data-gallery-fallback-message hidden>Legacy brochure images are temporarily unavailable. Use “View Brochure PDF” while we refresh cached gallery assets.</p>
+                    <div class="featured-partner-gallery-thumbnails" role="list" aria-label="THE LEGACY (Ibadan) brochure thumbnails"></div>
                 </div>
             </div>
         </section>
