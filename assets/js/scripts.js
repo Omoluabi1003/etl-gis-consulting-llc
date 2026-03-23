@@ -116,6 +116,29 @@ const sponsoredProperties = {
         sourcePdfUrl: 'https://mkhproperties.com/wp-content/uploads/2026/03/The-Legacy-Brochure-1.pdf',
         galleryLabel: 'Legacy Brochure Gallery',
         category: 'partner-sponsored-property',
+        mediaAssets: [
+            {
+                type: 'video',
+                src: 'https://raw.githubusercontent.com/Omoluabi1003/etl-gis-consulting-llc/main/assets/js/3efd8759-428b-4266-a212-0a82e6d4e8c9.mp4',
+                label: 'Watch MKH Video',
+            },
+            {
+                type: 'image',
+                src: '/assets/js/5ec81a53-8e6d-4baf-9692-8cfe9dfc745d.jpeg',
+            },
+            {
+                type: 'image',
+                src: '/assets/js/669c4a54-9bf8-4850-b683-366bcc956fd2.jpeg',
+            },
+            {
+                type: 'image',
+                src: '/assets/js/68ee4b1f-bdaa-4ff3-acbd-90ad0aacb350.jpeg',
+            },
+            {
+                type: 'image',
+                src: '/assets/js/7b1db5ee-8489-4185-8d80-790fe3a064e3.jpeg',
+            },
+        ],
         galleryImages: [
             '/assets/js/5ec81a53-8e6d-4baf-9692-8cfe9dfc745d.jpeg',
             '/assets/js/669c4a54-9bf8-4850-b683-366bcc956fd2.jpeg',
@@ -133,6 +156,39 @@ const resolveAvailableImages = async (paths) => {
         img.onerror = () => resolve('');
         img.src = path;
     }));
+    const resolved = await Promise.all(checks);
+    return resolved.filter(Boolean);
+};
+
+const normalizeSponsoredMedia = (sponsoredItem) => {
+    if (Array.isArray(sponsoredItem.mediaAssets) && sponsoredItem.mediaAssets.length > 0) {
+        return sponsoredItem.mediaAssets
+            .filter((media) => media && typeof media.src === 'string' && media.src.length > 0)
+            .map((media) => ({
+                type: media.type === 'video' ? 'video' : 'image',
+                src: media.src,
+                label: media.label || '',
+            }));
+    }
+
+    return (Array.isArray(sponsoredItem.galleryImages) ? sponsoredItem.galleryImages : [])
+        .filter((src) => typeof src === 'string' && src.length > 0)
+        .map((src) => ({ type: 'image', src, label: '' }));
+};
+
+const resolveAvailableMedia = async (mediaItems) => {
+    const checks = mediaItems.map((media) => {
+        if (media.type === 'video') {
+            return Promise.resolve(media);
+        }
+
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(media);
+            img.onerror = () => resolve(null);
+            img.src = media.src;
+        });
+    });
     const resolved = await Promise.all(checks);
     return resolved.filter(Boolean);
 };
@@ -255,15 +311,15 @@ const renderSponsoredGallery = async (galleryKey) => {
         return;
     }
 
+    const previewContainer = galleryRoot.querySelector('[data-gallery-preview-trigger]');
     const previewImage = galleryRoot.querySelector('[data-partner-gallery-active-image]');
     const thumbnailTrack = galleryRoot.querySelector('.featured-partner-gallery-thumbnails');
     const fallbackMessage = galleryRoot.querySelector('[data-gallery-fallback-message]');
     const previousButton = galleryRoot.querySelector('[data-gallery-prev]');
     const nextButton = galleryRoot.querySelector('[data-gallery-next]');
-    const previewTrigger = galleryRoot.querySelector('[data-gallery-preview-trigger]');
     const pdfLink = galleryRoot.querySelector('[data-gallery-pdf-link]');
-    const galleryImages = await resolveAvailableImages(sponsoredItem.galleryImages);
-    if (!previewImage || !thumbnailTrack) {
+    const galleryMedia = await resolveAvailableMedia(normalizeSponsoredMedia(sponsoredItem));
+    if (!previewContainer || !previewImage || !thumbnailTrack) {
         return;
     }
 
@@ -271,7 +327,7 @@ const renderSponsoredGallery = async (galleryKey) => {
         pdfLink.href = sponsoredItem.sourcePdfUrl;
     }
 
-    if (galleryImages.length === 0) {
+    if (galleryMedia.length === 0) {
         if (fallbackMessage) {
             fallbackMessage.hidden = false;
         }
@@ -282,74 +338,129 @@ const renderSponsoredGallery = async (galleryKey) => {
             nextButton.disabled = true;
         }
         previewImage.removeAttribute('src');
-        previewImage.alt = `${sponsoredItem.title} brochure preview unavailable`;
+        previewImage.alt = `${sponsoredItem.title} preview unavailable`;
         thumbnailTrack.replaceChildren();
-        console.warn(`[sponsored-gallery] No gallery images available for "${galleryKey}". Falling back to PDF-only mode.`);
+        console.warn(`[sponsored-gallery] No gallery media available for "${galleryKey}". Falling back to PDF-only mode.`);
+        return;
     }
 
-    let activeImageIndex = 0;
+    let activeMediaIndex = 0;
+    let activeMedia = galleryMedia[0];
+    let openPreview = null;
 
-    const setActiveImage = (imagePath, imageIndex) => {
-        previewImage.src = imagePath;
-        previewImage.alt = `${sponsoredItem.title} media ${imageIndex + 1}`;
-        activeImageIndex = imageIndex;
+    const setPreviewInteractivity = (isInteractive) => {
+        previewContainer.classList.toggle('featured-partner-gallery-preview--static', !isInteractive);
+        previewContainer.style.cursor = isInteractive ? 'zoom-in' : 'default';
+        if (isInteractive) {
+            previewContainer.setAttribute('role', 'button');
+            previewContainer.setAttribute('tabindex', '0');
+            previewContainer.setAttribute('aria-label', 'Open larger media preview');
+            return;
+        }
+        previewContainer.removeAttribute('role');
+        previewContainer.removeAttribute('tabindex');
+        previewContainer.setAttribute('aria-label', 'Media preview');
+    };
+
+    const setActiveMedia = (mediaItem, mediaIndex) => {
+        activeMedia = mediaItem;
+        activeMediaIndex = mediaIndex;
 
         thumbnailTrack.querySelectorAll('.featured-partner-gallery-thumbnail').forEach((thumbnailButton, currentIndex) => {
-            const isCurrent = currentIndex === imageIndex;
+            const isCurrent = currentIndex === mediaIndex;
             thumbnailButton.setAttribute('aria-current', isCurrent ? 'true' : 'false');
         });
+
+        if (mediaItem.type === 'video') {
+            const video = document.createElement('video');
+            video.src = mediaItem.src;
+            video.controls = true;
+            video.muted = true;
+            video.playsInline = true;
+            video.preload = 'metadata';
+            video.className = 'featured-partner-gallery-video';
+            video.setAttribute('aria-label', `${sponsoredItem.title} video`);
+            video.addEventListener('error', () => {
+                if (fallbackMessage) {
+                    fallbackMessage.hidden = false;
+                }
+            }, { once: true });
+            previewContainer.replaceChildren(video);
+            setPreviewInteractivity(false);
+            openPreview = null;
+            return;
+        }
+
+        previewImage.src = mediaItem.src;
+        previewImage.alt = `${sponsoredItem.title} media ${mediaIndex + 1}`;
+        previewContainer.replaceChildren(previewImage);
+        setPreviewInteractivity(true);
+        openPreview = () => {
+            window.open(mediaItem.src, '_blank', 'noopener,noreferrer');
+        };
     };
 
     thumbnailTrack.replaceChildren();
-    galleryImages.forEach((imagePath, imageIndex) => {
+    galleryMedia.forEach((mediaItem, mediaIndex) => {
         const button = document.createElement('button');
         button.type = 'button';
         button.className = 'featured-partner-gallery-thumbnail';
         button.setAttribute('role', 'listitem');
-        button.setAttribute('aria-label', `View ${sponsoredItem.title} media ${imageIndex + 1}`);
+        button.setAttribute('aria-label', `View ${sponsoredItem.title} media ${mediaIndex + 1}`);
 
-        const image = document.createElement('img');
-        image.src = imagePath;
-        image.alt = '';
-        image.loading = 'lazy';
-        image.decoding = 'async';
+        if (mediaItem.type === 'video') {
+            const videoBadge = document.createElement('span');
+            videoBadge.className = 'featured-partner-gallery-thumbnail-label';
+            videoBadge.textContent = mediaItem.label || 'Featured Video';
+            button.classList.add('featured-partner-gallery-thumbnail--video');
+            button.append(videoBadge);
+        } else {
+            const image = document.createElement('img');
+            image.src = mediaItem.src;
+            image.alt = '';
+            image.loading = 'lazy';
+            image.decoding = 'async';
+            button.append(image);
+        }
 
-        button.append(image);
         button.addEventListener('click', () => {
-            setActiveImage(imagePath, imageIndex);
+            setActiveMedia(mediaItem, mediaIndex);
         });
         thumbnailTrack.append(button);
     });
 
-    if (galleryImages.length > 0) {
-        setActiveImage(galleryImages[0], 0);
+    if (galleryMedia.length > 0) {
+        setActiveMedia(galleryMedia[0], 0);
     }
 
-    const cycleImage = (direction) => {
-        if (!galleryImages.length) {
+    const cycleMedia = (direction) => {
+        if (!galleryMedia.length) {
             return;
         }
-        const nextIndex = (activeImageIndex + direction + galleryImages.length) % galleryImages.length;
-        setActiveImage(galleryImages[nextIndex], nextIndex);
+        const nextIndex = (activeMediaIndex + direction + galleryMedia.length) % galleryMedia.length;
+        setActiveMedia(galleryMedia[nextIndex], nextIndex);
     };
 
     if (previousButton instanceof HTMLButtonElement) {
-        previousButton.addEventListener('click', () => cycleImage(-1));
+        previousButton.addEventListener('click', () => cycleMedia(-1));
     }
 
     if (nextButton instanceof HTMLButtonElement) {
-        nextButton.addEventListener('click', () => cycleImage(1));
+        nextButton.addEventListener('click', () => cycleMedia(1));
     }
 
-    if (previewTrigger && galleryImages.length > 0) {
-        const openPreview = () => {
-            window.open(galleryImages[activeImageIndex], '_blank', 'noopener,noreferrer');
-        };
-        previewTrigger.addEventListener('click', openPreview);
-        previewTrigger.addEventListener('keydown', (event) => {
+    if (galleryMedia.length > 0) {
+        previewContainer.addEventListener('click', () => {
+            if (typeof openPreview === 'function') {
+                openPreview();
+            }
+        });
+        previewContainer.addEventListener('keydown', (event) => {
             if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
-                openPreview();
+                if (typeof openPreview === 'function') {
+                    openPreview();
+                }
             }
         });
     }
