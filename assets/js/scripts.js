@@ -116,7 +116,12 @@ const sponsoredProperties = {
         sourcePdfUrl: 'https://mkhproperties.com/wp-content/uploads/2026/03/The-Legacy-Brochure-1.pdf',
         galleryLabel: 'Legacy Brochure Gallery',
         category: 'partner-sponsored-property',
-        galleryImages: Array.from({ length: 24 }, (_, index) => `/assets/images/partners/mkh/the-legacy/page-${String(index + 1).padStart(2, '0')}.jpg`),
+        galleryImages: [
+            '/assets/js/5ec81a53-8e6d-4baf-9692-8cfe9dfc745d.jpeg',
+            '/assets/js/669c4a54-9bf8-4850-b683-366bcc956fd2.jpeg',
+            '/assets/js/68ee4b1f-bdaa-4ff3-acbd-90ad0aacb350.jpeg',
+            '/assets/js/7b1db5ee-8489-4185-8d80-790fe3a064e3.jpeg',
+        ],
     },
 };
 
