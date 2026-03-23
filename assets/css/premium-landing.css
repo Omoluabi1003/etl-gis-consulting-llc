@@ -333,6 +333,12 @@ a { color: inherit; text-decoration: none; }
     color: #4d688a;
     font-size: .85rem;
 }
+.featured-partner-gallery-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .55rem;
+    justify-content: flex-end;
+}
 .featured-partner-gallery-preview {
     width: 100%;
     min-height: 250px;
@@ -458,6 +464,8 @@ a { color: inherit; text-decoration: none; }
     .featured-partner-gallery-thumbnails { grid-auto-columns: minmax(110px, 1fr); }
     .featured-partner-gallery-preview { min-height: 200px; }
     .featured-partner-gallery-header { flex-direction: column; }
+    .featured-partner-gallery-actions { width: 100%; justify-content: stretch; }
+    .featured-partner-gallery-actions .btn { width: 100%; }
     .featured-partner-gallery-controls { justify-content: stretch; }
     .featured-partner-gallery-controls .btn { width: 100%; }
 }
