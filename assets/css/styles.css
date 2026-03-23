@@ -574,6 +574,30 @@ nav[aria-label="Primary"] {
     background: #ff7a7a;
 }
 
+.btn-secondary {
+    background: #edf4ff;
+    border-color: #9ec4f3;
+    color: #0b3d91;
+    box-shadow: 0 8px 18px rgba(11, 61, 145, 0.12);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    transform: translateY(-1px);
+    background: #dcecff;
+    border-color: #7eaedf;
+    color: #082f70;
+}
+
+.btn-secondary:disabled {
+    background: #e9eef5;
+    border-color: #bed0e5;
+    color: #4a678d;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
 .proof-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
