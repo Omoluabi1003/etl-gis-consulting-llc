@@ -49,6 +49,16 @@ a { color: inherit; text-decoration: none; }
 .nav-links { display: flex; gap: 1.4rem; list-style: none; padding: 0; margin: 0; }
 .nav-links a { color: #d6e9ff; font-weight: 500; }
 .nav-links a:hover { color: var(--cyan); }
+.linkedin-nav-link {
+    background: #0A66C2;
+    color: #ffffff !important;
+    border-radius: 999px;
+    padding: .38rem .85rem;
+}
+.linkedin-nav-link:hover {
+    background: #0b5ab0;
+    color: #ffffff !important;
+}
 .nav-toggle { display: none; background: transparent; border: 0; }
 
 .hero {
@@ -129,6 +139,12 @@ a { color: inherit; text-decoration: none; }
 .price { margin: .7rem 0 0; font-size: 1.25rem; color: #f6fcff; font-weight: 700; }
 
 .service-payment-link { margin-top: .9rem; width: 100%; }
+.service-pricing-note {
+    margin: .8rem 0 0;
+    color: #e2efff;
+    font-weight: 600;
+    font-size: .94rem;
+}
 
 .two-col { display: grid; grid-template-columns: 1.2fr .8fr; gap: 1.6rem; align-items: start; }
 .value-panel ul { margin: 0; padding-left: 1.2rem; color: #d9e8ff; }
@@ -145,6 +161,17 @@ a { color: inherit; text-decoration: none; }
 
 .quote-card p { color: #e6f3ff; font-size: 1rem; }
 .quote-card span { color: var(--cyan); font-size: .85rem; }
+.testimonial-person {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, #0A66C2, #2a8ef1);
+    margin-bottom: .75rem;
+}
 .quote-card::after {
     content: "📍";
     position: absolute;
@@ -154,6 +181,63 @@ a { color: inherit; text-decoration: none; }
 }
 
 .blog-card a { color: var(--cyan); font-weight: 600; }
+.trust-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.trust-card h3 { margin-bottom: .65rem; }
+.trust-logo-wrap {
+    border-radius: 12px;
+    background: #ffffff;
+    padding: .8rem 1rem;
+    border: 1px solid rgba(88, 136, 198, .45);
+    margin-bottom: .8rem;
+}
+.trust-logo-wrap img {
+    width: 100%;
+    max-width: 280px;
+    display: block;
+}
+.gov-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid rgba(130, 198, 255, .75);
+    padding: .3rem .85rem;
+    color: #dff3ff;
+    font-size: .82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin: 0 0 .8rem;
+}
+.linkedin-connect-link,
+.linkedin-footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    color: #9ed2ff;
+    font-weight: 600;
+}
+.linkedin-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: #0A66C2;
+    color: #ffffff;
+    display: grid;
+    place-items: center;
+    font-size: .85rem;
+    font-weight: 700;
+}
+.consultation-cta {
+    padding-top: 2.5rem;
+}
+.consultation-panel {
+    text-align: left;
+}
+.contact-tagline {
+    color: #cce7ff;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
 .contact-shell { display: grid; grid-template-columns: 1.2fr .8fr; gap: 1.4rem; align-items: center; }
 .contact-card p { margin-bottom: .4rem; }
 
@@ -473,7 +557,8 @@ a { color: inherit; text-decoration: none; }
     .benefits-grid,
     .testimonial-grid,
     .blog-grid,
-    .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .portfolio-grid,
+    .trust-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 760px) {
@@ -498,7 +583,8 @@ a { color: inherit; text-decoration: none; }
     .benefits-grid,
     .testimonial-grid,
     .blog-grid,
-    .portfolio-grid { grid-template-columns: 1fr; }
+    .portfolio-grid,
+    .trust-grid { grid-template-columns: 1fr; }
     .section { padding: 4.5rem 0; }
     .ad-thumbnail-stack { grid-template-columns: 1fr; }
     .featured-partner-card { grid-template-columns: 1fr; gap: 1.15rem; }
