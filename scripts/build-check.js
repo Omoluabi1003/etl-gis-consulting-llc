@@ -6,7 +6,7 @@ const requiredFiles = [
   'assets/downloads/utility-network-modernization-playbook.pdf',
   'assets/downloads/public-agency-analytics-playbook.pdf',
   'assets/downloads/cjis-alignment-brief.pdf',
-  'assets/images/logo-etl-gis.png',
+  'assets/images/C4376F7C-6E7F-470B-A331-84B0E39C59A7.png',
 ];
 
 const missing = requiredFiles.filter((file) => !fs.existsSync(path.join(root, file)));
