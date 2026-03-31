@@ -26,6 +26,7 @@ const decodeToken = (token) => {
 };
 
 const resolvedRelayEmail = decodeToken(relayEmailToken);
+const showFeaturedPartner = false;
 
 const extractMailtoQuery = (href) => {
     if (!href) {
@@ -58,6 +59,31 @@ const applyEmailRelayToLinks = () => {
 };
 
 applyEmailRelayToLinks();
+
+const applyFeaturedPartnerVisibility = () => {
+    const featuredPartnerSection = document.getElementById('featured-partner');
+    const featuredPartnerAnchors = document.querySelectorAll('a[href^="#featured-partner"], [data-sponsored-gallery-trigger]');
+
+    if (showFeaturedPartner) {
+        if (featuredPartnerSection) {
+            featuredPartnerSection.hidden = false;
+        }
+        return;
+    }
+
+    featuredPartnerAnchors.forEach((anchor) => {
+        if (anchor.closest('#featured-partner')) {
+            return;
+        }
+        anchor.remove();
+    });
+
+    if (featuredPartnerSection) {
+        featuredPartnerSection.remove();
+    }
+};
+
+applyFeaturedPartnerVisibility();
 
 const partnerLogoPath = '/assets/images/7b1128b2-0e23-4d63-85c1-659301e3575c.jpeg';
 const arklandedPropertyImagePaths = [
@@ -297,8 +323,10 @@ const hydrateSponsoredItems = () => {
     });
 };
 
-hydratePartnerPlacements();
-hydrateSponsoredItems();
+if (showFeaturedPartner) {
+    hydratePartnerPlacements();
+    hydrateSponsoredItems();
+}
 
 const renderSponsoredGallery = async (galleryKey) => {
     const sponsoredItem = sponsoredProperties[galleryKey];
@@ -478,8 +506,10 @@ const renderSponsoredGallery = async (galleryKey) => {
     });
 };
 
-renderSponsoredGallery('arklanded-core-portfolio');
-renderSponsoredGallery('the-legacy-ibadan');
+if (showFeaturedPartner) {
+    renderSponsoredGallery('arklanded-core-portfolio');
+    renderSponsoredGallery('the-legacy-ibadan');
+}
 
 const metricEaseOut = (t) => 1 - Math.pow(1 - t, 3);
 
