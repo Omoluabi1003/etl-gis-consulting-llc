@@ -28,7 +28,7 @@ body {
 .section { padding: 6rem 0; position: relative; }
 .eyebrow { letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); font-size: .75rem; font-weight: 700; }
 h1, h2, h3 { line-height: 1.2; margin-top: 0; }
-h1 { font-size: clamp(2.2rem, 4.6vw, 4.1rem); max-width: 12ch; margin-bottom: 1.1rem; }
+h1 { font-size: clamp(2.2rem, 4.6vw, 4.1rem); max-width: 16ch; margin-bottom: 1.1rem; }
 h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 2rem; }
 p { margin-top: 0; color: var(--muted); }
 
@@ -227,6 +227,49 @@ a { color: inherit; text-decoration: none; }
     font-size: .85rem;
     font-weight: 700;
 }
+
+.paid-consultation-section {
+    padding-top: 3rem;
+}
+.paid-consultation-card {
+    overflow: hidden;
+}
+.consultation-detail-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 1.4rem 0 1.6rem;
+}
+.consultation-detail-grid article {
+    border: 1px solid rgba(142, 202, 255, 0.22);
+    border-radius: 14px;
+    padding: 1rem;
+    background: rgba(6, 17, 42, 0.42);
+}
+.consultation-detail-grid h3 {
+    font-size: 1rem;
+    margin-bottom: .45rem;
+}
+.consultation-detail-grid p {
+    margin-bottom: 0;
+}
+.proof-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: #dceafe;
+}
+.proof-list li {
+    margin-bottom: .55rem;
+}
+.outcome-proof-card {
+    margin-top: 1.3rem;
+    border-style: dashed;
+}
+.outcome-proof-card h3 {
+    margin-bottom: .55rem;
+}
+.outcome-proof-card p {
+    margin-bottom: 0;
+}
+
 .consultation-cta {
     padding-top: 2.5rem;
 }
@@ -701,12 +744,18 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 1024px) {
+    .consultation-detail-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .records-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 760px) {
+    .consultation-detail-grid {
+        grid-template-columns: 1fr;
+    }
     .records-grid {
         grid-template-columns: 1fr;
     }
