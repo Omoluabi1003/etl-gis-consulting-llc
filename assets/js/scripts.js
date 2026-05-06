@@ -26,494 +26,6 @@ const decodeToken = (token) => {
 };
 
 const resolvedRelayEmail = decodeToken(relayEmailToken);
-const showFeaturedPartner = false;
-
-const extractMailtoQuery = (href) => {
-    if (!href) {
-        return '';
-    }
-    const queryIndex = href.indexOf('?');
-    if (queryIndex === -1) {
-        return '';
-    }
-    return href.slice(queryIndex + 1);
-};
-
-const applyEmailRelayToLinks = () => {
-    if (!resolvedRelayEmail) {
-        return;
-    }
-
-    document.querySelectorAll('[data-relay-email]').forEach((link) => {
-        const query = extractMailtoQuery(link.getAttribute('href'));
-        const paramString = query ? new URLSearchParams(query).toString() : '';
-
-        link.textContent = displayEmailAddress;
-        link.setAttribute('aria-label', `Email ${displayEmailAddress}`);
-
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            const destination = paramString
-                ? `mailto:${resolvedRelayEmail}?${paramString}`
-                : `mailto:${resolvedRelayEmail}`;
-            window.location.href = destination;
-        });
-    });
-};
-
-applyEmailRelayToLinks();
-
-const applyFeaturedPartnerVisibility = () => {
-    const featuredPartnerSection = document.getElementById('featured-partner');
-    const featuredPartnerAnchors = document.querySelectorAll('a[href^="#featured-partner"], [data-sponsored-gallery-trigger]');
-
-    if (showFeaturedPartner) {
-        if (featuredPartnerSection) {
-            featuredPartnerSection.hidden = false;
-        }
-        return;
-    }
-
-    featuredPartnerAnchors.forEach((anchor) => {
-        if (anchor.closest('#featured-partner')) {
-            return;
-        }
-        anchor.remove();
-    });
-
-    if (featuredPartnerSection) {
-        featuredPartnerSection.remove();
-    }
-};
-
-applyFeaturedPartnerVisibility();
-
-const partnerLogoPath = '/assets/images/7b1128b2-0e23-4d63-85c1-659301e3575c.jpeg';
-const arklandedPropertyImagePaths = [
-    '/assets/images/051e492f-e70a-4379-a2a2-4b116c39f0ee.jpeg',
-    '/assets/images/25f9b81b-b546-49f8-8a2e-c498a03bc32a.jpeg',
-    '/assets/images/219f9403-4567-4d7a-9faa-67b93e00f436.jpeg',
-    '/assets/images/30fa0fe1-2e27-43bf-bb5d-5d749e794fda.jpeg',
-    '/assets/images/6a520af7-f471-44e8-80e6-1b839f46142d.jpeg',
-    '/assets/images/862a13cc-773e-46d6-a629-8d6254f5fb99.jpeg',
-    '/assets/images/90470e2e-f875-4bfd-a778-94c18e9f2a00.jpeg',
-    '/assets/images/ad505ff9-b1ea-4083-8e5a-4f8c77d6321d.jpeg',
-    '/assets/images/c8711cfb-f114-494c-bf48-c864b4699c0d.jpeg',
-    '/assets/images/c9a654bf-a281-4f3f-9316-42986448340e.jpeg',
-    '/assets/images/e6c671e7-0bcd-4f5d-a742-0e4af085d147.jpeg',
-    '/assets/images/f2017961-0211-43fd-b875-a7665db5bca0.jpeg',
-    '/assets/images/fa2b2786-414c-4c1e-bbfa-8dd9d086b1c8.jpeg',
-    '/assets/images/fb54a1e5-d0f6-4ec0-8b99-afedbeb1963e.jpeg',
-    '/assets/images/IMG_2173.jpeg',
-];
-const partners = {
-    'arklanded-properties-limited': {
-        name: 'Arklanded Properties Limited',
-        tagline: 'Trusted Real Estate Partner',
-        location: 'Nigeria',
-        ceo: 'John A. Olaitan',
-        logo: partnerLogoPath,
-        logoSquare: partnerLogoPath,
-        ctaLabel: 'Explore Properties',
-        sponsoredLabel: 'Sponsored',
-        supportingLine: 'A Nigeria-based real estate firm led by John A. Olaitan',
-        link: '#featured-partner-gallery',
-        alt: 'Arklanded Properties Limited logo',
-        propertyImages: arklandedPropertyImagePaths,
-    },
-};
-const sponsoredProperties = {
-    'arklanded-core-portfolio': {
-        id: 'arklanded-core-portfolio',
-        slug: 'arklanded-core-portfolio',
-        title: 'Arklanded Property Gallery',
-        partnerName: 'Arklanded Properties Limited',
-        partnershipLabel: 'In partnership with Arklanded Properties Limited',
-        location: 'Nigeria',
-        sourcePdfUrl: '',
-        galleryLabel: 'Arklanded available property thumbnails',
-        category: 'featured-partner-properties',
-        galleryImages: arklandedPropertyImagePaths,
-    },
-    'the-legacy-ibadan': {
-        id: 'the-legacy-ibadan',
-        slug: 'the-legacy-ibadan',
-        title: 'THE LEGACY (Ibadan)',
-        partnerName: 'MKH Properties',
-        partnershipLabel: 'In partnership with Arklanded Properties Limited',
-        location: 'Ibadan-Ijebu Ode Road Corridor, Oyo State',
-        sourcePdfUrl: 'https://mkhproperties.com/wp-content/uploads/2026/03/The-Legacy-Brochure-1.pdf',
-        galleryLabel: 'Legacy Brochure Gallery',
-        category: 'partner-sponsored-property',
-        mediaAssets: [
-            {
-                type: 'video',
-                src: 'https://raw.githubusercontent.com/Omoluabi1003/etl-gis-consulting-llc/main/assets/js/3efd8759-428b-4266-a212-0a82e6d4e8c9.mp4',
-                label: 'Watch MKH Video',
-            },
-            {
-                type: 'image',
-                src: '/assets/js/5ec81a53-8e6d-4baf-9692-8cfe9dfc745d.jpeg',
-            },
-            {
-                type: 'image',
-                src: '/assets/js/669c4a54-9bf8-4850-b683-366bcc956fd2.jpeg',
-            },
-            {
-                type: 'image',
-                src: '/assets/js/68ee4b1f-bdaa-4ff3-acbd-90ad0aacb350.jpeg',
-            },
-            {
-                type: 'image',
-                src: '/assets/js/7b1db5ee-8489-4185-8d80-790fe3a064e3.jpeg',
-            },
-        ],
-        galleryImages: [
-            '/assets/js/5ec81a53-8e6d-4baf-9692-8cfe9dfc745d.jpeg',
-            '/assets/js/669c4a54-9bf8-4850-b683-366bcc956fd2.jpeg',
-            '/assets/js/68ee4b1f-bdaa-4ff3-acbd-90ad0aacb350.jpeg',
-            '/assets/js/7b1db5ee-8489-4185-8d80-790fe3a064e3.jpeg',
-        ],
-    },
-};
-
-const resolveAvailableImages = async (paths) => {
-    const candidates = Array.isArray(paths) ? paths : [];
-    const checks = candidates.map((path) => new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(path);
-        img.onerror = () => resolve('');
-        img.src = path;
-    }));
-    const resolved = await Promise.all(checks);
-    return resolved.filter(Boolean);
-};
-
-const normalizeSponsoredMedia = (sponsoredItem) => {
-    if (Array.isArray(sponsoredItem.mediaAssets) && sponsoredItem.mediaAssets.length > 0) {
-        return sponsoredItem.mediaAssets
-            .filter((media) => media && typeof media.src === 'string' && media.src.length > 0)
-            .map((media) => ({
-                type: media.type === 'video' ? 'video' : 'image',
-                src: media.src,
-                label: media.label || '',
-            }));
-    }
-
-    return (Array.isArray(sponsoredItem.galleryImages) ? sponsoredItem.galleryImages : [])
-        .filter((src) => typeof src === 'string' && src.length > 0)
-        .map((src) => ({ type: 'image', src, label: '' }));
-};
-
-const resolveAvailableMedia = async (mediaItems) => {
-    const checks = mediaItems.map((media) => {
-        if (media.type === 'video') {
-            return Promise.resolve(media);
-        }
-
-        return new Promise((resolve) => {
-            const img = new Image();
-            img.onload = () => resolve(media);
-            img.onerror = () => resolve(null);
-            img.src = media.src;
-        });
-    });
-    const resolved = await Promise.all(checks);
-    return resolved.filter(Boolean);
-};
-
-const createPartnerLogo = ({
-    src,
-    squareSrc,
-    alt,
-    mode,
-    priority = false,
-    className = '',
-}) => {
-    const logo = document.createElement('div');
-    const isThumbnailMode = mode === 'thumbnail';
-    const imageSrc = isThumbnailMode ? (squareSrc || src) : src;
-    logo.className = `partner-logo partner-logo--${mode}${className ? ` ${className}` : ''}`;
-
-    if (isThumbnailMode && !squareSrc) {
-        logo.classList.add('partner-logo--fallback-square');
-    }
-
-    const img = document.createElement('img');
-    img.src = imageSrc;
-    img.alt = alt;
-    img.decoding = 'async';
-    img.loading = priority ? 'eager' : 'lazy';
-    img.width = isThumbnailMode ? 240 : 760;
-    img.height = isThumbnailMode ? 240 : 160;
-
-    img.addEventListener('error', () => {
-        if (isThumbnailMode && squareSrc && img.src !== new URL(src, window.location.origin).toString()) {
-            logo.classList.add('partner-logo--fallback-square');
-            img.src = src;
-            return;
-        }
-        logo.classList.add('partner-logo--image-failed');
-        logo.textContent = alt;
-    }, { once: true });
-
-    logo.append(img);
-    return logo;
-};
-
-const applyPartnerData = (rootNode, partner) => {
-    rootNode.querySelectorAll('[data-partner-field]').forEach((fieldNode) => {
-        const fieldName = fieldNode.dataset.partnerField;
-        if (!fieldName || !Object.prototype.hasOwnProperty.call(partner, fieldName)) {
-            return;
-        }
-
-        if (fieldNode.tagName === 'A' && fieldName === 'ctaLabel') {
-            fieldNode.textContent = partner[fieldName];
-            fieldNode.href = partner.link || '#';
-            return;
-        }
-
-        fieldNode.textContent = partner[fieldName];
-    });
-};
-
-const renderPartnerLogos = (rootNode, partner) => {
-    rootNode.querySelectorAll('[data-partner-logo]').forEach((logoSlot) => {
-        const mode = logoSlot.dataset.partnerLogo === 'thumbnail' ? 'thumbnail' : 'featured';
-        const logo = createPartnerLogo({
-            src: partner.logo,
-            squareSrc: partner.logoSquare,
-            alt: partner.alt,
-            mode,
-            priority: mode === 'featured',
-        });
-
-        logoSlot.replaceChildren(logo);
-    });
-};
-
-const hydratePartnerPlacements = () => {
-    document.querySelectorAll('[data-featured-partner], [data-ad-thumbnail]').forEach((placement) => {
-        const partnerKey = placement.dataset.featuredPartner || placement.dataset.adThumbnail;
-        if (!partnerKey || !partners[partnerKey]) {
-            return;
-        }
-
-        const partner = partners[partnerKey];
-        applyPartnerData(placement, partner);
-        renderPartnerLogos(placement, partner);
-    });
-};
-
-const hydrateSponsoredItems = () => {
-    document.querySelectorAll('[data-sponsored-item]').forEach((itemNode) => {
-        const sponsoredKey = itemNode.dataset.sponsoredItem;
-        const sponsoredItem = sponsoredProperties[sponsoredKey];
-        if (!sponsoredItem) {
-            return;
-        }
-
-        const titleNode = itemNode.querySelector('.ad-thumbnail-title');
-        if (titleNode) {
-            titleNode.textContent = sponsoredItem.title;
-        }
-
-        const partnerLabelNode = itemNode.querySelector('.ad-thumbnail-partner-label');
-        if (partnerLabelNode) {
-            partnerLabelNode.textContent = sponsoredItem.partnershipLabel;
-        }
-    });
-};
-
-if (showFeaturedPartner) {
-    hydratePartnerPlacements();
-    hydrateSponsoredItems();
-}
-
-const renderSponsoredGallery = async (galleryKey) => {
-    const sponsoredItem = sponsoredProperties[galleryKey];
-    if (!sponsoredItem) {
-        return;
-    }
-
-    const galleryRoot = document.querySelector(`[data-sponsored-gallery="${galleryKey}"]`);
-    if (!galleryRoot) {
-        return;
-    }
-
-    const previewContainer = galleryRoot.querySelector('[data-gallery-preview-trigger]');
-    const previewImage = galleryRoot.querySelector('[data-partner-gallery-active-image]');
-    const thumbnailTrack = galleryRoot.querySelector('.featured-partner-gallery-thumbnails');
-    const fallbackMessage = galleryRoot.querySelector('[data-gallery-fallback-message]');
-    const previousButton = galleryRoot.querySelector('[data-gallery-prev]');
-    const nextButton = galleryRoot.querySelector('[data-gallery-next]');
-    const pdfLink = galleryRoot.querySelector('[data-gallery-pdf-link]');
-    const galleryMedia = await resolveAvailableMedia(normalizeSponsoredMedia(sponsoredItem));
-    if (!previewContainer || !previewImage || !thumbnailTrack) {
-        return;
-    }
-
-    if (pdfLink instanceof HTMLAnchorElement && sponsoredItem.sourcePdfUrl) {
-        pdfLink.href = sponsoredItem.sourcePdfUrl;
-    }
-
-    if (galleryMedia.length === 0) {
-        if (fallbackMessage) {
-            fallbackMessage.hidden = false;
-        }
-        if (previousButton instanceof HTMLButtonElement) {
-            previousButton.disabled = true;
-        }
-        if (nextButton instanceof HTMLButtonElement) {
-            nextButton.disabled = true;
-        }
-        previewImage.removeAttribute('src');
-        previewImage.alt = `${sponsoredItem.title} preview unavailable`;
-        thumbnailTrack.replaceChildren();
-        console.warn(`[sponsored-gallery] No gallery media available for "${galleryKey}". Falling back to PDF-only mode.`);
-        return;
-    }
-
-    let activeMediaIndex = 0;
-    let activeMedia = galleryMedia[0];
-    let openPreview = null;
-
-    const setPreviewInteractivity = (isInteractive) => {
-        previewContainer.classList.toggle('featured-partner-gallery-preview--static', !isInteractive);
-        previewContainer.style.cursor = isInteractive ? 'zoom-in' : 'default';
-        if (isInteractive) {
-            previewContainer.setAttribute('role', 'button');
-            previewContainer.setAttribute('tabindex', '0');
-            previewContainer.setAttribute('aria-label', 'Open larger media preview');
-            return;
-        }
-        previewContainer.removeAttribute('role');
-        previewContainer.removeAttribute('tabindex');
-        previewContainer.setAttribute('aria-label', 'Media preview');
-    };
-
-    const setActiveMedia = (mediaItem, mediaIndex) => {
-        activeMedia = mediaItem;
-        activeMediaIndex = mediaIndex;
-
-        thumbnailTrack.querySelectorAll('.featured-partner-gallery-thumbnail').forEach((thumbnailButton, currentIndex) => {
-            const isCurrent = currentIndex === mediaIndex;
-            thumbnailButton.setAttribute('aria-current', isCurrent ? 'true' : 'false');
-        });
-
-        if (mediaItem.type === 'video') {
-            const video = document.createElement('video');
-            video.src = mediaItem.src;
-            video.controls = true;
-            video.muted = true;
-            video.playsInline = true;
-            video.preload = 'metadata';
-            video.className = 'featured-partner-gallery-video';
-            video.setAttribute('aria-label', `${sponsoredItem.title} video`);
-            video.addEventListener('error', () => {
-                if (fallbackMessage) {
-                    fallbackMessage.hidden = false;
-                }
-            }, { once: true });
-            previewContainer.replaceChildren(video);
-            setPreviewInteractivity(false);
-            openPreview = null;
-            return;
-        }
-
-        previewImage.src = mediaItem.src;
-        previewImage.alt = `${sponsoredItem.title} media ${mediaIndex + 1}`;
-        previewContainer.replaceChildren(previewImage);
-        setPreviewInteractivity(true);
-        openPreview = () => {
-            window.open(mediaItem.src, '_blank', 'noopener,noreferrer');
-        };
-    };
-
-    thumbnailTrack.replaceChildren();
-    galleryMedia.forEach((mediaItem, mediaIndex) => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'featured-partner-gallery-thumbnail';
-        button.setAttribute('role', 'listitem');
-        button.setAttribute('aria-label', `View ${sponsoredItem.title} media ${mediaIndex + 1}`);
-
-        if (mediaItem.type === 'video') {
-            const videoBadge = document.createElement('span');
-            videoBadge.className = 'featured-partner-gallery-thumbnail-label';
-            videoBadge.textContent = mediaItem.label || 'Featured Video';
-            button.classList.add('featured-partner-gallery-thumbnail--video');
-            button.append(videoBadge);
-        } else {
-            const image = document.createElement('img');
-            image.src = mediaItem.src;
-            image.alt = '';
-            image.loading = 'lazy';
-            image.decoding = 'async';
-            button.append(image);
-        }
-
-        button.addEventListener('click', () => {
-            setActiveMedia(mediaItem, mediaIndex);
-        });
-        thumbnailTrack.append(button);
-    });
-
-    if (galleryMedia.length > 0) {
-        setActiveMedia(galleryMedia[0], 0);
-    }
-
-    const cycleMedia = (direction) => {
-        if (!galleryMedia.length) {
-            return;
-        }
-        const nextIndex = (activeMediaIndex + direction + galleryMedia.length) % galleryMedia.length;
-        setActiveMedia(galleryMedia[nextIndex], nextIndex);
-    };
-
-    if (previousButton instanceof HTMLButtonElement) {
-        previousButton.addEventListener('click', () => cycleMedia(-1));
-    }
-
-    if (nextButton instanceof HTMLButtonElement) {
-        nextButton.addEventListener('click', () => cycleMedia(1));
-    }
-
-    if (galleryMedia.length > 0) {
-        previewContainer.addEventListener('click', () => {
-            if (typeof openPreview === 'function') {
-                openPreview();
-            }
-        });
-        previewContainer.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                if (typeof openPreview === 'function') {
-                    openPreview();
-                }
-            }
-        });
-    }
-
-    document.querySelectorAll(`[data-sponsored-gallery-trigger="${galleryKey}"]`).forEach((triggerNode) => {
-        triggerNode.addEventListener('click', (event) => {
-            event.preventDefault();
-            galleryRoot.hidden = false;
-            galleryRoot.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            const firstThumb = thumbnailTrack.querySelector('.featured-partner-gallery-thumbnail');
-            if (firstThumb instanceof HTMLButtonElement) {
-                firstThumb.focus();
-            }
-        });
-    });
-};
-
-if (showFeaturedPartner) {
-    renderSponsoredGallery('arklanded-core-portfolio');
-    renderSponsoredGallery('the-legacy-ibadan');
-}
-
 const metricEaseOut = (t) => 1 - Math.pow(1 - t, 3);
 
 const getMetricFormattingConfig = (metric) => {
@@ -1157,3 +669,126 @@ if (navigationButton) {
         );
     });
 }
+
+const chatPanels = Array.from(document.querySelectorAll('[data-chat-panel], [data-floating-chat-panel]'));
+const floatingChatPanel = document.querySelector('[data-floating-chat-panel]');
+const floatingChatToggle = document.querySelector('[data-chat-toggle]');
+const chatOpenButtons = Array.from(document.querySelectorAll('[data-chat-open]'));
+const chatCloseButtons = Array.from(document.querySelectorAll('[data-chat-close]'));
+const chatPromptButtons = Array.from(document.querySelectorAll('[data-chat-prompt]'));
+
+const assistantResponses = [
+    {
+        patterns: ['record', 'digit', 'scan', 'archive', 'ocr', 'metadata', 'index'],
+        response: 'For records modernization, ETL GIS Consulting LLC focuses on indexing architecture, metadata schemas, OCR planning, QA standards, and retrieval workflows so records become searchable, governed, and connected to operations.',
+    },
+    {
+        patterns: ['gis', 'map', 'spatial', 'layer', 'arcgis', 'geospatial'],
+        response: 'For GIS integration, we connect records, locations, assets, and operational layers through spatial databases, map-based search, data governance, and analysis patterns that support public-sector decisions.',
+    },
+    {
+        patterns: ['etl', 'data', 'database', 'sql', 'python', 'workflow', 'pipeline'],
+        response: 'For structured data systems, we design ETL pipelines, SQL/Python workflows, taxonomies, and quality controls that move information cleanly between legacy systems, GIS platforms, and reporting needs.',
+    },
+    {
+        patterns: ['ai', 'automation', 'automate', 'classification', 'assistant'],
+        response: 'AI-integrated automation is approached practically: identify repeatable work, keep human review and governance in place, and use automation to improve classification, retrieval support, triage, and staff productivity.',
+    },
+    {
+        patterns: ['consult', 'schedule', 'book', 'price', 'cost', 'proposal', 'procurement'],
+        response: 'The recommended next step is to schedule a consultation. The session clarifies your records, GIS, data, workflow, and procurement needs before any tailored proposal is prepared.',
+    },
+];
+
+const getAssistantResponse = (message) => {
+    const normalized = message.toLowerCase();
+    const matched = assistantResponses.find((item) => item.patterns.some((pattern) => normalized.includes(pattern)));
+    if (matched) {
+        return matched.response;
+    }
+    return 'ETL GIS Consulting LLC helps unify records modernization, GIS integration, structured data systems, AI-integrated automation, and public-sector workflow improvement. Share a little more about your current records, GIS, or workflow challenge, or schedule a consultation for a focused review.';
+};
+
+const appendChatMessage = (messagesEl, text, type = 'assistant') => {
+    if (!messagesEl || !text) {
+        return;
+    }
+    const messageEl = document.createElement('p');
+    messageEl.className = `chat-message chat-message-${type}`;
+    messageEl.textContent = text;
+    messagesEl.append(messageEl);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+};
+
+const handleChatSubmission = (form, messageOverride = '') => {
+    const input = form.querySelector('[data-chat-input]');
+    const messages = form.closest('[data-chat-panel], [data-floating-chat-panel]')?.querySelector('[data-chat-messages]');
+    const message = (messageOverride || input?.value || '').trim();
+    if (!message) {
+        return;
+    }
+    appendChatMessage(messages, message, 'user');
+    appendChatMessage(messages, getAssistantResponse(message), 'assistant');
+    if (input) {
+        input.value = '';
+    }
+};
+
+const openFloatingChat = () => {
+    if (!floatingChatPanel || !floatingChatToggle) {
+        return;
+    }
+    floatingChatPanel.hidden = false;
+    floatingChatToggle.setAttribute('aria-expanded', 'true');
+    const input = floatingChatPanel.querySelector('[data-chat-input]');
+    if (input) {
+        input.focus();
+    }
+};
+
+const closeFloatingChat = () => {
+    if (!floatingChatPanel || !floatingChatToggle) {
+        return;
+    }
+    floatingChatPanel.hidden = true;
+    floatingChatToggle.setAttribute('aria-expanded', 'false');
+};
+
+chatPanels.forEach((panel) => {
+    const form = panel.querySelector('[data-chat-form]');
+    if (!form) {
+        return;
+    }
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        handleChatSubmission(form);
+    });
+});
+
+if (floatingChatToggle) {
+    floatingChatToggle.addEventListener('click', () => {
+        if (floatingChatPanel?.hidden) {
+            openFloatingChat();
+        } else {
+            closeFloatingChat();
+        }
+    });
+}
+
+chatOpenButtons.forEach((button) => {
+    button.addEventListener('click', openFloatingChat);
+});
+
+chatCloseButtons.forEach((button) => {
+    button.addEventListener('click', closeFloatingChat);
+});
+
+chatPromptButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const prompt = button.dataset.chatPrompt || button.textContent || '';
+        const embeddedForm = document.querySelector('.embedded-chat [data-chat-form]');
+        if (embeddedForm) {
+            handleChatSubmission(embeddedForm, prompt);
+        }
+    });
+});
