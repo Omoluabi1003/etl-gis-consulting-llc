@@ -48,6 +48,9 @@ const applyEmailRelayToLinks = () => {
         const query = extractMailtoQuery(link.getAttribute('href'));
         const paramString = query ? new URLSearchParams(query).toString() : '';
 
+        link.textContent = displayEmailAddress;
+        link.setAttribute('aria-label', `Email ${displayEmailAddress}`);
+
         link.addEventListener('click', (event) => {
             event.preventDefault();
             const destination = paramString
