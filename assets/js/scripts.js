@@ -696,7 +696,7 @@ const assistantResponses = [
     },
     {
         patterns: ['consult', 'schedule', 'book', 'price', 'cost', 'proposal', 'procurement'],
-        response: 'The recommended next step is to schedule a consultation. The session clarifies your records, GIS, data, workflow, and procurement needs before any tailored proposal is prepared.',
+        response: 'The recommended next step is a free 30-minute fit call. We review your records, GIS, data, workflow, and procurement needs, then provide a concise written recommendation summary before any tailored paid proposal is prepared.',
     },
 ];
 
@@ -706,7 +706,7 @@ const getAssistantResponse = (message) => {
     if (matched) {
         return matched.response;
     }
-    return 'ETL GIS Consulting LLC helps unify records modernization, GIS integration, structured data systems, AI-integrated automation, and public-sector workflow improvement. Share a little more about your current records, GIS, or workflow challenge, or schedule a consultation for a focused review.';
+    return 'ETL GIS Consulting LLC helps government and operations teams find records faster, clean up GIS-linked data, and reduce manual workflow effort. Share your current records, GIS, or workflow challenge, or schedule a free 30-minute consultation for a focused review.';
 };
 
 const appendChatMessage = (messagesEl, text, type = 'assistant') => {
