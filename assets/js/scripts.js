@@ -9,9 +9,9 @@ const metricElements = Array.from(document.querySelectorAll('.metric[data-count-
 let metricObserver = null;
 const metricFormatters = new WeakMap();
 
-const relayEmailTokenSegments = ['ZXRsZ2', 'lzY29u', 'c3VsdG', 'luZ0Bn', 'bWFpbC', '5jb20='];
+const relayEmailTokenSegments = ['ZXRsZ2', 'lzY29u', 'c3VsdG', 'luZ0Bv', 'dXRsb2', '9rLmNv', 'bQ=='];
 const relayEmailToken = relayEmailTokenSegments.join('');
-const displayEmailAddress = 'etlgisconsulting@gmail.com';
+const displayEmailAddress = 'etlgisconsulting@outlook.com';
 
 const decodeToken = (token) => {
     if (!token || typeof atob !== 'function') {
@@ -696,7 +696,7 @@ const assistantResponses = [
     },
     {
         patterns: ['consult', 'schedule', 'book', 'price', 'cost', 'proposal', 'procurement'],
-        response: 'The recommended next step is a free 30-minute fit call. We review your records, GIS, data, workflow, and procurement needs, then provide a concise written recommendation summary before any tailored paid proposal is prepared.',
+        response: 'The recommended next step is a focused consultation. We review your goals, users, data, systems, workflow, timeline, and procurement needs, then recommend a practical path forward before any tailored proposal is prepared.',
     },
 ];
 
@@ -706,7 +706,7 @@ const getAssistantResponse = (message) => {
     if (matched) {
         return matched.response;
     }
-    return 'ETL GIS Consulting LLC helps government and operations teams find records faster, clean up GIS-linked data, and reduce manual workflow effort. Share your current records, GIS, or workflow challenge, or schedule a free 30-minute consultation for a focused review.';
+    return 'ETL GIS Consulting LLC helps government agencies, businesses, nonprofits, and entrepreneurs modernize GIS, integrate AI, automate workflows, build custom software, and improve data-driven decisions. Share your technology challenge or request a consultation for a focused review.';
 };
 
 const appendChatMessage = (messagesEl, text, type = 'assistant') => {
