@@ -3,7 +3,7 @@
     "name": "Clarity Loop AI Book Studio",
     "category": "AI Publishing Technology",
     "demoStatus": "live",
-    "liveUrl": "contact.html",
+    "liveUrl": "https://clarity-loop-books.vercel.app",
     "liveUrlSource": "Public experience",
     "technologyStack": [
       "Publishing Intelligence",
@@ -88,7 +88,7 @@
     "name": "BAG DNA OS",
     "category": "Brand Intelligence & Product Authentication Platform",
     "demoStatus": "live",
-    "liveUrl": "https://bag-dna.vercel.app",
+    "liveUrl": "https://bag-dna-os.vercel.app",
     "liveUrlSource": "Public experience",
     "technologyStack": [
       "Brand Intelligence",
