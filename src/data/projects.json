@@ -88,7 +88,7 @@
     "name": "BAG DNA OS",
     "category": "Brand Intelligence & Product Authentication Platform",
     "demoStatus": "live",
-    "liveUrl": "https://bag-dna-os.vercel.app",
+    "liveUrl": "https://bag-dna.vercel.app",
     "liveUrlSource": "Public experience",
     "technologyStack": [
       "Brand Intelligence",
