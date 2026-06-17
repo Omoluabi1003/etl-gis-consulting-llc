@@ -2,7 +2,7 @@
   {
     "name": "Clarity Loop AI Book Studio",
     "category": "AI Publishing Technology",
-    "repositoryStatus": "verified",
+    "demoStatus": "live",
     "repositoryUrl": "https://github.com/Omoluabi1003/Clarity-Loop-Books",
     "liveUrl": "https://omoluabi1003.github.io/Clarity-Loop-Books/",
     "liveUrlSource": "GitHub repository homepage",
@@ -13,7 +13,7 @@
   {
     "name": "Ariyọ̀ AI",
     "category": "African AI Platform",
-    "repositoryStatus": "verified",
+    "demoStatus": "live",
     "repositoryUrl": "https://github.com/Omoluabi1003/Ariyo-AI",
     "liveUrl": "https://ariyo-ai.vercel.app",
     "liveUrlSource": "GitHub repository homepage and Vercel config",
@@ -24,7 +24,7 @@
   {
     "name": "Carine Sanadina Digital Platform",
     "category": "Author, Music & Advocacy Ecosystem",
-    "repositoryStatus": "verified",
+    "demoStatus": "live",
     "repositoryUrl": "https://github.com/Omoluabi1003/Carine-Sanadina",
     "liveUrl": "https://carine-sanadina.vercel.app",
     "liveUrlSource": "GitHub repository homepage and Vercel config",
@@ -35,7 +35,7 @@
   {
     "name": "Africa Unveiled Digital Intelligence Platform",
     "category": "Pan-African Strategic Intelligence",
-    "repositoryStatus": "verified",
+    "demoStatus": "live",
     "repositoryUrl": "https://github.com/Omoluabi1003/AfricaUnveiled",
     "liveUrl": "https://africa-unveiled.vercel.app",
     "liveUrlSource": "GitHub repository homepage",
@@ -46,7 +46,7 @@
   {
     "name": "BAG DNA OS",
     "category": "Brand Intelligence & Product Authentication Platform",
-    "repositoryStatus": "verified",
+    "demoStatus": "live",
     "repositoryUrl": "https://github.com/Omoluabi1003/bag-dna-os",
     "liveUrl": "https://bag-dna-os.vercel.app",
     "liveUrlSource": "GitHub repository homepage and Vercel config",
