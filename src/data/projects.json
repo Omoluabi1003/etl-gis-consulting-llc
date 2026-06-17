@@ -5,7 +5,7 @@
     "demoStatus": "live",
     "repositoryUrl": "https://github.com/Omoluabi1003/Clarity-Loop-Books",
     "liveUrl": "https://omoluabi1003.github.io/Clarity-Loop-Books/",
-    "liveUrlSource": "GitHub repository homepage",
+    "liveUrlSource": "Public project deployment",
     "technologyStack": ["Next.js", "React", "TypeScript", "PDF/DOCX export", "Browser-local persistence"],
     "verifiedCapabilities": ["AI-assisted author workflows", "Book blueprint and chapter studio", "Publishing export center", "Multilingual font architecture", "Cloud web deployment"],
     "impactStatement": "Turns an idea into a structured manuscript workflow for authors, consultants, pastors, coaches, and creators."
@@ -16,7 +16,7 @@
     "demoStatus": "live",
     "repositoryUrl": "https://github.com/Omoluabi1003/Ariyo-AI",
     "liveUrl": "https://ariyo-ai.vercel.app",
-    "liveUrlSource": "GitHub repository homepage and Vercel config",
+    "liveUrlSource": "Public project deployment and Vercel config",
     "technologyStack": ["Vite", "JavaScript", "PWA", "Howler", "Jest", "Playwright"],
     "verifiedCapabilities": ["Ariyo AI assistant", "Nigerian music player", "Radio and media catalog", "Progressive Web App", "Mini-games and crew console"],
     "impactStatement": "Combines cultural media, assistant interaction, and installable mobile-first access in one African-centered web platform."
@@ -27,7 +27,7 @@
     "demoStatus": "live",
     "repositoryUrl": "https://github.com/Omoluabi1003/Carine-Sanadina",
     "liveUrl": "https://carine-sanadina.vercel.app",
-    "liveUrlSource": "GitHub repository homepage and Vercel config",
+    "liveUrlSource": "Public project deployment and Vercel config",
     "technologyStack": ["Static site", "JavaScript", "Node test runner", "Service worker", "Vercel"],
     "verifiedCapabilities": ["Author and artist platform", "Music and video showcase", "Advocacy storytelling", "Internationalization tests", "Progressive web cache policy"],
     "impactStatement": "Unifies publishing, music, advocacy, storytelling, and audience engagement into a resilient multimedia presence."
@@ -38,7 +38,7 @@
     "demoStatus": "live",
     "repositoryUrl": "https://github.com/Omoluabi1003/AfricaUnveiled",
     "liveUrl": "https://africa-unveiled.vercel.app",
-    "liveUrlSource": "GitHub repository homepage",
+    "liveUrlSource": "Public project deployment",
     "technologyStack": ["Next.js", "React", "Leaflet", "React Leaflet", "JSON-backed local APIs"],
     "verifiedCapabilities": ["UNGA-facing media hub", "Live agenda hub", "Partner search", "Affiliate event submissions", "Story submission showcase", "Interactive mapping dependencies"],
     "impactStatement": "Positions African development storytelling, partner engagement, and event intelligence in a modern diplomatic media hub."
@@ -49,7 +49,7 @@
     "demoStatus": "live",
     "repositoryUrl": "https://github.com/Omoluabi1003/bag-dna-os",
     "liveUrl": "https://bag-dna-os.vercel.app",
-    "liveUrlSource": "GitHub repository homepage and Vercel config",
+    "liveUrlSource": "Public project deployment and Vercel config",
     "technologyStack": ["Next.js", "React", "TypeScript", "Tailwind CSS", "Recharts", "Framer Motion"],
     "verifiedCapabilities": ["Persistent digital identity", "Verified chain of custody", "AI risk intelligence", "GIS operational twin", "Hash-linked evidence events"],
     "impactStatement": "Demonstrates trust infrastructure for digital identity, verification, traceable custody, and premium product confidence."
