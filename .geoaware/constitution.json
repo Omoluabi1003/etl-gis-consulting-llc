@@ -1,0 +1,34 @@
+{
+  "extends": "GeoAware OS v1.0.0",
+  "source": "https://github.com/Omoluabi1003/GeoAware-OS",
+  "version": "1.0.0",
+  "founder": {
+    "name": "Paul Iyogun",
+    "title": "Founder and Chief Architect",
+    "organization": "ETL GIS Consulting LLC"
+  },
+  "inherits": [
+    "GDL",
+    "GEC",
+    "GPC",
+    "GAIC",
+    "GDS"
+  ],
+  "localProductMission": "Provide a polished, professional marketing website for ETL GIS Consulting LLC that clearly communicates geospatial consulting services, project successes, and contact pathways without adding friction to discovery.",
+  "governance": {
+    "behaviorPreservation": "GeoAware OS governance documentation must not change application behavior, UI behavior, dependencies, or runtime source code unless a future task explicitly requests implementation work.",
+    "designPrinciples": [
+      "Geography-first experiences that orient people before asking them to act.",
+      "Calm interfaces that reduce cognitive load and make spatial context easy to understand.",
+      "Quiet guidance that supports discovery without overwhelming users.",
+      "Purposeful restraint in copy, visuals, animation, and technical complexity.",
+      "Product coherence across mission, content, interaction, and geospatial storytelling."
+    ],
+    "qualityGate": {
+      "performance": "Maintain lightweight, responsive pages and avoid unnecessary runtime cost.",
+      "accessibility": "Preserve semantic structure, readable content, keyboard usability, and inclusive interaction patterns.",
+      "restraint": "Add only what serves the mission; avoid unnecessary dependencies, visual noise, and behavioral churn.",
+      "productCoherence": "Ensure documentation, content, and interface decisions align with ETL GIS Consulting LLC's geography-first consulting mission."
+    }
+  }
+}
