@@ -32,6 +32,10 @@ Fresh images are written to `assets/images/generated/scene-<name>.png` so they c
 The generated PNG files are ignored by git to keep the repository lightweight—run the command above whenever you need new
 renders.
 
+## GeoAware OS Governance
+
+This repository follows GeoAware OS v1.0.0, a design and engineering philosophy founded by Paul Iyogun for calm, geography-first digital experiences where technology quietly guides discovery. Local governance is recorded in `.geoaware/constitution.json` and is intended to preserve performance, accessibility, restraint, and product coherence without changing application behavior.
+
 ## Customization Tips
 
 - Replace image placeholders in `assets/images/` with brand photography or project visuals.
