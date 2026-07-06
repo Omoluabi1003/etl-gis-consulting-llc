@@ -1,1 +1,4 @@
-assets/images/generated/*.png
+node_modules/
+.next/
+.env
+.DS_Store
