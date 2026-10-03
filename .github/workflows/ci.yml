@@ -28,6 +28,9 @@ jobs:
       - name: Form endpoint integration test
         run: node scripts/test-form-endpoints.js
 
+      - name: AgentOS orchestration tests
+        run: node scripts/test-agentos.js
+
       - name: Link checker
         uses: lycheeverse/lychee-action@v1
         with:
