@@ -26,6 +26,18 @@ class AgentOrchestrator {
     return { agents: agentViews, tasks, approvals, audit, metrics, departments, executiveSummary, generatedAt: new Date().toISOString() };
   }
 
+  async publicSummary() {
+    const summary = await this.summary();
+    return {
+      access: 'public-read-only',
+      agents: summary.agents.map(({ currentAssignment, lastCompletedTask, humanSupervisor, ...agent }) => agent),
+      metrics: summary.metrics,
+      departments: summary.departments,
+      executiveSummary: summary.executiveSummary,
+      generatedAt: summary.generatedAt,
+    };
+  }
+
   async submit(raw) {
     const title = clean(raw.title, 160), description = clean(raw.description, 4000), initiatedBy = clean(raw.initiatedBy, 160), agentId = clean(raw.agentId, 100), requestedAction = clean(raw.requestedAction, 120);
     if (!title || !description || !initiatedBy || !agentId) throw new Error('Title, description, initiating human, and agent are required.');

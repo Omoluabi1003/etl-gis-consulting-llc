@@ -4,7 +4,7 @@
 
 ETL GIS AgentOS is a human-supervised control plane added alongside the existing static consulting website. Human operators define work and retain authority over consequential actions. Agents can analyze, prepare, validate, summarize, and draft only through named allowlisted tools. An agent definition is a capability and policy contract, not a claim that an external AI or enterprise system is connected.
 
-Operational APIs require `AGENTOS_ACCESS_TOKEN`. That shared-token gate is appropriate for the initial single-organization foundation, but should be replaced with identity-provider authentication and role-based authorization before broad multi-user use. Supabase credentials remain exclusively in the serverless API. The schema enables row-level security and defines no browser-role policies.
+The public dashboard uses an unauthenticated, read-only API representation containing agent capabilities and aggregate operational counts. It deliberately excludes task records, people, approval records, and audit events. Operational writes and the full supervisor summary remain protected by the server-side `AGENTOS_ACCESS_TOKEN`; the browser neither receives nor accepts that credential. This internal compatibility gate must be replaced by the application's identity-provider sessions and role-based authorization before supervisory controls are exposed to users. Supabase credentials remain exclusively in the serverless API. The schema enables row-level security and defines no browser-role policies.
 
 ## Layers implemented
 

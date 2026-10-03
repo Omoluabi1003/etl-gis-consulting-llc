@@ -17,10 +17,11 @@ const authorized = (req) => {
 module.exports = async (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
   if (req.method === 'GET' && req.query?.action === 'definitions') return jsonResponse(res, 200, { agents: AGENTS });
-  if (!authorized(req)) return jsonResponse(res, 401, { message: 'A valid AgentOS access token is required.' });
   const orchestrator = new AgentOrchestrator(new SupabaseAgentOSStore());
   const body = parseBody(req);
   try {
+    if (req.method === 'GET' && req.query?.scope !== 'supervisor') return jsonResponse(res, 200, await orchestrator.publicSummary());
+    if (!authorized(req)) return jsonResponse(res, 401, { message: 'An authenticated supervisor session is required.' });
     if (req.method === 'GET') return jsonResponse(res, 200, await orchestrator.summary());
     if (req.method !== 'POST') return jsonResponse(res, 405, { message: 'Method not allowed.' });
     if (body.operation === 'submit-task') return jsonResponse(res, 201, await orchestrator.submit(body));

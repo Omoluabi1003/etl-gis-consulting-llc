@@ -3,6 +3,7 @@
 const assert = require('assert');
 const { AgentOrchestrator } = require('../agentos/orchestrator');
 const { inspectGeoJSON } = require('../agentos/tools/geojson-inspector');
+const agentosHandler = require('../api/agentos');
 
 class MemoryStore {
   constructor() { this.tasks = []; this.approvals = []; this.audit = []; }
@@ -34,6 +35,30 @@ const run = async () => {
 
   const summary = await orchestrator.summary();
   assert.equal(summary.metrics.totalTasks, 2); assert.equal(summary.metrics.completedTasks, 1); assert.equal(summary.metrics.activeTasks, 1);
+  const publicSummary = await orchestrator.publicSummary();
+  assert.equal(publicSummary.access, 'public-read-only');
+  assert.equal(publicSummary.metrics.totalTasks, 2);
+  assert(!('tasks' in publicSummary)); assert(!('approvals' in publicSummary)); assert(!('audit' in publicSummary));
+  assert(!('currentAssignment' in publicSummary.agents[0])); assert(!('humanSupervisor' in publicSummary.agents[0]));
+
+  const invoke = async (req) => {
+    const response = { headers: {}, setHeader(name, value) { this.headers[name] = value; }, end(payload) { this.payload = JSON.parse(payload); } };
+    await agentosHandler(req, response);
+    return response;
+  };
+  const unauthorizedWrite = await invoke({ method: 'POST', query: {}, headers: {}, body: { operation: 'submit-task' } });
+  assert.equal(unauthorizedWrite.statusCode, 401);
+  assert.match(unauthorizedWrite.payload.message, /authenticated supervisor session/);
+
+  process.env.SUPABASE_URL = 'https://example.supabase.co';
+  process.env.SUPABASE_SERVICE_ROLE_KEY = 'server-only-test-key';
+  const originalFetch = global.fetch;
+  global.fetch = async () => ({ ok: true, json: async () => [] });
+  const publicRead = await invoke({ method: 'GET', query: {}, headers: {} });
+  global.fetch = originalFetch;
+  assert.equal(publicRead.statusCode, 200);
+  assert.equal(publicRead.payload.access, 'public-read-only');
+  assert(!('tasks' in publicRead.payload));
   console.log('[test] AgentOS lifecycle, approval boundary, audit, and GeoJSON inspection ok');
 };
 
