@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Agent Command Center | ETL GIS Consulting LLC</title>
+    <meta name="description" content="Governed command center for ETL GIS Consulting's human-supervised AI workforce.">
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+    <link rel="stylesheet" href="../assets/css/agentos.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to command center</a>
+    <header class="command-header">
+        <a class="command-brand" href="../index.html" aria-label="Return to ETL GIS Consulting home"><span class="brand-grid" aria-hidden="true"></span><span><strong>ETL GIS</strong><small>AgentOS</small></span></a>
+        <div><span class="environment-badge">Governed workspace</span><button class="text-button" id="lock-session" type="button" hidden>Lock session</button></div>
+    </header>
+    <main id="main-content">
+        <section class="command-intro">
+            <p class="kicker">Human + AI digital workforce</p>
+            <h1>Agent Command Center</h1>
+            <p>Assign preparation and analysis work, review traceable outputs, and retain human authority over consequential actions.</p>
+            <p class="freshness" id="freshness">Connect to view operational state.</p>
+        </section>
+
+        <section class="access-panel" id="access-panel" aria-labelledby="access-title">
+            <div><h2 id="access-title">Supervisor access</h2><p>Enter the server-configured access token. It is retained only for this browser tab and is never embedded in the site.</p></div>
+            <form id="access-form"><label for="access-token">Access token</label><div class="inline-control"><input id="access-token" name="token" type="password" required autocomplete="current-password"><button type="submit">Connect</button></div><p class="form-message" id="access-message" role="status"></p></form>
+        </section>
+
+        <div id="workspace" hidden>
+            <section class="metrics" aria-label="Operational metrics">
+                <article><span>Total tasks</span><strong id="metric-total">0</strong></article><article><span>Active</span><strong id="metric-active">0</strong></article><article><span>Awaiting approval</span><strong id="metric-approval">0</strong></article><article><span>Completed</span><strong id="metric-completed">0</strong></article><article><span>Failed</span><strong id="metric-failed">0</strong></article>
+            </section>
+
+            <section class="intelligence-strip" aria-labelledby="executive-title"><div><p class="kicker">Executive intelligence</p><h2 id="executive-title">Operational briefing</h2><p id="executive-summary"></p></div><div><p class="kicker">Department activity</p><div id="department-activity" class="department-activity"></div></div></section>
+
+            <div class="workspace-grid">
+                <section class="panel assignment-panel" aria-labelledby="assignment-title">
+                    <div class="panel-heading"><div><p class="kicker">Human command layer</p><h2 id="assignment-title">Create an assignment</h2></div></div>
+                    <form id="task-form" class="stacked-form">
+                        <label for="initiated-by">Initiating human</label><input id="initiated-by" name="initiatedBy" maxlength="160" required>
+                        <label for="agent-id">Specialized agent</label><select id="agent-id" name="agentId" required><option value="">Select an agent</option></select>
+                        <label for="task-title">Task title</label><input id="task-title" name="title" maxlength="160" required>
+                        <label for="task-description">Scope and expected output</label><textarea id="task-description" name="description" rows="4" maxlength="4000" required></textarea>
+                        <label for="requested-action">Requested action</label><select id="requested-action" name="requestedAction"><option value="">Analysis or preparation only</option></select>
+                        <p class="boundary-note" id="boundary-note">Restricted actions are stopped at the approval boundary.</p>
+                        <button type="submit">Submit governed task</button><p class="form-message" id="task-message" role="status"></p>
+                    </form>
+                </section>
+
+                <section class="panel" aria-labelledby="approval-title"><div class="panel-heading"><div><p class="kicker">Governance layer</p><h2 id="approval-title">Approval queue</h2></div><span class="count-pill" id="approval-count">0</span></div><div id="approval-list" class="record-list"><p class="empty-state">No approval data loaded.</p></div></section>
+            </div>
+
+            <section class="panel" aria-labelledby="agents-title"><div class="panel-heading"><div><p class="kicker">Digital workforce</p><h2 id="agents-title">Agent activity</h2></div></div><div class="agent-grid" id="agent-grid"></div></section>
+            <section class="panel" aria-labelledby="tasks-title"><div class="panel-heading"><div><p class="kicker">Traceable lifecycle</p><h2 id="tasks-title">Task history</h2></div><button class="secondary-button" id="refresh" type="button">Refresh</button></div><div id="task-list" class="record-list"></div></section>
+            <section class="panel" aria-labelledby="audit-title"><div class="panel-heading"><div><p class="kicker">Audit and observability</p><h2 id="audit-title">Recent meaningful actions</h2></div></div><div class="table-wrap"><table><thead><tr><th>Time</th><th>Human</th><th>Agent</th><th>Tool</th><th>Action</th><th>Result</th></tr></thead><tbody id="audit-list"></tbody></table></div></section>
+        </div>
+    </main>
+    <dialog id="decision-dialog"><form method="dialog" id="decision-form" class="stacked-form"><input type="hidden" id="approval-id"><h2>Record a human decision</h2><p id="decision-action"></p><label for="decision-maker">Decision-maker</label><input id="decision-maker" maxlength="160" required><label for="decision">Decision</label><select id="decision" required><option value="APPROVE">Approve</option><option value="REJECT">Reject</option><option value="REQUEST_REVISION">Request revision</option></select><label for="decision-note">Decision rationale</label><textarea id="decision-note" rows="3" maxlength="2000" required></textarea><p class="form-message" id="decision-message" role="status"></p><div class="dialog-actions"><button class="secondary-button" value="cancel" type="button" id="decision-cancel">Cancel</button><button type="submit">Record decision</button></div></form></dialog>
+    <script src="../assets/js/agentos.js" defer></script>
+</body>
+</html>
