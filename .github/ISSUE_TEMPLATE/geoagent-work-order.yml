@@ -1,0 +1,33 @@
+name: GeoAgent synthetic work order
+description: Request a pilot workflow using public synthetic data only
+title: '[GeoAgent] '
+body:
+  - type: markdown
+    attributes:
+      value: 'This is a public repository. Include synthetic examples only. Submission does not execute agents or approve results.'
+  - type: dropdown
+    id: workflow
+    attributes:
+      label: Workflow
+      options: ['spatial_qa', 'opportunity', 'onboarding']
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Responsible human owner
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective and acceptance criteria
+    validations:
+      required: true
+  - type: checkboxes
+    id: classification
+    attributes:
+      label: Data classification
+      options:
+        - label: All supplied data is public and synthetic, with no client records or credentials
+          required: true

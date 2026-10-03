@@ -1,0 +1,16 @@
+{
+  "workflow": "spatial_qa",
+  "objective": "Screen a synthetic address dataset before GIS lead review",
+  "owner": "Paul Iyogun",
+  "classification": "public_synthetic",
+  "data": {
+    "geojson": {
+      "type": "FeatureCollection",
+      "features": [
+        {"type": "Feature", "properties": {"address": "100 Example Avenue", "unit": "1", "city": "Demo City"}, "geometry": {"type": "Point", "coordinates": [-80.8, 27.2]}},
+        {"type": "Feature", "properties": {"address": "100 Example Avenue", "unit": "2", "city": "Demo City"}, "geometry": {"type": "Point", "coordinates": [-80.8, 27.2]}},
+        {"type": "Feature", "properties": {"address": "", "city": "Demo City"}, "geometry": {"type": "Point", "coordinates": [-181, 91]}}
+      ]
+    }
+  }
+}

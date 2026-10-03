@@ -1,0 +1,28 @@
+name: GeoAgent OS pilot
+on:
+  pull_request:
+    paths: ['geoagent_os/**', '.github/workflows/geoagent-os.yml']
+  push:
+    paths: ['geoagent_os/**', '.github/workflows/geoagent-os.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test operations and approval gates
+        run: python -m unittest discover -s geoagent_os/tests -v
+      - name: Run synthetic work orders
+        run: python -m geoagent_os.demo
+      - name: Upload synthetic dashboard
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: geoagent-os-synthetic-demo
+          path: geoagent_os/runtime/dashboard.html
+          retention-days: 7

@@ -1,0 +1,7 @@
+{
+  "workflow": "opportunity",
+  "objective": "Prepare a qualification brief and proposal outline for a synthetic GIS modernization opportunity",
+  "owner": "Paul Iyogun",
+  "classification": "public_synthetic",
+  "data": {"title": "Synthetic County GIS Modernization", "requirements": ["Address data quality", "Enterprise GIS workflow review", "Staff training"], "deadline": "Unverified example; human input required"}
+}
