@@ -11,10 +11,22 @@ class SupabaseAgentOSStore {
     const baseUrl = getEnv('SUPABASE_URL').replace(/\/$/, '');
     const key = getEnv('SUPABASE_SERVICE_ROLE_KEY');
     if (!baseUrl || !key) throw new Error('AgentOS persistence is not configured. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.');
-    const response = await this.fetch(`${baseUrl}/rest/v1/${tableAndQuery}`, { ...options, headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', ...(options.method === 'POST' ? { Prefer: 'return=representation' } : {}), ...(options.headers || {}) } });
-    if (!response.ok) throw new Error((await response.text()) || 'AgentOS persistence request failed.');
-    if (response.status === 204) return null;
-    return response.json();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    try {
+      const response = await this.fetch(`${baseUrl}/rest/v1/${tableAndQuery}`, { ...options, signal: controller.signal, headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', ...(options.method === 'POST' ? { Prefer: 'return=representation' } : {}), ...(options.headers || {}) } });
+      if (!response.ok) throw new Error('Persistence request failed.');
+      if (response.status === 204) return null;
+      const rows = await response.json();
+      if (!Array.isArray(rows)) throw new Error('Invalid persistence response.');
+      return rows;
+    } catch (cause) {
+      const error = new Error('AgentOS persistence is temporarily unavailable.');
+      error.persistenceUnavailable = true;
+      throw error;
+    } finally {
+      clearTimeout(timeout);
+    }
   }
 
   async listTasks(limit = 100) { return this.request(`agentos_tasks?select=*&order=created_at.desc&limit=${limit}`); }

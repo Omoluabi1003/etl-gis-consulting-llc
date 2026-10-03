@@ -10,11 +10,11 @@ The public dashboard uses an unauthenticated, read-only API representation conta
 
 | Layer | Implementation |
 | --- | --- |
-| Human command | `agentos/index.html` submits scoped assignments and explicit decisions. |
+| Human command | `agentos/index.html` displays public agent capabilities and aggregate activity; supervisor commands are API-only. |
 | Agent orchestration | `agentos/orchestrator.js` validates assignments and enforces lifecycle transitions. |
 | GIS/data intelligence | `agentos/tools/geojson-inspector.js` provides bounded, read-only FeatureCollection inspection. |
 | Business operations | Seven definitions expose capabilities without fabricating integrations. |
-| Integration | `SupabaseAgentOSStore` is the persistence adapter; further adapters remain intentionally absent. |
+| Integration | `SupabaseAgentOSStore` provides optional durable storage; `MemoryAgentOSStore` provides process-local fallback when either credential is absent. |
 | Governance/approval | Restricted action identifiers stop at `REVIEW_REQUIRED`; approve, reject, and revision decisions are recorded. |
 | Audit/observability | Each meaningful orchestration, tool, boundary, and decision event is appended to an audit table. |
 
@@ -33,3 +33,9 @@ The GeoJSON inspector accepts at most 10,000 features, reports schema properties
 3. Implement an ArcGIS REST read-only service inspector with URL allowlisting, timeouts, response-size limits, and SSRF protections.
 4. Add asynchronous job execution and idempotency for long-running workloads.
 5. Add revision resubmission and approved-action execution as explicit, separately authorized commands.
+
+## Optional persistence and availability
+
+No database credentials are required to open the Command Center. When either Supabase credential is missing, the server selects one process-local memory store shared across requests in that process. Authorized API commands, GeoJSON inspection, approval decisions, and audit events use the same store. These records are temporary: cold starts erase them, and serverless instances do not share them. The public UI labels this activity scope. This is suitable for evaluation, not durable production supervision. No browser storage or credentials are introduced.
+
+With complete configuration, Supabase remains authoritative. Requests have a five-second network/body timeout. If reads fail, the public dashboard still shows the seven configured agents but marks activity and counts unavailable rather than reporting false zeroes. A configured database failure never redirects writes to memory: supervisor commands fail visibly, preventing split histories or accidental duplicate execution. Recovery retries Supabase on the next request. Missing credentials continue to select memory; supplying both selects Supabase without migrating temporary records.
