@@ -1,0 +1,7 @@
+{
+  "workflow": "onboarding",
+  "objective": "Prepare a synthetic client engagement checklist",
+  "owner": "Paul Iyogun",
+  "classification": "public_synthetic",
+  "data": {"client": "Demonstration Agency"}
+}

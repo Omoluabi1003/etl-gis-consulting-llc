@@ -73,3 +73,14 @@ This repository follows GeoAware OS v1.0.0, a design and engineering philosophy 
 - Replace image placeholders in `assets/images/` with brand photography or project visuals.
 - Update company contact details and metrics to reflect current information.
 - Extend `assets/js/scripts.js` to integrate analytics, CRM submissions, or marketing automation as needed.
+
+## ETL GeoAgent OS operations pilot
+
+The [GeoAgent OS guide](geoagent_os/README.md) documents a working local operations platform for human-supervised GIS screening, opportunity qualification, proposal outlines, client onboarding, and reporting. Six specialist agents run through three workflows, with SQLite audit records and review gates before deliverable export. Default business outputs are labeled templates; live AI drafting requires an explicitly configured provider adapter.
+
+```bash
+python -m unittest discover -s geoagent_os/tests -v
+python -m geoagent_os.demo
+```
+
+Open the generated `geoagent_os/runtime/dashboard.html` locally to review the synthetic pilot. Runtime data is excluded from git. See the guide for approval commands, provider setup, and requirements before client deployment.
