@@ -114,7 +114,7 @@
       if (!draw) return;
       draw(lon, lat); host.dataset.rotation = lon.toFixed(3);
       if (marker) {
-        const point = project(-80.36, 27.29, lon, lat);
+        const point = project(-81.6557, 30.3322, lon, lat);
         marker.hidden = point.z < .18;
         marker.style.left = `${50 + point.x * 40.5 * host.clientHeight / host.clientWidth}%`;
         marker.style.top = `${50 - point.y * 40.5}%`;
