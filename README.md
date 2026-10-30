@@ -84,3 +84,7 @@ python -m geoagent_os.demo
 ```
 
 Open the generated `geoagent_os/runtime/dashboard.html` locally to review the synthetic pilot. Runtime data is excluded from git. See the guide for approval commands, provider setup, and requirements before client deployment.
+
+## Specialist workflow playbook
+
+The [ETL GIS agency playbook](docs/agency-playbook/README.md) evaluates the Agency Agents library and provides six focused GIS and delivery role briefs, evidence-linked handoffs, four workflow runbooks, and 20 proposed evaluation cases. It is documentation for human-supervised work; it does not install agents, enable a provider, or change runtime permissions.

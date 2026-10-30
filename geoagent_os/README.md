@@ -15,6 +15,18 @@ python -m geoagent_os.demo
 
 Open `geoagent_os/runtime/dashboard.html` locally. The demo creates three synthetic work orders, all awaiting review. Running the demo again does not duplicate existing samples. Dashboard generation creates a read-only snapshot; regenerate it after changes.
 
+For development alongside the public website, keep runtime artifacts outside the checkout:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m geoagent_os.demo --output /workspace/geoagent-runtime
+python3 -m geoagent_os --db /workspace/geoagent-runtime/demo.sqlite list
+python3 -m geoagent_os --db /workspace/geoagent-runtime/demo.sqlite packet WORK_ORDER_ID /workspace/geoagent-runtime/review-001.html
+```
+
+The `packet` command creates a read-only **internal review copy**, including the exact result hash, owner, sources, outputs, missing evidence and next actions. It does not approve a work order or replace the gated JSON export. It rejects changed results, requires an `.html` filename and refuses to overwrite an existing artifact. Choose a new filename for each snapshot. Keep packets outside public hosting; they contain the supplied work order.
+
+Default business templates now include validated `handoff` objects: source-linked requirement matrices, owner-assigned onboarding actions and explicit unverified prerequisites. A supplied URL or deadline is not treated as independently verified. Reporting consolidates preparation blockers and separates issue-event count from unique affected-feature count (`null` when spatial screening did not run). Existing output fields remain available.
+
 ## Operate a work order
 
 ```bash
@@ -50,7 +62,9 @@ export GEOAGENT_AI_COMMAND='["python", "/absolute/path/to/your/provider_adapter.
 python -m geoagent_os run WORK_ORDER_ID --ai
 ```
 
-Adapter contract: read one JSON object from stdin and return one JSON object to stdout. Input contains `agent`, `instruction`, `work_order`, and `prior_results`. The configured command is executed without a shell, with a 45-second timeout and a 100,000-character response limit. AI responses are untrusted drafts and use the same review gate. Spatial checks stay deterministic. The adapter owns provider authentication, model selection, token budgets, API calls, retries, and redaction; no provider is bundled or activated in this release. Store keys outside this public repository. Enabling AI sends the work-order payload to that adapter, so only use approved public synthetic examples during the pilot.
+Adapter contract: read one JSON object from stdin and return a complete validated handoff object to stdout. Input contains `agent`, role-specific `instruction`, `work_order`, `prior_results`, `prompt_version`, and `output_contract`. Arbitrary draft objects are no longer accepted. Follow the supplied template, retain immutable context fields, and cite supplied evidence with resolving JSON pointers. See the [executable drafting contract](../docs/agency-playbook/runtime.md) for migration, validation limits, and a provider-free request inspection command.
+
+The configured command is executed without a shell, with a 45-second timeout and a 100,000-character response limit. AI responses are untrusted drafts and use the same review gate. Spatial checks stay deterministic. The adapter owns provider authentication, model selection, token budgets, API calls, retries, and redaction; no provider is bundled or activated in this release. Store keys outside this public repository. Enabling AI sends the work-order payload to that adapter, so only use approved public synthetic examples during the pilot.
 
 ## Governance and deployment limits
 
