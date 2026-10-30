@@ -1,8 +1,9 @@
 /* Supported OpenGeos RustGIS embed. No project/data bridge is enabled. */
 (function (root) {
   'use strict';
-  const ORIGIN = 'https://web.rustgis.app';
-  const DATA = 'https://assets.rustgis.app/data/';
+  const ORIGIN = root.location?.origin || 'https://etl-gis-consulting-llc.vercel.app';
+  const APP_PATH = '/rustgis-app/';
+  const DATA = `${ORIGIN}${APP_PATH}data/`;
   const PRESETS = {
     blank: { name: 'Your own data', files: [], steps: ['Choose Data → Add Data to open a file from your device.', 'Inspect the coordinate system, attributes and layer style.', 'Use Save or Export to download your work before leaving.'] },
     world: { name: 'World map', files: ['countries.geojson', 'cities.geojson'], steps: ['Wait for the public Natural Earth countries and cities to load.', 'Inspect a layer’s attributes and try graduated symbology.', 'Use the Publish ribbon to prepare a layout and export a map.'] },
@@ -10,13 +11,14 @@
   };
   function launchURL(key, embedded = true) {
     if (!Object.hasOwn(PRESETS, key)) throw new Error('Unknown RustGIS starter.');
-    if (key === 'blank' && embedded) return `${ORIGIN}/?embed`;
-    const url = new URL(ORIGIN);
+    if (key === 'blank' && embedded) return `${ORIGIN}${APP_PATH}?embed`;
+    const url = new URL(APP_PATH, ORIGIN);
     url.searchParams.set(embedded ? 'embed' : 'blank', '');
     const preset = PRESETS[key];
     preset.files.forEach((file) => url.searchParams.append('data', DATA + file));
     if (preset.projection) url.searchParams.set('projection', preset.projection);
-    return url.href;
+    // Upstream parses these as bare flags; `embed=` and `blank=` are not equivalent.
+    return url.href.replace(embedded ? '?embed=' : '?blank=', embedded ? '?embed' : '?blank');
   }
   function isReady(event, frame) {
     return Boolean(frame && event.source === frame.contentWindow && event.origin === ORIGIN &&

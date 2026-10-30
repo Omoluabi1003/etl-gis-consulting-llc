@@ -3,6 +3,15 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const requiredFiles = [
+  'rustgis-app/index.html',
+  'rustgis-app/LICENSE',
+  'rustgis-app/THIRD-PARTY-LICENSES.txt',
+  'rustgis-app/PROVENANCE.json',
+  'rustgis-app/rustgis-web-1815bb691d99cd11.js',
+  'rustgis-app/rustgis-web-1815bb691d99cd11_bg.wasm',
+  'rustgis-app/snippets/rustgis-web-16bb2518e3b497a1/inline0.js',
+  'rustgis-app/data/countries.geojson',
+  'rustgis-app/data/cities.geojson',
   'rustgis.html',
   'assets/css/rustgis.css',
   'assets/js/rustgis-core.js',
@@ -34,4 +43,13 @@ if (missing.length > 0) {
   process.exit(1);
 }
 
-console.log('[build] Required assets are present.');
+const crypto = require('crypto');
+const provenance = JSON.parse(fs.readFileSync(path.join(root, 'rustgis-app/PROVENANCE.json')));
+for (const [file, expected] of Object.entries(provenance.sha256)) {
+  const actual = crypto.createHash('sha256').update(fs.readFileSync(path.join(root, 'rustgis-app', file))).digest('hex');
+  if (actual !== expected) {
+    console.error(`[build] RustGIS artifact integrity mismatch: ${file}`);
+    process.exit(1);
+  }
+}
+console.log('[build] Required assets and RustGIS artifact integrity verified.');
