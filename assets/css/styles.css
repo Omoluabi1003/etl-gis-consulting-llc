@@ -1628,6 +1628,12 @@ body.has-sticky-cta.legal-page main .card :is(h2, h3, p, ul, li, strong, a) {
     color: var(--color-muted);
 }
 
+.service-table-scroll {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
 .service-table {
     max-width: var(--max-width);
     margin: 0 auto;

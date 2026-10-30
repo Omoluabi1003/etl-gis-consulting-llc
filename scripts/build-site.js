@@ -13,7 +13,7 @@ const pages = [
   'insights/location-intelligence-for-executive-decision-cycles.html',
   'services/enterprise-architecture.html', 'services/managed-gis-operations.html',
   'services/spatial-analytics-enablement.html', 'services/strategy-roadmapping.html',
-  'robots.txt', 'sitemap.xml',
+  'robots.txt', 'sitemap.xml', 'site.webmanifest', 'favicon.ico', 'apple-touch-icon.png',
 ];
 function build() {
   fs.rmSync(output, { recursive: true, force: true });

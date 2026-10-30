@@ -37,6 +37,9 @@ jobs:
       - name: Public deployment boundary
         run: node scripts/test-public-site.js
 
+      - name: Brand assets and share metadata
+        run: node scripts/test-brand-identity.js
+
       - name: Link checker
         uses: lycheeverse/lychee-action@v1
         with:
@@ -71,3 +74,4 @@ jobs:
           done
           node scripts/test-earth-globe-browser.js
           node scripts/test-agentos-public-browser.js
+          node scripts/test-brand-browser.js
