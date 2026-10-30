@@ -11,21 +11,23 @@ A polished, professional marketing website for ETL GIS Consulting LLC showcasing
 - **contact.html** – Consultation inquiry form, office details, and engagement options.
 - **assets/css/styles.css** – Global typography, layout, responsive design, and component styling.
 - **assets/js/scripts.js** – Navigation toggle, smooth scroll utilities, and form handling enhancements.
-- **agentos/** – Secured Agent Command Center for the governed digital workforce.
+- **agentos/index.html** – Public, high-level AI consulting overview; no operational dashboard.
 - **agentos/** (JavaScript modules) – Agent definitions, workflow lifecycle, approval boundaries, audit events, and allowlisted GIS tools.
 - **database/agentos-schema.sql** – PostgreSQL/Supabase persistence schema for tasks, approvals, and audit events.
 
 ## Getting Started
 
 1. Clone the repository and open the project directory.
-2. Launch a local web server (e.g., `python -m http.server`) from the project root.
+2. Run `node scripts/build-site.js`, then serve the public output with `python -m http.server 8000 --directory site-dist`.
 3. Navigate to `http://localhost:8000` to explore the site.
 
-The pages are built with semantic HTML5, modern CSS, and lightweight JavaScript so no build steps are required.
+The pages use semantic HTML5, modern CSS and lightweight JavaScript. The public build copies an explicit set of pages and assets into `site-dist/`; internal source, SQL, scripts, pilot runtime and workflow documentation are excluded. `vercel.json` configures this output for deployment. Root `/api` functions remain server-side and are not copied into the static output.
 
 ## ETL GIS AgentOS
 
-AgentOS is additive to the public marketing site. The `/agentos/` command center loads the seven standardized agent definitions publicly, but operational records and mutations require a server-side access token. It does not ship demonstration activity or fabricated metrics: until tasks are submitted, all operational counts are zero.
+The public `/agentos/` page describes consulting outcomes only. It makes no operational requests and contains no agent roster, tools, task counts, activity status or control-plane instructions. The main navigation labels it AI Solutions.
+
+All `/api/agentos` reads and writes, including definitions and default summary reads, require the existing server-side `AGENTOS_ACCESS_TOKEN` through a Bearer authorization header. Missing configuration fails closed. Do not place this token in the public site or a public browser bundle. This remains a shared server-managed supervisor gate, not SSO or named-user authentication.
 
 ### Configure the operational backend
 
@@ -34,7 +36,7 @@ AgentOS is additive to the public marketing site. The `/agentos/` command center
    - `SUPABASE_URL`
    - `SUPABASE_SERVICE_ROLE_KEY` (required for AgentOS; the browser never receives it)
    - `AGENTOS_ACCESS_TOKEN` (a long, randomly generated supervisor token)
-3. Deploy and open `/agentos/`. Enter the supervisor token when prompted. It is kept in browser `sessionStorage` for the current tab only.
+3. Use the private API from an authorized server-side integration. `/agentos/` remains a public consulting overview; it is not a supervisor login or control panel.
 
 The API permits only three explicit operations: governed task submission, a read-only GeoJSON structural inspection, and recorded human approval decisions. Restricted actions create a pending approval request and stop; approval records authorization but does not silently execute the consequential action. Direct browser access to the AgentOS database tables should remain disabled by row-level security.
 
@@ -50,6 +52,7 @@ node scripts/typecheck-config.js
 node scripts/build-check.js
 node scripts/test-form-endpoints.js
 node scripts/test-agentos.js
+node scripts/test-public-site.js
 ```
 
 ## Procedural GIS Imagery

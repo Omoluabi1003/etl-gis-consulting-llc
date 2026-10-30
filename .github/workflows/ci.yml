@@ -34,6 +34,9 @@ jobs:
       - name: Globe projection checks
         run: node scripts/test-earth-globe.js
 
+      - name: Public deployment boundary
+        run: node scripts/test-public-site.js
+
       - name: Link checker
         uses: lycheeverse/lychee-action@v1
         with:
@@ -54,10 +57,12 @@ jobs:
       - name: Check integrated geographic visuals
         env:
           NODE_PATH: ${{ runner.temp }}/globe-browser/node_modules
+          PUBLIC_SITE_TEST_ORIGIN: http://127.0.0.1:8010
         run: |
           set -euo pipefail
           export CHROMIUM_PATH="$(node -p "require('playwright').chromium.executablePath()")"
-          python3 -m http.server 8010 --bind 127.0.0.1 >"$RUNNER_TEMP/globe-http.log" 2>&1 &
+          node scripts/build-site.js
+          python3 -m http.server 8010 --bind 127.0.0.1 --directory site-dist >"$RUNNER_TEMP/globe-http.log" 2>&1 &
           globe_server_pid=$!
           trap 'kill "$globe_server_pid"' EXIT
           for attempt in {1..30}; do
@@ -65,3 +70,4 @@ jobs:
             sleep 1
           done
           node scripts/test-earth-globe-browser.js
+          node scripts/test-agentos-public-browser.js

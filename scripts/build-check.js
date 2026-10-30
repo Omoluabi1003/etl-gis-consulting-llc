@@ -12,7 +12,6 @@ const requiredFiles = [
   'assets/images/C4376F7C-6E7F-470B-A331-84B0E39C59A7.png',
   'agentos/index.html',
   'assets/css/agentos.css',
-  'assets/js/agentos.js',
   'database/agentos-schema.sql',
 ];
 

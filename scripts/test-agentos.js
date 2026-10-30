@@ -35,11 +35,7 @@ const run = async () => {
 
   const summary = await orchestrator.summary();
   assert.equal(summary.metrics.totalTasks, 2); assert.equal(summary.metrics.completedTasks, 1); assert.equal(summary.metrics.activeTasks, 1);
-  const publicSummary = await orchestrator.publicSummary();
-  assert.equal(publicSummary.access, 'public-read-only');
-  assert.equal(publicSummary.metrics.totalTasks, 2);
-  assert(!('tasks' in publicSummary)); assert(!('approvals' in publicSummary)); assert(!('audit' in publicSummary));
-  assert(!('currentAssignment' in publicSummary.agents[0])); assert(!('humanSupervisor' in publicSummary.agents[0]));
+  assert.equal(typeof orchestrator.publicSummary, 'undefined');
 
   const invoke = async (req) => {
     const response = { headers: {}, setHeader(name, value) { this.headers[name] = value; }, end(payload) { this.payload = JSON.parse(payload); } };
@@ -53,26 +49,26 @@ const run = async () => {
   const savedEnv = Object.fromEntries(['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'AGENTOS_ACCESS_TOKEN'].map((key) => [key, process.env[key]]));
   const originalFetch = global.fetch;
   try {
+    process.env.AGENTOS_ACCESS_TOKEN = 'test-supervisor';
+    const headers = { authorization: 'Bearer test-supervisor' };
     delete process.env.SUPABASE_URL;
     delete process.env.SUPABASE_SERVICE_ROLE_KEY;
     global.fetch = async () => { throw new Error('Unconfigured mode must never fetch'); };
-    const localRead = await invoke({ method: 'GET', query: {}, headers: {} });
+    const localRead = await invoke({ method: 'GET', query: {}, headers });
     assert.equal(localRead.statusCode, 200);
     assert.equal(localRead.payload.agents.length, 7);
     assert.equal(localRead.payload.activityScope, 'current-runtime');
     assert.equal(localRead.payload.metrics.totalTasks, 0);
     assert(!JSON.stringify(localRead.payload).includes('SUPABASE'));
     process.env.SUPABASE_URL = 'https://example.supabase.co';
-    const partialRead = await invoke({ method: 'GET', query: {}, headers: {} });
+    const partialRead = await invoke({ method: 'GET', query: {}, headers });
     assert.equal(partialRead.statusCode, 200);
     assert.equal(partialRead.payload.activityScope, 'current-runtime');
     delete process.env.SUPABASE_URL;
     process.env.SUPABASE_SERVICE_ROLE_KEY = 'server-only-test-key';
-    assert.equal((await invoke({ method: 'GET', query: {}, headers: {} })).payload.activityScope, 'current-runtime');
+    assert.equal((await invoke({ method: 'GET', query: {}, headers })).payload.activityScope, 'current-runtime');
     delete process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-    process.env.AGENTOS_ACCESS_TOKEN = 'test-supervisor';
-    const headers = { authorization: 'Bearer test-supervisor' };
     const submit = await invoke({ method: 'POST', query: {}, headers, body: { operation: 'submit-task', title: 'Local GIS check', description: 'Validate an empty dataset', initiatedBy: 'GIS Manager', agentId: 'gis-operations-agent' } });
     assert.equal(submit.statusCode, 201);
     const inspection = await invoke({ method: 'POST', query: {}, headers, body: { operation: 'inspect-geojson', taskId: submit.payload.task.id, user: 'GIS Manager', geojson: { type: 'FeatureCollection', features: [] } } });
@@ -82,22 +78,41 @@ const run = async () => {
     assert.equal((await invoke({ method: 'POST', query: {}, headers: {}, body: { operation: 'decide-approval', approvalId: restricted.payload.approval.id } })).statusCode, 401);
     const decision = await invoke({ method: 'POST', query: {}, headers, body: { operation: 'decide-approval', approvalId: restricted.payload.approval.id, decision: 'APPROVE', decidedBy: 'Data Steward', note: 'Reviewed' } });
     assert.equal(decision.payload.task.status, 'APPROVED');
-    const localSummary = await invoke({ method: 'GET', query: {}, headers: {} });
+    const localSummary = await invoke({ method: 'GET', query: {}, headers });
     assert.equal(localSummary.payload.metrics.totalTasks, 2);
     assert.equal(localSummary.payload.metrics.completedTasks, 1);
-    assert(!('tasks' in localSummary.payload));
+    assert('tasks' in localSummary.payload);
     const supervisor = await invoke({ method: 'GET', query: { scope: 'supervisor' }, headers });
     assert(supervisor.payload.audit.some((event) => event.approvalStatus === 'APPROVED'));
     assert.equal((await invoke({ method: 'GET', query: { scope: 'supervisor' }, headers: {} })).statusCode, 401);
 
+    const originalPrivateFetch = global.fetch;
+    let deniedFetches = 0;
+    global.fetch = async () => { deniedFetches++; throw new Error('Private backend must not be reached'); };
+    for (const query of [{}, { action: 'definitions' }, { scope: 'supervisor' }]) {
+      for (const authorization of [undefined, 'Bearer wrong', 'test-supervisor', 'Basic test-supervisor', ['Bearer test-supervisor']]) {
+        const denied = await invoke({ method: 'GET', query, headers: { authorization } });
+        assert.equal(denied.statusCode, 401);
+        assert.deepEqual(Object.keys(denied.payload), ['message']);
+        assert.equal(denied.headers['Cache-Control'], 'no-store');
+      }
+    }
+    assert.equal(deniedFetches, 0);
+    global.fetch = originalPrivateFetch;
+    const definitions = await invoke({ method: 'GET', query: { action: 'definitions' }, headers });
+    assert.equal(definitions.payload.agents.length, 7);
+    delete process.env.AGENTOS_ACCESS_TOKEN;
+    assert.equal((await invoke({ method: 'GET', query: {}, headers })).statusCode, 401);
+    process.env.AGENTOS_ACCESS_TOKEN = 'test-supervisor';
+
     process.env.SUPABASE_URL = 'https://example.supabase.co';
     process.env.SUPABASE_SERVICE_ROLE_KEY = 'server-only-test-key';
     global.fetch = async () => ({ ok: true, json: async () => [] });
-    const publicRead = await invoke({ method: 'GET', query: {}, headers: {} });
-    assert.equal(publicRead.statusCode, 200);
-    assert.equal(publicRead.payload.activityScope, 'shared');
-    assert.equal(publicRead.payload.metrics.totalTasks, 0);
-    assert(!('tasks' in publicRead.payload));
+    const authorizedRead = await invoke({ method: 'GET', query: {}, headers });
+    assert.equal(authorizedRead.statusCode, 200);
+    assert.equal(authorizedRead.payload.activityScope, 'shared');
+    assert.equal(authorizedRead.payload.metrics.totalTasks, 0);
+    assert('tasks' in authorizedRead.payload);
     const failures = [
       async () => { throw new Error('private network details'); },
       async () => ({ ok: false, text: async () => 'server-only-test-key' }),
@@ -107,29 +122,27 @@ const run = async () => {
     ];
     for (const failure of failures) {
       global.fetch = failure;
-      const outage = await invoke({ method: 'GET', query: {}, headers: {} });
-      assert.equal(outage.statusCode, 200);
-      assert.equal(outage.payload.activityAvailable, false);
-      assert.equal(outage.payload.agents.length, 7);
-      assert.equal(outage.payload.metrics.totalTasks, null);
-      assert.equal(outage.payload.agents[0].tasksCompleted, null);
+      const outage = await invoke({ method: 'GET', query: {}, headers });
+      assert.equal(outage.statusCode, 503);
+      assert(!('agents' in outage.payload));
+      assert(!('metrics' in outage.payload));
       assert(!JSON.stringify(outage.payload).includes('server-only-test-key'));
     }
     global.fetch = failures[0];
     const failedWrite = await invoke({ method: 'POST', query: {}, headers, body: { operation: 'submit-task', title: 'Outage write', description: 'Must not enter memory', initiatedBy: 'GIS Manager', agentId: 'gis-operations-agent' } });
     assert.equal(failedWrite.statusCode, 503);
     global.fetch = async () => ({ ok: true, json: async () => [] });
-    assert.equal((await invoke({ method: 'GET', query: {}, headers: {} })).payload.activityAvailable, true);
+    assert.equal((await invoke({ method: 'GET', query: {}, headers })).payload.activityAvailable, true);
     delete process.env.SUPABASE_URL;
     delete process.env.SUPABASE_SERVICE_ROLE_KEY;
-    assert.equal((await invoke({ method: 'GET', query: {}, headers: {} })).payload.metrics.totalTasks, 2);
+    assert.equal((await invoke({ method: 'GET', query: {}, headers })).payload.metrics.totalTasks, 2);
   } finally {
     global.fetch = originalFetch;
     for (const [key, value] of Object.entries(savedEnv)) {
       if (value === undefined) delete process.env[key]; else process.env[key] = value;
     }
   }
-  console.log('[test] AgentOS lifecycle, optional persistence, outage recovery, approval boundary, audit, and GeoJSON inspection ok');
+  console.log('[test] AgentOS private read/write access, lifecycle, optional persistence, outage recovery, approval boundary, audit and GeoJSON inspection ok');
 };
 
 run().catch((error) => { console.error(`[test] ${error.stack || error.message}`); process.exit(1); });
