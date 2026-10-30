@@ -85,9 +85,9 @@ python -m geoagent_os.demo
 
 Open the generated `geoagent_os/runtime/dashboard.html` locally to review the synthetic pilot. Runtime data is excluded from git. See the guide for approval commands, provider setup, and requirements before client deployment.
 
-## RUSTGIS interactive workspace
+## Integrated globe visuals
 
-Open `rustgis.html` through the local web server for the OpenGeos RustGIS feature showcase, a self-hosted official RustGIS engine and an opt-in browser embed with guided world-map, globe and own-data starters. A separate ETL GIS Point Explorer offers local point layers, attributes, proximity, GeoJSON import/export and optional MapLibre basemaps adapted from WaveAtlas. Its default grid works offline. See the [implementation, source provenance, upstream licensing and validation limits](docs/rustgis-workspace.md). Run `node scripts/test-rustgis.js` for the fifteen core checks, and `node scripts/test-rustgis-runtime.js` for the real WASM-engine browser smoke test.
+The homepage hero and About section use a native WebGL globe with locally bundled NASA satellite imagery. The hero supports drag/keyboard rotation, pause, reduced motion and an image-based fallback. It loads no GIS application or external renderer. See [visual design and imagery credits](docs/globe-visuals.md).
 
 ## Specialist workflow playbook
 
