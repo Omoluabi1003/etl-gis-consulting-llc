@@ -3,6 +3,13 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const requiredFiles = [
+  'rustgis.html',
+  'assets/css/rustgis.css',
+  'assets/js/rustgis-core.js',
+  'assets/js/rustgis.js',
+  'assets/vendor/maplibre-gl/maplibre-gl.js',
+  'assets/vendor/maplibre-gl/maplibre-gl.css',
+  'assets/vendor/maplibre-gl/LICENSE.txt',
   'assets/downloads/utility-network-modernization-playbook.pdf',
   'assets/downloads/public-agency-analytics-playbook.pdf',
   'assets/downloads/cjis-alignment-brief.pdf',

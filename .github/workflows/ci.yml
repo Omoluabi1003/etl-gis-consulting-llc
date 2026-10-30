@@ -31,6 +31,9 @@ jobs:
       - name: AgentOS orchestration tests
         run: node scripts/test-agentos.js
 
+      - name: RUSTGIS point operations
+        run: node scripts/test-rustgis.js
+
       - name: Link checker
         uses: lycheeverse/lychee-action@v1
         with:

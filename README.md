@@ -85,6 +85,10 @@ python -m geoagent_os.demo
 
 Open the generated `geoagent_os/runtime/dashboard.html` locally to review the synthetic pilot. Runtime data is excluded from git. See the guide for approval commands, provider setup, and requirements before client deployment.
 
+## RUSTGIS interactive workspace
+
+Open `rustgis.html` through the local web server to explore point layers, feature attributes, spherical proximity analysis, local GeoJSON import/export, and optional online basemaps adapted from WaveAtlas. The default coordinate grid works without external tile services. See the [implementation, source provenance and tests](docs/rustgis-workspace.md). Run `node scripts/test-rustgis.js` for the nine point-operation checks.
+
 ## Specialist workflow playbook
 
 The [ETL GIS agency playbook](docs/agency-playbook/README.md) evaluates the Agency Agents library and provides six focused GIS and delivery role briefs, evidence-linked handoffs, four workflow runbooks, and 20 proposed evaluation cases. It is documentation for human-supervised work; it does not install agents, enable a provider, or change runtime permissions.
