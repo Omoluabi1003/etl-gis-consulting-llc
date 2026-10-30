@@ -3,6 +3,15 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const requiredFiles = [
+  'assets/brand/etl-gis-crest.png',
+  'assets/brand/etl-gis-crest-128.webp',
+  'assets/brand/etl-gis-crest-256.webp',
+  'assets/brand/etl-gis-share.jpg',
+  'assets/brand/favicon.ico',
+  'assets/brand/icon-32.png',
+  'assets/brand/icon-180.png',
+  'assets/css/brand-identity.css',
+  'site.webmanifest',
   'assets/js/earth-globe.js',
   'assets/images/earth/day-2048.webp',
   'assets/images/earth/night-1024.webp',

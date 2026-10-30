@@ -1,0 +1,10 @@
+/* Approved engraved medallion: shared identity across all page layouts. */
+.brand-crest{display:block;width:64px;height:64px;object-fit:contain;flex:0 0 auto}
+.brand>.brand-crest,.ai-brand>.brand-crest{width:60px;height:60px}
+.logo .logo-mark{width:64px;height:64px;object-fit:contain;filter:none}
+.footer-logo>img,.footer-brand .brand-crest{object-fit:contain;filter:none}
+.article-brand-header{position:relative;background:#06101f;color:#f0f6fa;padding:18px max(24px,calc((100vw - 1200px)/2));box-shadow:none}
+.article-brand{display:inline-flex;align-items:center;gap:14px;color:inherit;text-decoration:none}
+.article-brand>span{font:700 18px/1.2 system-ui,sans-serif;letter-spacing:.04em}
+.article-brand small{display:block;font:400 10px/1.4 system-ui,sans-serif;letter-spacing:.14em;margin-top:5px;text-transform:uppercase;color:#a4bfcc}
+@media(max-width:700px){.brand>.brand-crest,.ai-brand>.brand-crest,.logo .logo-mark{width:52px;height:52px}.brand-crest{width:56px;height:56px}.article-brand-header{padding:15px 20px}}
