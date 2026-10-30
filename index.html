@@ -75,6 +75,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/premium-landing.css">
+    <link rel="preload" href="assets/images/earth/day-2048.webp" as="image">
     <script type="application/json" data-analytics-template data-src="https://plausible.io/js/script.js" data-domain="etl-gis-consulting-llc.vercel.app"></script>
 </head>
 <body id="top" class="premium-site">
@@ -98,7 +99,6 @@
                     <li><a href="#work">Portfolio</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="insights/location-intelligence-for-executive-decision-cycles.html">Insights</a></li>
-                    <li><a href="rustgis.html">RUSTGIS</a></li>
                     <li><a href="agentos/">AgentOS</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a class="nav-cta" href="contact.html">Request a Consultation <span aria-hidden="true">↗</span></a></li>
@@ -109,7 +109,6 @@
 
     <main id="main-content" tabindex="-1">
         <section class="hero" aria-labelledby="hero-title">
-            <div class="hero-grid" aria-hidden="true"></div>
             <div class="container hero-layout">
                 <div class="hero-copy">
                     <p class="eyebrow"><span></span> Florida-based · Serving clients nationwide</p>
@@ -124,29 +123,16 @@
                     </div>
                 </div>
 
-                <div class="intelligence-console" aria-label="Illustration of an integrated intelligence platform">
-                    <div class="console-topbar">
-                        <span><i></i> Intelligence Operations</span>
-                        <span class="live-status">● Systems connected</span>
+                <figure class="earth-scene" aria-labelledby="earth-scene-caption">
+                    <div class="earth-scene-heading"><span class="earth-kicker">Geography, made visible</span><span class="earth-coordinate">27.3° N / 80.4° W</span></div>
+                    <div class="earth-view" data-earth-globe data-longitude="-45" data-latitude="18">
+                        <canvas aria-label="Interactive Earth globe. Drag horizontally or use the arrow keys to rotate; Home resets the view." tabindex="0"></canvas>
+                        <span class="earth-marker" hidden><i></i><span>Florida<span>Our home base</span></span></span>
                     </div>
-                    <div class="console-body">
-                        <div class="map-panel">
-                            <span class="map-label">LIVE LOCATION INTELLIGENCE</span>
-                            <div class="map-shape shape-one"></div>
-                            <div class="map-shape shape-two"></div>
-                            <span class="map-node node-one"></span>
-                            <span class="map-node node-two"></span>
-                            <span class="map-node node-three"></span>
-                            <span class="map-route"></span>
-                        </div>
-                        <div class="signal-panel">
-                            <div class="signal-card"><span>Automated operating models</span><strong>24</strong><small>↗ 18% efficiency</small></div>
-                            <div class="signal-card"><span>Data quality</span><strong>98.4%</strong><div class="meter"><i></i></div></div>
-                            <div class="signal-chart"><span>Decision velocity</span><div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-                        </div>
-                    </div>
-                    <div class="console-footer"><span>GIS</span><i></i><span>DATA</span><i></i><span>AI</span><i></i><span>ACTION</span></div>
-                </div>
+                    <figcaption id="earth-scene-caption"><div><strong>Local understanding.<br>Global perspective.</strong><span>Florida-based · Serving clients nationwide</span></div><button class="earth-motion" type="button" aria-pressed="false">Pause globe</button></figcaption>
+                    <p class="earth-instructions">Drag to explore <span aria-hidden="true">·</span> Arrow keys to rotate</p>
+                    <details class="earth-credit"><summary>Earth imagery credits</summary><p>NASA Blue Marble and Earth’s City Lights. Historical satellite composites, with illustrative lighting. Not a live satellite feed.</p></details>
+                </figure>
             </div>
         </section>
 
@@ -222,14 +208,7 @@
             </div>
         </section>
 
-        <section class="section rustgis-feature" aria-labelledby="rustgis-feature-title">
-            <div class="container rustgis-feature-layout">
-                <div><p class="eyebrow"><span></span> RUSTGIS · Spatial workspace</p><h2 id="rustgis-feature-title">Put the power of GIS<br><em>in your hands.</em></h2><p>Explore the OpenGeos RustGIS engine for vector and raster mapping, spatial analysis, cartography, and publishing. Launch the full browser application or try our lightweight point explorer.</p><div class="hero-actions"><a class="btn btn-primary" href="rustgis.html">Launch RUSTGIS <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://wave-atlas.vercel.app" target="_blank" rel="noopener">Explore WaveAtlas ↗</a></div></div>
-                <div class="rustgis-feature-panel"><span class="rustgis-feature-label">EXPLORE / ANALYZE / UNDERSTAND</span><h3>More than a map.</h3><ul><li><span>01</span> Vector, raster &amp; web-service workflows</li><li><span>02</span> Spatial analysis, symbology &amp; editing</li><li><span>03</span> Map layouts, reports &amp; export</li></ul><p>Open-source GIS by OpenGeos and contributors. ETL GIS provides implementation guidance; desktop-only features and optional components have separate requirements.</p></div>
-            </div>
-        </section>
-
-        <section class="section outcomes-section" aria-labelledby="outcomes-title">
+<section class="section outcomes-section" aria-labelledby="outcomes-title">
             <div class="container outcomes-layout">
                 <div class="outcomes-copy">
                     <p class="eyebrow"><span></span> One connected strategy</p>
@@ -322,10 +301,9 @@
 
         <section id="about" class="section about-section" aria-labelledby="about-title">
             <div class="container about-layout">
-                <div class="about-visual" aria-hidden="true">
-                    <div class="radar-ring ring-one"></div><div class="radar-ring ring-two"></div><div class="radar-ring ring-three"></div>
-                    <div class="about-core"><strong>ETL</strong><span>GIS · AI · AUTOMATION</span></div>
-                    <span class="orbit-label label-gis">GEOSPATIAL</span><span class="orbit-label label-ai">INTELLIGENCE</span><span class="orbit-label label-web">SOFTWARE</span>
+                <div class="about-earth" aria-hidden="true">
+                    <div class="earth-view earth-view--about" data-earth-globe data-longitude="22" data-latitude="8" data-static="true"><canvas></canvas></div>
+                    <p>Geography at the center.<br><span>Intelligence in every direction.</span></p>
                 </div>
                 <div class="about-copy">
                     <p class="eyebrow"><span></span> Built on expertise</p>
@@ -381,6 +359,7 @@
     </footer>
 
     <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+    <script src="assets/js/earth-globe.js" defer></script>
     <script src="assets/js/scripts.js" defer></script>
 </body>
 </html>

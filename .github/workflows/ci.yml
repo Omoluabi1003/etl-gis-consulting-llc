@@ -31,15 +31,15 @@ jobs:
       - name: AgentOS orchestration tests
         run: node scripts/test-agentos.js
 
-      - name: RUSTGIS point operations
-        run: node scripts/test-rustgis.js
+      - name: Globe projection checks
+        run: node scripts/test-earth-globe.js
 
       - name: Link checker
         uses: lycheeverse/lychee-action@v1
         with:
           args: --config .lychee.toml .
 
-  rustgis-runtime:
+  globe-visuals:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -49,19 +49,19 @@ jobs:
           node-version: '20'
       - name: Install isolated browser test tools
         run: |
-          npm install --prefix "$RUNNER_TEMP/rustgis-browser" --no-save --package-lock=false playwright@1.62.1
-          node "$RUNNER_TEMP/rustgis-browser/node_modules/playwright/cli.js" install --with-deps chromium
-      - name: Test the actual self-hosted RustGIS engine
+          npm install --prefix "$RUNNER_TEMP/globe-browser" --no-save --package-lock=false playwright@1.62.1
+          node "$RUNNER_TEMP/globe-browser/node_modules/playwright/cli.js" install --with-deps chromium
+      - name: Check integrated geographic visuals
         env:
-          NODE_PATH: ${{ runner.temp }}/rustgis-browser/node_modules
+          NODE_PATH: ${{ runner.temp }}/globe-browser/node_modules
         run: |
           set -euo pipefail
           export CHROMIUM_PATH="$(node -p "require('playwright').chromium.executablePath()")"
-          python3 -m http.server 8010 --bind 127.0.0.1 >"$RUNNER_TEMP/rustgis-http.log" 2>&1 &
-          rustgis_server_pid=$!
-          trap 'kill "$rustgis_server_pid"' EXIT
+          python3 -m http.server 8010 --bind 127.0.0.1 >"$RUNNER_TEMP/globe-http.log" 2>&1 &
+          globe_server_pid=$!
+          trap 'kill "$globe_server_pid"' EXIT
           for attempt in {1..30}; do
-            if curl -fsS http://127.0.0.1:8010/rustgis.html >/dev/null; then break; fi
+            if curl -fsS http://127.0.0.1:8010/index.html >/dev/null; then break; fi
             sleep 1
           done
-          node scripts/test-rustgis-runtime.js
+          node scripts/test-earth-globe-browser.js
