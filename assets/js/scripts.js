@@ -9,23 +9,8 @@ const metricElements = Array.from(document.querySelectorAll('.metric[data-count-
 let metricObserver = null;
 const metricFormatters = new WeakMap();
 
-const relayEmailTokenSegments = ['ZXRsZ2', 'lzY29u', 'c3VsdG', 'luZ0Bv', 'dXRsb2', '9rLmNv', 'bQ=='];
-const relayEmailToken = relayEmailTokenSegments.join('');
 const displayEmailAddress = 'etlgisconsulting@outlook.com';
 
-const decodeToken = (token) => {
-    if (!token || typeof atob !== 'function') {
-        return '';
-    }
-    try {
-        return atob(token);
-    } catch (error) {
-        console.warn('Unable to decode relay token.', error);
-        return '';
-    }
-};
-
-const resolvedRelayEmail = decodeToken(relayEmailToken);
 const metricEaseOut = (t) => 1 - Math.pow(1 - t, 3);
 
 const getMetricFormattingConfig = (metric) => {
@@ -597,7 +582,7 @@ if (mapContainer && typeof L !== 'undefined') {
     const map = L.map(mapContainer, {
         scrollWheelZoom: false,
         maxZoom: 16,
-    }).setView([27.2731, -80.3582], 10);
+    }).setView([30.3322, -81.6557], 10);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -610,8 +595,8 @@ if (mapContainer && typeof L !== 'undefined') {
             description: 'Mobility analytics, utility network strategy, and executive briefings.',
         },
         {
-            coordinates: [27.2731, -80.3582],
-            title: 'Port St. Lucie, Florida',
+            coordinates: [30.3322, -81.6557],
+            title: 'Jacksonville, Florida',
             description: 'City and county GIS modernization, public safety dashboards, and data governance.',
         },
         {
@@ -628,10 +613,10 @@ if (mapContainer && typeof L !== 'undefined') {
     });
 }
 
-const navigationButton = document.querySelector('[data-navigate-port-st-lucie]');
+const navigationButton = document.querySelector('[data-navigate-headquarters]');
 
 if (navigationButton) {
-    const destination = encodeURIComponent('Port St. Lucie, FL 34984');
+    const destination = encodeURIComponent('Jacksonville, Florida');
     const defaultLabel = navigationButton.textContent;
 
     const openDirections = (origin) => {
