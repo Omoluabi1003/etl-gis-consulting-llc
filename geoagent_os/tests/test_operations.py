@@ -8,6 +8,7 @@ from types import SimpleNamespace
 from geoagent_os.engine import Engine
 from geoagent_os.agents import spatial_qa, address_validation
 from geoagent_os.dashboard import render
+from geoagent_os.tests.test_drafting import fixture_response
 
 
 class OperationsTests(unittest.TestCase):
@@ -108,7 +109,9 @@ class OperationsTests(unittest.TestCase):
 
     def test_configured_ai_adapter_returns_reviewable_drafts(self):
         payload = json.loads((Path(__file__).parents[1] / "examples/opportunity.json").read_text())
-        with patch.dict("os.environ", {"GEOAGENT_AI_COMMAND": '["trusted-adapter"]'}), patch("geoagent_os.agents.subprocess.run", return_value=SimpleNamespace(stdout='{"text":"Draft for review"}')) as provider:
+        def respond(command, **kwargs):
+            return SimpleNamespace(stdout=json.dumps(fixture_response(json.loads(kwargs["input"]))))
+        with patch.dict("os.environ", {"GEOAGENT_AI_COMMAND": '["trusted-adapter"]'}), patch("geoagent_os.agents.subprocess.run", side_effect=respond) as provider:
             job = self.engine.run(self.engine.create(payload), ai=True)
         self.assertEqual(job["status"], "awaiting_review")
         self.assertEqual(job["result"]["ProposalAgent"]["mode"], "ai_draft")

@@ -27,6 +27,9 @@ def main():
     sub.add_parser("list")
     dash = sub.add_parser("dashboard")
     dash.add_argument("destination")
+    packet = sub.add_parser("packet", help="Create an internal read-only HTML review copy; does not approve or export")
+    packet.add_argument("id")
+    packet.add_argument("destination")
     args = parser.parse_args()
     engine = Engine(args.db)
     try:
@@ -44,6 +47,9 @@ def main():
             output = {"file": engine.export(args.id, args.destination)}
         elif args.command == "dashboard":
             output = {"file": render(engine, args.destination)}
+        elif args.command == "packet":
+            from .packet import render_packet
+            output = {"file": render_packet(engine, args.id, args.destination)}
         elif args.command == "show":
             output = engine.get(args.id)
         else:
