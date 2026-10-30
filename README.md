@@ -87,7 +87,7 @@ Open the generated `geoagent_os/runtime/dashboard.html` locally to review the sy
 
 ## RUSTGIS interactive workspace
 
-Open `rustgis.html` through the local web server to explore point layers, feature attributes, spherical proximity analysis, local GeoJSON import/export, and optional online basemaps adapted from WaveAtlas. The default coordinate grid works without external tile services. See the [implementation, source provenance and tests](docs/rustgis-workspace.md). Run `node scripts/test-rustgis.js` for the nine point-operation checks.
+Open `rustgis.html` through the local web server for the OpenGeos RustGIS feature showcase, official app/download links and opt-in browser embed. A separate ETL GIS Point Explorer offers local point layers, attributes, proximity, GeoJSON import/export and optional MapLibre basemaps adapted from WaveAtlas. Its default grid works offline. See the [implementation, source provenance, upstream licensing and validation limits](docs/rustgis-workspace.md). Run `node scripts/test-rustgis.js` for the twelve core checks.
 
 ## Specialist workflow playbook
 

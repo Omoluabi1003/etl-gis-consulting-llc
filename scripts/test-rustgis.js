@@ -2,6 +2,7 @@
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
 const GIS = require('../assets/js/rustgis-core');
+const Embed = require('../assets/js/rustgis-embed');
 const point = (coordinates = [-80.35, 27.29], properties = { name: 'Library' }) => ({ type: 'Feature', id: 'test-1', geometry: { type: 'Point', coordinates }, properties });
 const collection = (features = [point()]) => ({ type: 'FeatureCollection', features });
 
@@ -62,4 +63,19 @@ test('geodesic radius ring is closed and every vertex is the requested distance'
       assert.ok(Math.abs(GIS.distance(center, normalized) - 2) < 1e-5);
     });
   }
+});
+test('RustGIS readiness requires the configured origin and exact iframe window', () => {
+  const frame = { contentWindow: {} };
+  assert.equal(Embed.isReady({ origin: Embed.ORIGIN, source: frame.contentWindow, data: { rustgis: 'ready' } }, frame), true);
+  assert.equal(Embed.isReady({ origin: 'https://example.org', source: frame.contentWindow, data: { rustgis: 'ready' } }, frame), false);
+  assert.equal(Embed.isReady({ origin: Embed.ORIGIN, source: {}, data: { rustgis: 'ready' } }, frame), false);
+});
+test('RustGIS project or command messages never mark the app ready', () => {
+  const frame = { contentWindow: {} };
+  for (const data of [null, 'ready', { rustgis: 'project', text: 'private project' }, { rustgis: 'run' }, { rustgis: 'result', ok: true }]) {
+    assert.equal(Embed.isReady({ origin: Embed.ORIGIN, source: frame.contentWindow, data }, frame), false);
+  }
+});
+test('closed RustGIS iframe cannot signal readiness', () => {
+  assert.equal(Embed.isReady({ origin: Embed.ORIGIN, data: { rustgis: 'ready' } }, null), false);
 });

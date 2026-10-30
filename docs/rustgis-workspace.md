@@ -1,8 +1,26 @@
-# RUSTGIS website workspace
+# RustGIS website workspace
 
 The consulting website now has a public `rustgis.html` workspace, homepage navigation and feature entry, a services-page entry, and a sitemap record. This is an additive static-site feature: no server credentials, package installation, database or build step is required.
 
-## Existing product source
+## Official RustGIS application
+
+The full GIS is **OpenGeos RustGIS**, https://github.com/opengeos/RustGIS. Inspected source revision `bd9cb7c1fe046f3f270cd126fc850ddbb0c53658`: `README.md`, `docs/installation.md`, `docs/python.md`, `apps/rustgis-web/index.html`, `apps/rustgis-web/src/main.rs`, and `apps/rustgis-web/src/embed.rs`.
+
+The page now provides:
+
+- A feature catalogue with genuine upstream screenshots: vector/cartographic workflows, geoprocessing, raster/terrain, and map layouts/publishing. These describe the upstream app; they are not claims that the local Point Explorer implements those operations.
+- A user-initiated iframe at `https://web.rustgis.app/?embed`, the mode explicitly supported in `embed.rs`. No upstream application request is made until Launch is clicked. Direct new-tab and desktop-release links remain available.
+- A fixed origin and sandbox (`allow-scripts allow-same-origin allow-downloads`) with no parent navigation or automatic credential/data bridge. No imported Point Explorer features are sent to RustGIS. No `project`, command or result messages are processed by the parent.
+- Readiness only from `{rustgis: "ready"}` messages whose origin is exactly `https://web.rustgis.app` and whose source is the active iframe's window. A frame load event alone never marks the GIS ready. A 30-second status offers the new-tab fallback; a late valid ready message can still complete startup.
+- Save/export guidance before closing. The upstream embed mode starts blank and keeps its settings in memory. The hosted app can change independently of the source revision reviewed here.
+
+Full RustGIS needs an Internet connection and WebGPU or WebGL2. Browser file open/save differs from desktop: saves/export download files, while process plugins, external GDAL/DuckDB paths and native database integrations have desktop requirements. Optional AI or online-data features can send data to the chosen provider; that upstream configuration is not supplied or enabled by this site.
+
+**Validation limit:** the managed environment proxy returned `403 Forbidden` on a CONNECT request to `web.rustgis.app`. Live app readiness, current framing headers and remote uptime therefore remain unverified. The browser suite uses an explicitly labeled protocol fixture to test loading, exact origin/window validation, ready status, close/reopen controls and isolation from the local explorer. No cloud network configuration was changed to bypass the restriction.
+
+RustGIS is attributed to OpenGeos and contributors. ETL GIS is the consulting/integration provider, not represented as the author of upstream RustGIS or an Esri affiliate.
+
+## Point Explorer: WaveAtlas patterns
 
 Inspected `Omoluabi1003/WaveAtlas` at revision `386a5e70f41ba5ccd57fda55f2f9e0f15b55f5d3`. The source records its canonical product URL as **https://wave-atlas.vercel.app** in `lib/branding.ts`. Product availability and live tile-service availability were not established by source inspection.
 
@@ -14,9 +32,9 @@ Inspected `Omoluabi1003/WaveAtlas` at revision `386a5e70f41ba5ccd57fda55f2f9e0f1
 | `lib/globe-math.ts`, `lib/globe-renderer-adapter.ts` | Globe projection, inversion and renderer boundaries | Described as existing WaveAtlas capabilities and linked to that product; not implemented as a globe on this page. |
 | `lib/geotruth-resolver.ts`, `lib/geoaware-core.ts` | Location provenance/precision and place resolution | Described with a WaveAtlas link. Imported points in the new workspace are explicitly unverified, not sent to these services. |
 
-No `rustgis` string or Rust engine was found in the inspected WaveAtlas tree. The RUSTGIS name follows the owner's description of the ecosystem. No Rust execution, ArcGIS Enterprise connection, Esri partnership, or certification is claimed by this implementation.
+WaveAtlas supplies the MapLibre and geographic-selection patterns used by the separate ETL GIS Point Explorer. It is not presented as the source of the OpenGeos RustGIS engine. The site does not supply an ArcGIS Enterprise account, Esri partnership or certification.
 
-## Implemented here
+## Implemented in the ETL GIS Point Explorer
 
 - Browser-local WGS84 Point GeoJSON import, capped at 1,500 features and 2 MB. Invalid imports leave current data unchanged. Import replaces the synthetic sample; reset clears imported data.
 - Visibility controls, attribute search, keyboard-accessible feature selection, safe attribute rendering, a feature table, and fit/zoom.
@@ -49,6 +67,10 @@ node scripts/test-form-endpoints.js
 node scripts/test-agentos.js
 ```
 
-The nine point-operation tests cover coordinate/CRS validation, feature caps, distance reference values and edge cases, search, proximity ordering, source-preserving exports and radius geometry. CI runs these alongside the existing Node checks.
+The twelve core tests cover three embed-origin/window/protocol checks plus nine point-operation cases for coordinate/CRS validation, feature caps, distance reference values and edge cases, search, proximity ordering, source-preserving exports and radius geometry. CI runs these alongside the existing Node checks.
 
-For browser checks, use an environment with Playwright and Chromium, start `python3 -m http.server 8010 --bind 127.0.0.1` from the repository root, then run `node scripts/test-rustgis-browser.js`. `RUSTGIS_TEST_ORIGIN` and `CHROMIUM_PATH` override the test server and browser. These browser dependencies are optional development tools and are not required by the website. The browser suite blocks live external services, checks real local interactions, exercises MapLibre with a local style fixture, and tests the basemap failure path. It does not certify live provider availability, production browser coverage, or legal accessibility conformance.
+For browser checks, use an environment with Playwright and Chromium, start `python3 -m http.server 8010 --bind 127.0.0.1` from the repository root, then run `node scripts/test-rustgis-browser.js`. `RUSTGIS_TEST_ORIGIN` and `CHROMIUM_PATH` override the test server and browser. These browser dependencies are optional development tools and are not required by the website. The browser suite blocks live external services, checks the feature tabs and opt-in RustGIS embed against a protocol fixture, checks real local Point Explorer interactions, exercises MapLibre with a local style fixture, and tests the basemap failure path. It does not certify live provider availability, production browser coverage, or legal accessibility conformance.
+
+## Screenshot provenance and license
+
+The unmodified RustGIS screenshots in `assets/images/rustgis/` come from `opengeos/rustgis-assets` revision `cae4058c8effed366d3c46ccfa7de03f797eb8a0`: `images/hero.webp`, `images/buffer-history.webp`, `images/raster.webp`, and `images/layout.webp`. The files are respectively saved as `hero.webp`, `analysis.webp`, `raster.webp`, and `layouts.webp`. The source README states these screenshots are rendered using the RustGIS headless harness and licenses assets under Apache-2.0. The original license is retained as `assets/images/rustgis/LICENSE.txt`, with source credit visible on the page. No RustGIS binary, logo, application bundle, or upstream JavaScript is redistributed by this integration.
