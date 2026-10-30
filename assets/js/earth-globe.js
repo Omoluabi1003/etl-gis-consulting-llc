@@ -29,7 +29,7 @@
       vec2 q=vPosition*vec2(uAspect,1.0); float r=0.81; float d=length(q);
       if(d>r){
         float glow=exp(-(d/r-1.0)*23.0)*0.19;
-        gl_FragColor=vec4(0.10,0.49,0.70,glow);return;
+        gl_FragColor=vec4(vec3(0.10,0.49,0.70)*glow,glow);return;
       }
       vec3 n=vec3(q/r,sqrt(max(0.0,1.0-dot(q/r,q/r))));
       float cy=cos(uCenter.y),sy=sin(uCenter.y),cx=cos(uCenter.x),sx=sin(uCenter.x);
@@ -44,10 +44,11 @@
       float rim=pow(1.0-n.z,3.2);
       color+=vec3(0.09,0.33,0.48)*rim*daylight;
       float edge=1.0-smoothstep(r-0.003,r,d);
-      gl_FragColor=vec4(color,edge);
+      gl_FragColor=vec4(color*edge,edge);
     }`;
+  // Match shader RGB to alpha before browser compositing, including Safari.
   function webgl(canvas, day, night) {
-    const gl = canvas.getContext('webgl', { alpha: true, antialias: true, powerPreference: 'low-power', premultipliedAlpha: false });
+    const gl = canvas.getContext('webgl', { alpha: true, antialias: true, powerPreference: 'low-power', premultipliedAlpha: true });
     if (!gl) throw new Error('WebGL unavailable');
     function shader(type, source) {
       const result = gl.createShader(type); gl.shaderSource(result, source); gl.compileShader(result);

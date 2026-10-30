@@ -40,6 +40,33 @@ const origin = process.env.GLOBE_TEST_ORIGIN || 'http://127.0.0.1:8010';
     assert.equal(await hero.getAttribute('data-rotation'), offscreen);
     assert.equal(await page.locator('.about-earth [data-earth-globe]').getAttribute('data-paused'), 'true');
     await page.screenshot({ path: '/tmp/etl-globe-about.png' });
+    // Read the actual render buffer in the draw call, before it is discarded.
+    const transparency = await page.locator('.about-earth canvas').evaluate((canvas) => {
+      const gl = canvas.getContext('webgl');
+      let result;
+      const draw = gl.drawArrays.bind(gl);
+      gl.drawArrays = (...args) => {
+        draw(...args);
+        const pixel = new Uint8Array(4);
+        gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+        result = { corner: Array.from(pixel), premultiplied: gl.getContextAttributes().premultipliedAlpha };
+      };
+      canvas.parentElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home' }));
+      // The static globe rerenders when its canvas size changes.
+      return new Promise((resolve) => {
+        const host = canvas.parentElement;
+        const width = host.style.width;
+        host.style.width = (host.clientWidth - 1) + 'px';
+        const poll = () => {
+          if (!result) return requestAnimationFrame(poll);
+          gl.drawArrays = draw; host.style.width = width; resolve(result);
+        };
+        requestAnimationFrame(poll);
+      });
+    });
+    assert.equal(transparency.premultiplied, true);
+    assert.deepEqual(transparency.corner, [0, 0, 0, 0], 'Space outside the globe must be transparent black, without residual blue');
+
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.setViewportSize({ width: 390, height: 844 }); await page.goto(`${origin}/index.html`);
     await page.waitForFunction(() => document.querySelector('.earth-scene [data-earth-globe]').dataset.ready === 'true');
