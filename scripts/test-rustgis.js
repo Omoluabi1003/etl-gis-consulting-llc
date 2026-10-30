@@ -79,3 +79,22 @@ test('RustGIS project or command messages never mark the app ready', () => {
 test('closed RustGIS iframe cannot signal readiness', () => {
   assert.equal(Embed.isReady({ origin: Embed.ORIGIN, data: { rustgis: 'ready' } }, null), false);
 });
+test('world starter launches only the fixed public country and city datasets', () => {
+  const url = new URL(Embed.launchURL('world'));
+  assert.equal(url.origin, Embed.ORIGIN);
+  assert.ok(url.searchParams.has('embed'));
+  assert.deepEqual(url.searchParams.getAll('data'), ['https://assets.rustgis.app/data/countries.geojson', 'https://assets.rustgis.app/data/cities.geojson']);
+});
+test('globe and blank starters preserve their projection and embedding semantics', () => {
+  assert.equal(new URL(Embed.launchURL('globe')).searchParams.get('projection'), 'globe');
+  assert.equal(Embed.launchURL('blank'), 'https://web.rustgis.app/?embed');
+  const standalone = new URL(Embed.launchURL('world', false));
+  assert.ok(standalone.searchParams.has('blank'));
+  assert.ok(!standalone.searchParams.has('embed'));
+  assert.equal(standalone.searchParams.getAll('data').length, 2);
+});
+test('unrecognized or prototype keys cannot inject a custom starter URL', () => {
+  for (const key of ['__proto__', 'constructor', 'https://example.org/private.json', '', null]) {
+    assert.throws(() => Embed.launchURL(key));
+  }
+});

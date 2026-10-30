@@ -87,7 +87,7 @@ Open the generated `geoagent_os/runtime/dashboard.html` locally to review the sy
 
 ## RUSTGIS interactive workspace
 
-Open `rustgis.html` through the local web server for the OpenGeos RustGIS feature showcase, official app/download links and opt-in browser embed. A separate ETL GIS Point Explorer offers local point layers, attributes, proximity, GeoJSON import/export and optional MapLibre basemaps adapted from WaveAtlas. Its default grid works offline. See the [implementation, source provenance, upstream licensing and validation limits](docs/rustgis-workspace.md). Run `node scripts/test-rustgis.js` for the twelve core checks.
+Open `rustgis.html` through the local web server for the OpenGeos RustGIS feature showcase, official app/download links and an opt-in browser embed with guided world-map, globe and own-data starters. A separate ETL GIS Point Explorer offers local point layers, attributes, proximity, GeoJSON import/export and optional MapLibre basemaps adapted from WaveAtlas. Its default grid works offline. See the [implementation, source provenance, upstream licensing and validation limits](docs/rustgis-workspace.md). Run `node scripts/test-rustgis.js` for the fifteen core checks.
 
 ## Specialist workflow playbook
 
