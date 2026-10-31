@@ -11,18 +11,18 @@
 .portfolio-product-showcase .project-links{display:flex;flex-wrap:wrap;gap:10px}
 .portfolio-product-showcase .project-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid rgba(99,213,255,.4);border-radius:6px;background:rgba(10,46,67,.72);color:#effcff!important;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;text-decoration:none}
 
-/* ID-based proof assets keep visuals correct regardless of card order. */
-#waveatlas::before{background-image:radial-gradient(circle at 50% 46%,rgba(38,179,236,.18),rgba(3,10,18,.78) 68%),url("https://raw.githubusercontent.com/Omoluabi1003/WaveAtlas/main/public/brand/waveatlas-1024x1024.png")!important;background-size:cover,contain!important}
+/* All public portfolio visuals are self-hosted. No repository or source-control URLs belong in the public experience. */
+#waveatlas::before{background-image:url("../portfolio/waveatlas-proof.svg")!important;background-size:contain!important}
 #haulora::before{background-image:url("../portfolio/haulora-proof.svg")!important;background-size:contain!important}
 #paycore::before{background-image:url("../portfolio/paycore-proof.svg")!important;background-size:contain!important}
-#best-home-academy::before{background-image:linear-gradient(120deg,rgba(5,15,25,.08),rgba(5,15,25,.45)),url("https://raw.githubusercontent.com/Omoluabi1003/bha/main/9DF002EA-EE3F-4507-924B-82B021A3F925.png")!important;background-size:cover!important}
+#best-home-academy::before{background-image:url("../portfolio/bha-proof.svg")!important;background-size:contain!important}
 #ptmatch::before{background-image:url("../portfolio/ptmatch-proof.svg")!important;background-size:contain!important}
 #public-sector-modernization::before{background-image:url("../portfolio/public-sector-modernization-proof.svg")!important;background-size:contain!important}
-#ariyo-ai::before{background-image:linear-gradient(120deg,rgba(5,15,25,.08),rgba(5,15,25,.5)),url("https://raw.githubusercontent.com/Omoluabi1003/Ariyo-AI/main/icons/Ariyo.png")!important;background-size:cover,contain!important}
+#ariyo-ai::before{background-image:url("../portfolio/ariyo-proof.svg")!important;background-size:contain!important}
 #clarity-loop-book-studio::before{background-image:url("../portfolio/clarity-loop-proof.svg")!important;background-size:contain!important}
-#bag-dna-os::before{background-image:linear-gradient(120deg,rgba(5,15,25,.08),rgba(5,15,25,.56)),url("https://raw.githubusercontent.com/Omoluabi1003/bag-dna-os/main/public/bag-dna-logo.png")!important;background-size:cover,contain!important}
-#africa-unveiled::before{background-image:linear-gradient(120deg,rgba(5,15,25,.08),rgba(5,15,25,.45)),url("https://raw.githubusercontent.com/Omoluabi1003/AfricaUnveiled/main/Africa%20Unveiled%20logo.jpeg")!important;background-size:cover!important}
-#carine-sanadina::before{background-image:linear-gradient(120deg,rgba(5,15,25,.12),rgba(5,15,25,.48)),url("https://raw.githubusercontent.com/Omoluabi1003/Carine-Sanadina/main/Carine%20Sanadina.png")!important;background-size:cover!important;background-position:center 24%!important}
+#bag-dna-os::before{background-image:url("../portfolio/bagdna-proof.svg")!important;background-size:contain!important}
+#africa-unveiled::before{background-image:url("../portfolio/africa-unveiled-proof.svg")!important;background-size:contain!important}
+#carine-sanadina::before{background-image:url("../portfolio/carine-proof.svg")!important;background-size:contain!important}
 
 @media(max-width:700px){
   .portfolio-intro{padding:0 22px 26px}
