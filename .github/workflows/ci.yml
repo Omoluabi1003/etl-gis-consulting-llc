@@ -37,6 +37,9 @@ jobs:
       - name: Public deployment boundary
         run: node scripts/test-public-site.js
 
+      - name: Portfolio source privacy boundary
+        run: node scripts/test-portfolio-public-boundary.js
+
       - name: Brand assets and share metadata
         run: node scripts/test-brand-identity.js
 
