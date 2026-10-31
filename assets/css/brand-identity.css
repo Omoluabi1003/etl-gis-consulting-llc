@@ -32,5 +32,21 @@
 .flagship-portfolio .project-actions a::before{content:"VIEW";color:#63d5ff;font-size:.55rem;letter-spacing:.12em}
 .flagship-portfolio .proof-banner{border-color:rgba(99,213,255,.28);background:linear-gradient(135deg,rgba(14,42,67,.9),rgba(7,22,39,.82))}
 
-@media(max-width:900px){.flagship-portfolio .innovation-grid{grid-template-columns:1fr}.flagship-portfolio .innovation-card-wide{grid-column:auto}.flagship-portfolio .innovation-card::before{height:200px}}
-@media(max-width:700px){.brand>.brand-crest,.ai-brand>.brand-crest,.logo .logo-mark{width:52px;height:52px}.brand-crest{width:56px;height:56px}.article-brand-header{padding:15px 20px}.flagship-portfolio .innovation-card{padding:0 22px 24px}.flagship-portfolio .innovation-card::before{height:180px;margin:0 -22px 22px}.flagship-portfolio .innovation-card::after{top:14px;left:14px}}
+/* Multi-page homepage gateway. Keep the home page concise and use clear destination cards. */
+.gateway-home .gateway-section{padding-top:90px;padding-bottom:90px}
+.gateway-home .gateway-grid .service-card{min-height:340px}
+.gateway-home .home-featured-work{padding-top:92px;padding-bottom:92px}
+.gateway-home .home-proof-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.gateway-home .home-proof-card{position:relative;overflow:hidden;padding:0 26px 28px;background:linear-gradient(180deg,rgba(10,28,49,.98),rgba(7,19,34,.96));border:1px solid rgba(126,192,226,.18);box-shadow:0 20px 60px rgba(0,0,0,.16)}
+.gateway-home .home-proof-card::before{content:"";display:block;height:190px;margin:0 -26px 24px;background:#081421 center/cover no-repeat;border-bottom:1px solid rgba(126,192,226,.16)}
+.gateway-home .home-proof-card::after{content:"FEATURED PROOF";position:absolute;top:16px;left:16px;padding:7px 10px;border:1px solid rgba(255,255,255,.15);border-radius:999px;background:rgba(3,8,20,.68);color:#dff7ff;font-size:.54rem;font-weight:800;letter-spacing:.12em}
+.gateway-home .waveatlas-proof::before{background-image:radial-gradient(circle at 50% 45%,rgba(25,183,255,.2),rgba(3,8,20,.82) 66%),url("https://raw.githubusercontent.com/Omoluabi1003/WaveAtlas/main/public/brand/waveatlas-1024x1024.png");background-size:cover,contain;background-repeat:no-repeat}
+.gateway-home .haulora-proof::before{background-image:url("../portfolio/haulora-proof.svg");background-size:cover}
+.gateway-home .paycore-proof::before{background-image:url("../portfolio/paycore-proof.svg");background-size:cover}
+.gateway-home .home-proof-card .project-actions{margin-top:22px;padding-top:16px;border-top:1px solid rgba(126,192,226,.14)}
+.gateway-home .home-proof-card .project-actions a{display:inline-flex;min-height:42px;align-items:center;padding:0 15px;border:1px solid rgba(99,213,255,.34);border-radius:5px;color:#e8f8ff;text-decoration:none;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+.gateway-home .home-portfolio-cta{margin-top:30px}
+
+@media(max-width:1000px){.gateway-home .home-proof-grid{grid-template-columns:1fr 1fr}.gateway-home .paycore-proof{grid-column:1/-1}}
+@media(max-width:900px){.flagship-portfolio .innovation-grid{grid-template-columns:1fr}.flagship-portfolio .innovation-card-wide{grid-column:auto}.flagship-portfolio .innovation-card::before{height:200px}.gateway-home .home-proof-grid{grid-template-columns:1fr}.gateway-home .paycore-proof{grid-column:auto}}
+@media(max-width:700px){.brand>.brand-crest,.ai-brand>.brand-crest,.logo .logo-mark{width:52px;height:52px}.brand-crest{width:56px;height:56px}.article-brand-header{padding:15px 20px}.flagship-portfolio .innovation-card{padding:0 22px 24px}.flagship-portfolio .innovation-card::before{height:180px;margin:0 -22px 22px}.flagship-portfolio .innovation-card::after{top:14px;left:14px}.gateway-home .gateway-section,.gateway-home .home-featured-work{padding-top:68px;padding-bottom:68px}.gateway-home .gateway-grid .service-card{min-height:0}.gateway-home .home-proof-card{padding:0 22px 24px}.gateway-home .home-proof-card::before{height:175px;margin:0 -22px 22px}}
