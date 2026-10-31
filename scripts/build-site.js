@@ -27,7 +27,12 @@ function build() {
       const depth = name.split('/').length - 1;
       const prefix = depth ? '../'.repeat(depth) : '';
       const clarityLink = `<link rel="stylesheet" href="${prefix}assets/css/secondary-clarity.css">`;
-      const html = fs.readFileSync(destination, 'utf8');
+      let html = fs.readFileSync(destination, 'utf8');
+      if (name === 'contact.html') {
+        html = html
+          .replace('Co-Founder &amp; Principal Consultant', 'Principal Consultant')
+          .replace('Co-Founder of ETL GIS Consulting LLC', 'Principal Consultant at ETL GIS Consulting LLC');
+      }
       fs.writeFileSync(destination, html.replace('</head>', `    ${clarityLink}\n</head>`));
     }
   }
