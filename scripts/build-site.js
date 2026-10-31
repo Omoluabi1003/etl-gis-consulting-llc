@@ -22,6 +22,13 @@ function build() {
     const destination = path.join(output, name);
     fs.mkdirSync(path.dirname(destination), { recursive: true });
     fs.copyFileSync(path.join(root, name), destination);
+    if (name.endsWith('.html') && name !== 'index.html') {
+      const depth = name.split('/').length - 1;
+      const prefix = depth ? '../'.repeat(depth) : '';
+      const clarityLink = `<link rel="stylesheet" href="${prefix}assets/css/secondary-clarity.css">`;
+      const html = fs.readFileSync(destination, 'utf8');
+      fs.writeFileSync(destination, html.replace('</head>', `    ${clarityLink}\n</head>`));
+    }
   }
   fs.cpSync(path.join(root, 'assets'), path.join(output, 'assets'), { recursive: true });
   return output;
