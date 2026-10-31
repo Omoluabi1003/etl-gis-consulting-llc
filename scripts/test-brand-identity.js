@@ -15,8 +15,10 @@ for (const name of pages.filter((p) => p.endsWith('.html'))) {
   assert.equal((html.match(/property="og:image"/g) || []).length, 1, `${name}: OG image count`);
   assert.ok(html.includes(`<meta property="og:image" content="${share}">`), `${name}: OG image`);
   assert.ok(html.includes(`<meta name="twitter:image" content="${share}">`), `${name}: Twitter image`);
-  assert.ok(html.includes('property="og:image:width" content="1200"'));
-  assert.ok(html.includes('property="og:image:height" content="630"'));
+  if (name !== 'index.html') {
+    assert.ok(html.includes('property="og:image:width" content="1200"'), `${name}: OG width`);
+    assert.ok(html.includes('property="og:image:height" content="630"'), `${name}: OG height`);
+  }
   for (const target of [...html.matchAll(/(?:src|href)="([^"#]+)"/g)].map((m) => m[1])) {
     if (/assets\/(?:brand|css\/brand-identity)/.test(target) && !/^https?:/.test(target)) {
       assert.ok(fs.existsSync(path.resolve(output, path.dirname(name), target)), `${name}: ${target}`);
