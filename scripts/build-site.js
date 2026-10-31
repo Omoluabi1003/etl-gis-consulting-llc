@@ -30,6 +30,7 @@ function sanitizePortfolio(html) {
 
 function sanitizePortfolioCss(css) {
   const replacements = new Map([
+    ['https://raw.githubusercontent.com/Omoluabi1003/Clarity-Loop-Books/main/CL%20AI%20Logo.png', '../portfolio/clarity-loop-proof.svg'],
     ['https://raw.githubusercontent.com/Omoluabi1003/WaveAtlas/main/public/brand/waveatlas-1024x1024.png', '../portfolio/waveatlas-proof.svg'],
     ['https://raw.githubusercontent.com/Omoluabi1003/bha/main/9DF002EA-EE3F-4507-924B-82B021A3F925.png', '../portfolio/bha-proof.svg'],
     ['https://raw.githubusercontent.com/Omoluabi1003/Ariyo-AI/main/icons/Ariyo.png', '../portfolio/ariyo-proof.svg'],
@@ -63,7 +64,7 @@ function build() {
     }
   }
   fs.cpSync(path.join(root, 'assets'), path.join(output, 'assets'), { recursive: true });
-  for (const cssName of ['core-portfolio.css', 'secondary-clarity.css']) {
+  for (const cssName of ['brand-identity.css', 'core-portfolio.css', 'secondary-clarity.css']) {
     const cssPath = path.join(output, 'assets', 'css', cssName);
     if (fs.existsSync(cssPath)) fs.writeFileSync(cssPath, sanitizePortfolioCss(fs.readFileSync(cssPath, 'utf8')));
   }
