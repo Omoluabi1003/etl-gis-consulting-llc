@@ -38,9 +38,16 @@ body.has-sticky-cta .portfolio-product-showcase .project-card:nth-child(8)::befo
 body.has-sticky-cta .portfolio-product-showcase .project-card:nth-child(9)::before{background-image:url("../portfolio/paycore-proof.svg");background-size:contain}
 body.has-sticky-cta .portfolio-product-showcase .project-card:nth-child(10)::before{background-image:url("../portfolio/ptmatch-proof.svg");background-size:contain}
 
+/* Contact leadership portrait: production-safe, contained, and proportionate. */
+body.has-sticky-cta .leadership-figure{overflow:hidden;border:1px solid rgba(138,207,237,.24);border-radius:14px;background:linear-gradient(180deg,#0d2537,#081927);box-shadow:0 24px 70px rgba(0,0,0,.22)}
+body.has-sticky-cta .leadership-figure img{display:block;width:100%;height:auto;max-height:420px;object-fit:cover;object-position:center 24%;background:#071521}
+body.has-sticky-cta .leadership-figure figcaption{padding:18px 20px 20px;text-align:center;color:#c8d7e1;line-height:1.5}
+body.has-sticky-cta .leadership-figure figcaption strong{display:block;margin-bottom:4px;font-size:1.06rem}
+
 @media(max-width:820px){
   body.has-sticky-cta .portfolio-product-showcase{grid-template-columns:1fr}
   body.has-sticky-cta .portfolio-product-showcase .project-content{padding:24px 22px 26px}
+  body.has-sticky-cta .leadership-figure img{max-height:360px;object-position:center 22%}
 }
 @media(max-width:700px){
   body.has-sticky-cta:has(.portfolio-product-showcase) .sticky-cta{display:none!important}
@@ -51,4 +58,5 @@ body.has-sticky-cta .portfolio-product-showcase .project-card:nth-child(10)::bef
   body.has-sticky-cta p,body.has-sticky-cta li{line-height:1.62}
   body.has-sticky-cta .portfolio-product-showcase .project-card::after{top:12px;left:12px}
   body.has-sticky-cta .portfolio-product-showcase .project-content{padding:22px 20px 24px}
+  body.has-sticky-cta .leadership-figure img{max-height:320px}
 }
