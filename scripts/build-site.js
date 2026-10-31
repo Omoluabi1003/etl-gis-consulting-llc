@@ -14,6 +14,7 @@ const pages = [
   'services/enterprise-architecture.html', 'services/managed-gis-operations.html',
   'services/spatial-analytics-enablement.html', 'services/strategy-roadmapping.html',
   'robots.txt', 'sitemap.xml', 'site.webmanifest', 'favicon.ico', 'apple-touch-icon.png',
+  'A5667770-81AA-4F06-9B74-B42EF57E17F4.png',
 ];
 function build() {
   fs.rmSync(output, { recursive: true, force: true });
