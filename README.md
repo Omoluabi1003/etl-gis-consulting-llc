@@ -1,5 +1,19 @@
 # ETL GIS Consulting LLC Website
 
+## Project at a glance
+
+**Category:** ETL GIS Consulting LLC company website  
+**Purpose:** Showcase enterprise GIS, spatial automation, modernization services and consulting engagements  
+**Audience:** Users, contributors, implementers and project reviewers  
+**Source repository:** https://github.com/Omoluabi1003/etl-gis-consulting-llc
+
+**Readiness boundary:** Service offerings and portfolio evidence should be linked without implying unverified external endorsements.
+
+Continue below for the existing documentation, including setup, architecture or deployment instructions where provided. Planned capabilities must be independently validated before being described as live.
+
+---
+
+
 A polished, professional marketing website for ETL GIS Consulting LLC showcasing geospatial consulting services, project successes, and contact pathways.
 
 ## Structure
